@@ -116,14 +116,7 @@ p a:hover::after
 {
 	opacity: 0.2;
 }
-::selection
-{
-	
-}
-p::selection
-{
-	
-}
+
 h1{font-size: 48px;}
 h2{font-size: 36px;}
 h3{font-size: 24px;}
@@ -292,12 +285,6 @@ section
 {
 	display: inline-block;
 }
-
-.top_bar_content a
-{
-	color: #fff;
-}
-
 .question
 {
 	font-family: 'Roboto Slab', serif;
@@ -894,7 +881,7 @@ section
 }
 .home_search_button
 {
-	width: 160px;
+	width: 120px;
 	height: 46px;
 	background: #14bdee;
 	border: none;
@@ -1016,6 +1003,7 @@ section
 .course_image img
 {
 	max-width: 100%;
+	width:100%;
 }
 .course_body
 {
@@ -2029,6 +2017,47 @@ section
 	color: #14bdee;
 }
 
-.course_image img{
-	width:100%;
+.banner_section {
+	width: 100%;
+	height: 182px;
+	background: #f2f4f5;
+	border-bottom: solid 1px #edeff0;
+}
+
+.breadcrumbs_container {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	padding-bottom: 13px;
+	padding-left: 3px;
+}
+
+.breadcrumbs ul li {
+	display: inline-block;
+	position: relative;
+}
+
+.breadcrumbs ul li:not(:last-child)::after {
+	display: inline-block;
+	font-family: 'FontAwesome';
+	content: '\f105';
+	margin-left: 7px;
+	margin-right: 4px;
+	color: #384158;
+}
+
+.breadcrumbs ul li a {
+	font-size: 14px;
+	font-weight: 400;
+	color: #384158;
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+
+.breadcrumbs ul li a:hover {
+	color: #14bdee;
 }

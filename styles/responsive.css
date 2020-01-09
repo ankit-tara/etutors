@@ -1,64 +1,8 @@
 @charset "utf-8";
 /* CSS Document */
 
-/******************************
-
-[Table of Contents]
-
-1. 1600px
-2. 1440px
-3. 1280px
-4. 1199px
-5. 1024px
-6. 991px
-7. 959px
-8. 880px
-9. 768px
-10. 767px
-11. 539px
-12. 479px
-13. 400px
-
-******************************/
-
 /************
-1. 1600px
-************/
-
-@media only screen and (max-width: 1600px)
-{
-	
-}
-
-/************
-2. 1440px
-************/
-
-@media only screen and (max-width: 1440px)
-{
-	
-}
-
-/************
-3. 1380px
-************/
-
-@media only screen and (max-width: 1380px)
-{
-	
-}
-
-/************
-3. 1280px
-************/
-
-@media only screen and (max-width: 1280px)
-{
-	
-}
-
-/************
-4. 1199px
+1199px
 ************/
 
 @media only screen and (max-width: 1199px)
@@ -84,28 +28,72 @@
 		width: 160px;
 		height: 140px;
 	}
+
+	.course_col:nth-child(odd) {
+		padding-right: 15px;
+	}
+
+	.course_col:nth-child(even) {
+		padding-left: 15px;
+	}
+
+	.sidebar {
+		padding-left: 20px;
+	}
+
+	.gallery_item {
+		width: calc((100% - 24px) / 3);
+		margin-bottom: 12px;
+	}
+
+	.sidebar {
+		padding-left: 20px;
+	}
+
+	.review_rating {
+		padding-left: 0;
+	}
+
+	.review_rating_bars {
+		padding-left: 64px;
+	}
+
+	.about_col_left {
+		padding-right: 15px;
+	}
+
+	.about_col_right {
+		padding-left: 15px;
+	}
+
+	.about_col_middle {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+
+	.feature_content {
+		padding-right: 0;
+	}
+
+	.feature_video {
+		width: 100%;
+		left: auto;
+	}
+
+	.team_image {
+		width: 160px;
+		height: 140px;
+	}
+
+	.partners_slider_container {
+		width: calc(100% + 160px);
+		left: -80px;
+	}
 }
 
-/************
-4. 1100px
-************/
-
-@media only screen and (max-width: 1100px)
-{
-	
-}
 
 /************
-5. 1024px
-************/
-
-@media only screen and (max-width: 1024px)
-{
-	
-}
-
-/************
-6. 991px
+991px
 ************/
 
 @media only screen and (max-width: 991px)
@@ -198,6 +186,84 @@
 	{
 		margin-bottom: 80px;
 	}
+
+	.about_col:not(:last-child) {
+		margin-bottom: 40px;
+	}
+
+	.feature_video {
+		margin-top: 60px;
+	}
+
+	.counter_form {
+		position: relative;
+		top: 0;
+		right: auto;
+		width: 100%;
+		height: auto;
+		padding-left: 40px;
+		padding-right: 40px;
+		padding-top: 60px;
+		padding-bottom: 60px;
+	}
+
+	.counter_content {
+		padding-top: 100px;
+		padding-bottom: 68px;
+	}
+
+	.counter {
+		padding-bottom: 100px;
+	}
+
+	.blog_images_col:not(:last-child) {
+		margin-bottom: 30px;
+	}
+
+	.blog_social {
+		margin-top: 15px;
+	}
+
+	.sidebar {
+		margin-top: 100px;
+		padding-left: 0;
+	}
+
+	.course_col:not(:last-child) {
+		margin-bottom: 40px;
+	}
+
+	.course_info {
+		height: auto;
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
+
+	.course_info_item:not(:last-child) {
+		margin-bottom: 25px;
+	}
+
+	.course_info_item:not(:last-child)::after {
+		display: none;
+	}
+
+	.review_rating_bars {
+		padding-left: 134px;
+	}
+
+	.blog_post {
+		width: calc((100% - 30px) / 2);
+	}
+
+	.contact_form {
+		padding-right: 0;
+	}
+
+	.contact_info {
+		padding-left: 0;
+		margin-top: 80px;
+	}
+
 	.newsletter_container
 	{
 		height: auto;
@@ -252,35 +318,9 @@
 	}
 }
 
-/************
-7. 959px
-************/
-
-@media only screen and (max-width: 959px)
-{
-	
-}
 
 /************
-8. 880px
-************/
-
-@media only screen and (max-width: 880px)
-{
-	
-}
-
-/************
-9. 768px
-************/
-
-@media only screen and (max-width: 768px)
-{
-	
-}
-
-/************
-10. 767px
+767px
 ************/
 
 @media only screen and (max-width: 767px)
@@ -327,6 +367,33 @@
 	.team_col:nth-child(even) .team_item
 	{
 		padding-left: 0px;
+	}
+
+	.home {
+		height: 140px;
+	}
+
+	.header.scrolled {
+		top: 0px;
+	}
+
+	.blog_post {
+		width: 100%;
+	}
+
+	.review_rating {
+		padding-top: 0;
+		text-align: left;
+	}
+
+	.review_rating_bars {
+		padding-left: 0;
+		margin-top: 40px;
+	}
+
+	.partners_slider_container {
+		width: calc(100% + 80px);
+		left: -40px;
 	}
 }
 
@@ -384,82 +451,141 @@
 		width: 100%;
 		padding-left: 0;
 	}
-}
 
-/************
-11. 539px
-************/
-
-@media only screen and (max-width: 539px)
-{
-	
-}
-
-/************
-12. 480px
-************/
-
-@media only screen and (max-width: 480px)
-{
-	
-}
-
-/************
-13. 479px
-************/
-
-@media only screen and (max-width: 479px)
-{
-	
-}
-
-/************
-14. 400px
-************/
-
-@media only screen and (max-width: 400px)
-{
-	
-}
-
-
-@media(max-width:992px){
-		.footer_background{
-		background-image: none !important;
+	.dropdown_item_select,
+	.home_search_button {
+		font-size: 12px;
 	}
-	.footer_section.footer_links{
-		display: none;
-	}
-}
 
+	.accordion_panel p {
+		font-size: 13px;
+	}
 
-@media(max-width:767px){
-	.home {
-	    height: 450px;
+	.accordion div {
+		font-size: 16px;
 	}
-	.home_slider_title {
-  	  font-size: 27px;
+
+	.feature_video {
+		height: 300px;
 	}
-	.home_slider_subtitle {
+
+	.partners_slider_container {
+		width: 100%;
+		left: auto;
+	}
+
+	.tab_panel_text p,
+	.tab_panel_bullets li,
+	.accordion_panel p {
+		font-size: 13px;
+	}
+
+	.accordion div {
+		font-size: 16px;
+	}
+
+	.tab {
+		font-size: 12px;
+	}
+
+	.dropdown_item_title {
 		font-size: 14px;
 	}
-	.home_search_button{
-		margin: 0;
+
+	.dropdown_item_title span,
+	.dropdown_item_title::before {
+		font-size: 16px;
 	}
-	.features {
-		padding-top: 53px;
-		padding-bottom: 50px;
+
+	.dropdown_item_title::before {
+		top: 0;
 	}
-	.header.scrolled {
-    	top: 0px;
+
+	.has_children>.dropdown_item>.dropdown_item_title::after {
+		font-size: 26px;
+		top: -7px;
 	}
-	.header.scrolled .header_content {
-		height: 50px;
+
+	.dropdown_item_text p {
+		font-size: 13px;
 	}
-	.courses_button{
-		margin-left: auto !important;
+
+	.review_rating_num {
+		font-size: 56px;
 	}
-	.counter_content{
-		text-align: center;
+
+	.review_rating_stars {
+		margin-top: 14px;
 	}
+
+	.review_rating_text {
+		font-size: 14px;
+		margin-top: 6px;
+	}
+
+	.comments_list li ul {
+		padding-left: 30px;
+	}
+
+	.comment_notify span,
+	.form_title {
+		font-size: 14px;
+	}
+
+	.blog_content p {
+		font-size: 13px;
+	}
+
+	.blog_quote div {
+		font-size: 15px;
+	}
+
+	.blog_quote i {
+		font-size: 24px;
+	}
+
+	.blog_quote div {
+		padding-left: 15px;
+	}
+
+	.blog_subtitle {
+		font-size: 20px;
+	}
+
+	.blog_title {
+		font-size: 24px;
+	}
+
+	.blog_tags ul li a,
+	.blog_tags span,
+	.blog_social span {
+		font-size: 13px;
+	}
+
+	.input_col:not(:last-child) {
+		margin-bottom: 30px;
+	}
+
+	.comments_list li ul {
+		padding-left: 30px;
+	}
+
+	.comment_notify span,
+	.form_title {
+		font-size: 14px;
+	}
+
+	.google_map {
+		height: 300px;
+	}
+
+	.contact_info_title {
+		font-size: 24px;
+	}
+
+	.contact_info_location_title {
+		font-size: 16px;
+	}
+
 }
+

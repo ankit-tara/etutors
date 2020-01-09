@@ -4,17 +4,9 @@
 <title>Wisutors - Institute For Growth &amp; Development</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="Unicat project">
+<meta name="description" content="Wisutors - Institute For Growth & Development">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="<?= get_template_directory_uri();?>/styles/bootstrap4/bootstrap.min.css">
-<link href="<?= get_template_directory_uri();?>/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="<?= get_template_directory_uri();?>/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="<?= get_template_directory_uri();?>/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="<?= get_template_directory_uri();?>/plugins/OwlCarousel2-2.2.1/animate.css">
-<link rel="stylesheet" type="text/css" href="<?= get_template_directory_uri();?>/styles/main_styles.css">
-<link rel="stylesheet" type="text/css" href="<?= get_template_directory_uri();?>/styles/responsive.css">
-
- <?php wp_head();?>
+<?php wp_head();?>
 </head>
 <body>
 
@@ -59,7 +51,7 @@
 					<div class="col">
 						<div class="header_content d-flex flex-row align-items-center justify-content-start">
 							<div class="logo_container">
-								<a href="#">
+								<a href="<?= site_url();?>">
 									<div class="logo_text">Wis<span>utors</span></div>
 								</a>
 							</div>

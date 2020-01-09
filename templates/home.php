@@ -1,4 +1,11 @@
-<?php get_header(); ?>
+<?php
+/*
+Template Name: HomePage
+*/
+
+ get_header();
+ 
+ ?>
 
 
     <!-- Home -->

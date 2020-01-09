@@ -13,7 +13,7 @@
 								<!-- Footer About -->
 								<div class="footer_section footer_about">
 									<div class="footer_logo_container">
-										<a href="#">
+										<a href="<?= site_url();?>">
 											<div class="footer_logo_text">wis<span>utors</span></div>
 										</a>
 									</div>
@@ -106,19 +106,6 @@
 		</div>
 	</footer>
 </div>
-
-<script src="<?= get_template_directory_uri();?>/js/jquery-3.2.1.min.js"></script>
-<script src="<?= get_template_directory_uri();?>/styles/bootstrap4/popper.js"></script>
-<script src="<?= get_template_directory_uri();?>/styles/bootstrap4/bootstrap.min.js"></script>
-<script src="<?= get_template_directory_uri();?>/plugins/greensock/TweenMax.min.js"></script>
-<script src="<?= get_template_directory_uri();?>/plugins/greensock/TimelineMax.min.js"></script>
-<script src="<?= get_template_directory_uri();?>/plugins/scrollmagic/ScrollMagic.min.js"></script>
-<script src="<?= get_template_directory_uri();?>/plugins/greensock/animation.gsap.min.js"></script>
-<script src="<?= get_template_directory_uri();?>/plugins/greensock/ScrollToPlugin.min.js"></script>
-<script src="<?= get_template_directory_uri();?>/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-<script src="<?= get_template_directory_uri();?>/plugins/easing/easing.js"></script>
-<script src="<?= get_template_directory_uri();?>/plugins/parallax-js-master/parallax.min.js"></script>
-<script src="<?= get_template_directory_uri();?>/js/custom.js"></script>
 
  <?php wp_footer();?>
 </body>

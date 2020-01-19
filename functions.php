@@ -16,7 +16,7 @@ function ar_scripts() {
 	wp_enqueue_style( 'course', get_template_directory_uri() . '/styles/course.css' );
 	wp_enqueue_style( 'responsive', get_template_directory_uri() . '/styles/responsive.css' );  
 	wp_enqueue_script( 'jquery', get_template_directory_uri() . '/js/jquery-3.2.1.min.js', array( 'jquery' ), '3.3.6', true );
-	wp_enqueue_script( 'tweenmax', get_template_directory_uri() . '/plugins/greensock/TweenMax.min.js', array( 'jquery' ), '3.3.6', true );=
+	wp_enqueue_script( 'tweenmax', get_template_directory_uri() . '/plugins/greensock/TweenMax.min.js', array( 'jquery' ), '3.3.6', true );
 	wp_enqueue_script( 'popper', get_template_directory_uri() . '/styles/bootstrap4/popper.js', array( 'jquery' ), true );
 	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/styles/bootstrap4/bootstrap.min.js', array( '' ), true );
 	wp_enqueue_script( 'timelineMax', get_template_directory_uri() . '/plugins/greensock/TimelineMax.min.js', array( 'jquery' ), '3.3.6', true );

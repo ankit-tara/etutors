@@ -116,7 +116,14 @@ p a:hover::after
 {
 	opacity: 0.2;
 }
-
+::selection
+{
+	
+}
+p::selection
+{
+	
+}
 h1{font-size: 48px;}
 h2{font-size: 36px;}
 h3{font-size: 24px;}
@@ -285,6 +292,12 @@ section
 {
 	display: inline-block;
 }
+
+.top_bar_content a
+{
+	color: #fff;
+}
+
 .question
 {
 	font-family: 'Roboto Slab', serif;
@@ -881,7 +894,7 @@ section
 }
 .home_search_button
 {
-	width: 120px;
+	width: 160px;
 	height: 46px;
 	background: #14bdee;
 	border: none;
@@ -944,7 +957,7 @@ section
 {
 	margin-top: 55px;
 }
-.feature
+.feature_col .feature
 {
 	width: 100%;
 	padding-top: 30px;
@@ -953,7 +966,7 @@ section
 	padding-right: 15px;
 	background: #FFFFFF;
 }
-.feature:hover
+.feature_col .feature:hover
 {
 	box-shadow: 0px 5px 40px rgba(29,34,47,0.15);
 }
@@ -1003,7 +1016,6 @@ section
 .course_image img
 {
 	max-width: 100%;
-	width:100%;
 }
 .course_body
 {
@@ -2017,6 +2029,10 @@ section
 	color: #14bdee;
 }
 
+.course_image img{
+	width:100%;
+}
+
 .banner_section {
 	width: 100%;
 	height: 182px;
@@ -2060,4 +2076,172 @@ section
 
 .breadcrumbs ul li a:hover {
 	color: #14bdee;
+}
+
+
+
+
+/* login page styles */
+
+.login-section{
+	min-height: 700px;
+}
+
+.container.login-wrapper {
+  width: 50rem;
+  height: 28rem;
+  box-shadow: 2px 3px 7px 3px #00000014;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-perspective: 100rem;
+          perspective: 100rem;
+  border-radius: 10px;
+  background: #FFFFFF;
+  padding:0;
+}
+
+.container.login-wrapper .side-1 {
+  -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+  -webkit-transform-origin: 100%;
+          transform-origin: 100%;
+  background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+  border-radius: 10px;
+  border-radius: 10px 0 0 10px;
+}
+
+.container.login-wrapper .side-2 {
+  -webkit-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
+  -webkit-transform-origin: 0%;
+          transform-origin: 0%;
+  left: 50%;
+  background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+  border-radius: 0 10px 10px 0;
+}
+
+.container.login-wrapper .side-1, .container.login-wrapper .side-2 {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  background-size: 200%;
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  transition: 1200ms;
+  box-shadow: inset 0px 0px 100px 7px #2dc4ef;
+  z-index: 10;
+}
+
+.container.login-wrapper .forms{
+	top:50%;
+}
+
+.container.login-wrapper .head {
+	position: absolute;
+	color: #FFFFFF;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 80%;
+  text-align: center;
+  text-shadow: 2px 1px 2px #0000007d;
+}
+.container.login-wrapper .head .h-main,
+.container.login-wrapper .head .h-sec {
+	color: #fff;
+}
+
+.container.login-wrapper .toggle-log {
+	font-size: 1rem;
+  padding: .4rem 2rem;
+  background: transparent;
+  border: 1px solid #FFFFFF;
+  color: #FFFFFF;
+  border-radius: 2rem;
+  transition: 200ms;
+  margin-top: 10px;
+}
+.container.login-wrapper .toggle-log:hover {
+  background: #FFFFFF;
+  color: #384158;
+}
+.container.login-wrapper .toggle-log:focus {
+  border: 2px solid #FFFFFF;
+  outline: none;
+}
+
+.container.login-wrapper .sign-in {
+  width: 50%;
+  position: absolute;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  left: 50%;
+  top: 50%;
+  text-align: center;
+}
+.container.login-wrapper .sign-in fieldset.block {
+  -webkit-transform: translateX(10%);
+          transform: translateX(10%);
+  opacity: 0;
+}
+
+.container.login-wrapper .sign-up {
+  width: 50%;
+  position: absolute;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  left: 0;
+  top: 50%;
+  text-align: center;
+}
+.container.login-wrapper .sign-up fieldset.block {
+  -webkit-transform: translateX(-10%);
+          transform: translateX(-10%);
+  opacity: 0;
+}
+
+.container.login-wrapper .input-text {
+  display: block;
+  margin: 1rem auto;
+  border: none;
+  background: #4e598c2b;
+  padding: .5rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.container.login-wrapper .input-submit {
+  display: block;
+  margin: 1rem auto;
+  font-size: 1rem;
+  padding: .5rem 2rem;
+  background: #4E598C;
+  border: 1px solid #4E598C;
+  color: #FFFFFF;
+  border-radius: 2rem;
+  transition: 200ms;
+  position: relative;
+}
+.container.login-wrapper .input-submit:hover {
+  background: #FFFFFF;
+  color: #4E598C;
+}
+
+.container.login-wrapper fieldset {
+  border: none;
+  position: relative;
+  transition: 1000ms ease;
+}
+.container.login-wrapper fieldset.block:after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background: transparent;
 }

@@ -57,8 +57,8 @@
 							</div>
 							<nav class="main_nav_contaner ml-auto">
 								<ul class="main_nav">
-									<li class="active nav-item"><a href="#">Home</a></li>
-									<li class="nav-item"><a href="#">About</a></li>
+									<li class="active nav-item"><a href="http://arbites.in/e-tutors">Home</a></li>
+									<li class="nav-item"><a href="http://arbites.in/e-tutors/about/">About</a></li>
 									<li class="nav-item dropdown">
 										<a  class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="courses.html">Service</a>
 										<ul class="dropdown-menu">
@@ -69,7 +69,7 @@
 										</ul>
 									</li>
 									<li class="nav-item"><a href="#">Counselling</a></li>
-									<li class="nav-item"><a href="#">Contact</a></li>
+									<li class="nav-item"><a href="http://arbites.in/e-tutors/contact-us">Contact</a></li>
 								</ul>
 								<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
 
@@ -118,11 +118,11 @@
 		</div>
 		<nav class="menu_nav">
 			<ul class="menu_mm">
-				<li class="menu_mm"><a href="#">Home</a></li>
-				<li class="menu_mm"><a href="#">About</a></li>
+				<li class="menu_mm"><a href="http://arbites.in/e-tutors/about/">Home</a></li>
+				<li class="menu_mm"><a href="http://arbites.in/e-tutors/about/">About</a></li>
 				<li class="menu_mm"><a href="#">Courses</a></li>
 				<li class="nav-item"><a href="#">Counselling</a></li>
-				<li class="menu_mm"><a href="#">Contact</a></li>
+				<li class="menu_mm"><a href="http://arbites.in/e-tutors/contact-us/">Contact</a></li>
 			</ul>
 		</nav>
 	</div>

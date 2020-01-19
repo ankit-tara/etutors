@@ -316,6 +316,12 @@
 	{
 		font-size: 13px;
 	}
+	.footer_background{
+	background-image: none !important;	
+	}
+	.footer-menu{
+	display: none;
+	}
 }
 
 
@@ -394,6 +400,55 @@
 	.partners_slider_container {
 		width: calc(100% + 80px);
 		left: -40px;
+	}
+
+		/*login styles  */
+
+	.login-section {
+		min-height: 550px;
+	}
+
+	.container.login-wrapper{
+		width:90%;
+		position: static;
+		transform: translate(0,0);
+		-webkit-transform: translate(0,0);
+		margin-top:5rem;
+	}
+
+	.container.login-wrapper .side-1, .container.login-wrapper .side-2{
+		width:100%;
+		height:140px;
+	}
+
+	.container.login-wrapper .forms{
+		top:auto;
+		height: 100%;
+		bottom: 0px;
+	}
+
+	.container.login-wrapper .sign-up,
+	.container.login-wrapper .sign-in{
+		width:100%;
+		position: absolute;
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+		left: 0;
+		top: auto;
+		bottom: 20px;
+	}
+
+	.container.login-wrapper .side-2{
+		left: 0;
+	}
+
+	.container.login-wrapper .head{
+		width: 90%;
+	}
+
+	.container.login-wrapper .toggle-log{
+		font-size: 0.8rem;
+    	padding: 0.3rem 2rem;
 	}
 }
 

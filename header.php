@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Wisutors - Institute For Growth &amp; Development</title>
+<title>e-tutour - Institute For Growth &amp; Development</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="Wisutors - Institute For Growth & Development">
+<meta name="description" content="e-tutour - Institute For Growth & Development">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <?php wp_head();?>
 </head>
@@ -35,7 +35,7 @@
 									</li>
 								</ul>
 								<div class="top_bar_login ml-auto">
-									<div class="login_button"><a href="#">Register or Login</a></div>
+									<div class="login_button"><a href="http://arbites.in/e-tutors/login">Register or Login</a></div>
 								</div>
 							</div>
 						</div>
@@ -52,7 +52,8 @@
 						<div class="header_content d-flex flex-row align-items-center justify-content-start">
 							<div class="logo_container">
 								<a href="<?= site_url();?>">
-									<div class="logo_text">Wis<span>utors</span></div>
+									<!-- <div class="logo_text">Wis<span>utors</span></div> -->
+									<img src="<?= get_template_directory_uri()?>/images/logo1.png" alt="" width="200">
 								</a>
 							</div>
 							<nav class="main_nav_contaner ml-auto">
@@ -60,7 +61,7 @@
 									<li class="active nav-item"><a href="http://arbites.in/e-tutors">Home</a></li>
 									<li class="nav-item"><a href="http://arbites.in/e-tutors/about/">About</a></li>
 									<li class="nav-item dropdown">
-										<a  class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="courses.html">Service</a>
+										<a  class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="">Service</a>
 										<ul class="dropdown-menu">
 											<li class="dropdown-item"><a href="#">IELTS/TOEFL</a></li>
 											<li class="dropdown-item"><a href="#">CRITICAL THINKING &amp; PERSONALITY

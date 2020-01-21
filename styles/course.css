@@ -622,10 +622,10 @@ Sidebar
 {
 	margin-top: 16px;
 }
-.feature:not(:last-child)
+/* .feature:not(:last-child)
 {
 	margin-bottom: 21px;
-}
+} */
 .feature_title
 {
 	padding-left: 31px;

@@ -450,6 +450,10 @@
 		font-size: 0.8rem;
     	padding: 0.3rem 2rem;
 	}
+
+	.banner_section{
+		height: 96px;
+	}
 }
 
 /************

@@ -17,7 +17,7 @@ Template Name: Login Template
 						<div class="breadcrumbs">
 							<ul>
 								<li><a href="index.html">Home</a></li>
-								<li>Contact</li>
+								<li>Login</li>
 							</ul>
 						</div>
 					</div>
@@ -36,27 +36,27 @@ Template Name: Login Template
             <div class="head">
                 <h2 class="h-main">Welcome Back!</h2>
             <p class="h-sec">Please log in with your username and password </p>
-            <button class="toggle-log">SIGN UP</button>
+            <button class="toggle-log">Register</button>
         </div>
         </div>
         <div class="side-2">
             <div class="head">
             <h2 class="h-main">Hey there!</h2>
             <p class="h-sec">Enter your personal details and start today!</p>
-            <button class="toggle-log">SIGN IN</button>
+            <button class="toggle-log">Login</button>
             </div>
         </div>
         <div class="forms">
             <div class="sign-up">
             <div class="form">
                 <fieldset class="block">
-                    <h2 class="form-h">Sign up</h2>
+                    <h2 class="form-h">Register</h2>
                 <!-- <div class="log-buttons"><a class="log-btn log-fb" href="#"></a><a class="log-btn log-gp" href="#"></a><a class="log-btn log-li" href="#"></a></div> -->
-                <form action="">
-                    <input class="input-text" placeholder="Email" email="email" type="email"/>
-                    <input class="input-text" placeholder="Username" type="text"/>
-                    <input class="input-text" placeholder="Password" password="password" type="password"/>
-                    <input class="input-submit" type="submit" value="SIGN UP"/>
+                <form method="post" name="myForm">
+                    <input class="input-text" name="uemail" placeholder="Email" email="email" type="email"/>
+                    <input class="input-text" name="uname" placeholder="Username" type="text"/>
+                    <input class="input-text" name="upass" placeholder="Password" password="password" type="password"/>
+                    <input class="input-submit" type="submit" value="Register"/>
                 </form>
                 </fieldset>
             </div>
@@ -64,13 +64,27 @@ Template Name: Login Template
             <div class="sign-in">
                 <div class="form">
                 <fieldset>
-                <h2 class="form-h">Sign in</h2>
+                <h2 class="form-h">Login</h2>
                 <!-- <div class="log-buttons"><a class="log-btn log-fb" href="#"></a><a class="log-btn log-gp" href="#"></a><a class="log-btn log-li" href="#"></a></div> -->
-                <form action="">
+                <!-- <form action="">
                     <input class="input-text" placeholder="Email" email="email" type="email"/>
                     <input class="input-text" placeholder="Password" type="password"/><a class="forgot" href="#">Forgot your password?</a>
-                    <input class="input-submit" type="submit" value="SIGN IN"/>
-                </form>
+                    <input class="input-submit" type="submit" value="Login"/>
+                </form> -->
+                <?php wp_login_form($args=array(
+                    'echo' => false,
+                    'label_username' => '',
+                    'label_password' => '',
+                )); 
+            
+                $form = wp_login_form( $args ); 
+                //add the placeholders
+                $form = str_replace('name="log"', 'name="log" placeholder="Username" required', $form);
+                $form = str_replace('name="pwd"', 'name="pwd" placeholder="Password" required', $form);
+
+                echo $form;
+
+                ?>
                 </fieldset>
             </div>
             </div>

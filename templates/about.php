@@ -91,77 +91,51 @@ Template Name: About us
 <!-- Feature -->
 
 <div class="feature">
-    <div class="feature_background" style="background-image:url(images/courses_background.jpg)"></div>
+    <div class="feature_background" style="background-image:url(<?= get_template_directory_uri();?>/images/courses_background.jpg)"></div>
     <div class="container">
         <div class="row">
             <div class="col">
                 <div class="section_title_container text-center">
-                    <h2 class="section_title">Why Choose Us</h2>
+                    <h2 class="section_title">Testimonials</h2>
                     <div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div>
                 </div>
             </div>
         </div>
-        <div class="row feature_row">
-
-            <!-- Feature Content -->
-            <div class="col-lg-6 feature_col">
-                <div class="feature_content">
-                    <!-- Accordions -->
-                    <div class="accordions">
-                        
-                        <div class="elements_accordions">
-
-                            <div class="accordion_container">
-                                <div class="accordion d-flex flex-row align-items-center"><div>Award for Best School 2017</div></div>
-                                <div class="accordion_panel">
-                                    <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="owl-carousel owl-theme testimonial_slider">
+                    <div class="owl-item">
+                        <div class="bubble-center">
+                            <div class="ava"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Poster-sized_portrait_of_Barack_Obama.jpg" alt=""></div>
+                            <div class="bubble-3">
+                                <h3>Adam</h3>
+                                <p>It's just amazing. I will let my friend know about this, she could really make use of etutour! Thanks etutour! I am completely blown away.</p>
                             </div>
-
-                            <div class="accordion_container">
-                                <div class="accordion d-flex flex-row align-items-center active"><div>You’re learning from the best.</div></div>
-                                <div class="accordion_panel">
-                                    <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                </div>
-                            </div>
-
-                            <div class="accordion_container">
-                                <div class="accordion d-flex flex-row align-items-center"><div>Our degrees are recognized worldwide.</div></div>
-                                <div class="accordion_panel">
-                                    <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                </div>
-                            </div>
-
-                            <div class="accordion_container">
-                                <div class="accordion d-flex flex-row align-items-center"><div>We encourage our students to go global.</div></div>
-                                <div class="accordion_panel">
-                                    <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                </div>
-                            </div>
-
-                        </div>
-
+                        </div>   
                     </div>
-                    <!-- Accordions End -->
-                </div>
-            </div>
-
-            <!-- Feature Video -->
-            <div class="col-lg-6 feature_col">
-                <div class="feature_video d-flex flex-column align-items-center justify-content-center">
-                    <div class="feature_video_background" style="background-image:url(<?= get_template_directory_uri();?>/images/video.jpg)"></div>
-                    <a class="vimeo feature_video_button" href="https://player.vimeo.com/video/99340873?title=0" title="OH, PORTUGAL - IN 4K - Basti Hansen - Stock Footage">
-                        <img src="<?= get_template_directory_uri();?>/images/play.png" alt="">
-                    </a>
+                    <div class="owl-item">
+                        <div class="bubble-center">
+                            <div class="ava"><img src="https://www.ludoviccareme.com/files/image_211_image_fr.jpg" alt=""></div>
+                            <div class="bubble-3">
+                                <h3>John</h3>
+                                <p>It's just amazing. I will let my friend know about this, she could really make use of etutour! Thanks etutour! I am completely blown away.</p>  
+                            </div>
+                        </div>   
+                    </div>
+                    <div class="owl-item">
+                        <div class="bubble-center">
+                            <div class="ava"><img src="https://i.ytimg.com/vi/OtHrDCox_kI/maxresdefault.jpg" alt=""></div>
+                            <div class="bubble-3">
+                                <h3>Peter</h3>
+                                <p>It's just amazing. I will let my friend know about this, she could really make use of etutour! Thanks etutour! I am completely blown away.</p>                    
+                            </div>
+                        </div>   
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
 
 
 

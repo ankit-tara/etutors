@@ -44,7 +44,8 @@
 								<div class="footer_section footer_about">
 									<div class="footer_logo_container">
 										<a href="<?= site_url();?>">
-											<div class="footer_logo_text">wis<span>utors</span></div>
+										<img src="<?= get_template_directory_uri();?>/images/logo2.png" alt="" width="200">
+											<!-- <div class="footer_logo_text">wis<span>utors</span></div> -->
 										</a>
 									</div>
 									<div class="footer_about_text">

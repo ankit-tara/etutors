@@ -35,7 +35,19 @@
 									</li>
 								</ul>
 								<div class="top_bar_login ml-auto">
-									<div class="login_button"><a href="http://arbites.in/e-tutors/login">Register or Login</a></div>
+									<div class="login_button">
+										<?php if (is_user_logged_in()){
+											?>
+											<a href="<?php echo wp_logout_url(home_url()); ?>">Logout</a>
+										<?php
+										}
+										else{
+											?>
+											<a href="http://arbites.in/e-tutors/login">Register or Login</a>
+										<?php
+										}
+										?>
+									</div>
 								</div>
 							</div>
 						</div>

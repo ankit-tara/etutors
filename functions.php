@@ -7,11 +7,12 @@ function ar_scripts() {
 	wp_enqueue_style( 'owl', get_template_directory_uri() . '/plugins/OwlCarousel2-2.2.1/owl.carousel.css' );
 	wp_enqueue_style( 'owl-theme', get_template_directory_uri() . '/plugins/OwlCarousel2-2.2.1/owl.theme.default.css' );
 	wp_enqueue_style( 'animate', get_template_directory_uri() . '/plugins/OwlCarousel2-2.2.1/animate.css' );
+	wp_enqueue_style( 'themify-icons', get_template_directory_uri() . '/plugins/themify-icons.css' );
 	wp_enqueue_style( 'main', get_template_directory_uri() . '/styles/main_styles.css' );
 	wp_enqueue_style( 'aboutcss', get_template_directory_uri() . '/styles/about.css' );
 	wp_enqueue_style( 'blogcss', get_template_directory_uri() . '/styles/blog.css' );
 	wp_enqueue_style( 'blog_single', get_template_directory_uri() . '/styles/blog_single.css' );
-	wp_enqueue_style( 'contact', get_template_directory_uri() . '/styles/contact.css' );
+	wp_enqueue_style( 'contactpage', get_template_directory_uri() . '/styles/contactpage.css' );
 	wp_enqueue_style( 'courses', get_template_directory_uri() . '/styles/courses.css' );
 	wp_enqueue_style( 'course', get_template_directory_uri() . '/styles/course.css' );
 	wp_enqueue_style( 'responsive', get_template_directory_uri() . '/styles/responsive.css' );  
@@ -40,7 +41,7 @@ add_action( 'wp_enqueue_scripts', 'ar_scripts' );
 
 
 add_role('student', 'Student', array(
-    'read' => true, // True allows that capability
+	'read' => true, // True allows that capability
 ));
 
 
@@ -67,4 +68,42 @@ function create_student_account(){
 }
 add_action('init','create_student_account');
 
+
+function my_logged_in_redirect() {
+     
+    if ( is_user_logged_in() && is_page('login') ) 
+    {
+        wp_redirect( site_url().'/student-profile');
+        die;
+    }
+     
+}
+add_action( 'template_redirect', 'my_logged_in_redirect' );
+
+
+add_action( 'template_redirect', 'redirect_to_specific_page' );
+
+function redirect_to_specific_page() {
+
+if ( is_page('student-profile') && ! is_user_logged_in() ) {
+
+wp_redirect( site_url() . '/login', 301 ); 
+  exit;
+    }
+}
+
+
+function cc_wpse_278096_disable_admin_bar() {
+   if (current_user_can('administrator') || current_user_can('contributor') ) {
+     // user can view admin bar
+     show_admin_bar(true); // this line isn't essentially needed by default...
+   } else {
+     // hide admin bar
+     show_admin_bar(false);
+   }
+}
+add_action('after_setup_theme', 'cc_wpse_278096_disable_admin_bar');
+
 ?>
+
+

@@ -135,81 +135,45 @@ Template Name: HomePage
 			</div>
 			<div class="row courses_row">
 				
-				<!-- Course -->
-				<div class="col-lg-4 col-sm-6 course_col">
-					<div class="course">
-						<div class="course_image"><img src="<?= get_template_directory_uri();?>/images/img2.jpg" alt=""></div>
-						<div class="course_body">
-							<h3 class="course_title"><a href="course.html">Advance English Writing Course for IELTS &amp; TOEFL</a></h3>
-							<!-- <div class="course_teacher">Mr. John Taylor</div> -->
-							<div class="course_text">
-								<p>This class is designed for those who are stuck at 6.5 in
-								IELTS writing or any other tests...</p>
-								<a href="#" class="read-more">Read More</a>
-							</div>
-						</div>
-						<div class="course_footer">
-							<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-								<div class="course_info">
-									<i class="fa fa-clock-o" aria-hidden="true"></i>
-									<span>Duration: 2 - 3 months</span>
-								</div>
-								<div class="course_price ml-auto">&#8377; 7500</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<?php  
+					$args = array(
+						'post_type'      => 'product',
+						'posts_per_page' => 3,
+					);
 
-				<!-- Course -->
-				<div class="col-lg-4 col-sm-6 course_col">
-					<div class="course">
-						<div class="course_image"><img src="<?= get_template_directory_uri();?>/images/img5.jpg" alt=""></div>
-						<div class="course_body">
-							<h3 class="course_title"><a href="course.html">Critical Thinking &amp; Personality Development</a></h3>
-							<!-- <div class="course_teacher">Ms. Lucius</div> -->
-							<div class="course_text">
-								<p>This course enables
-								students to think critically about behavioral and mental processes...</p>
-								<a href="#" class="read-more">Read More</a>
-							</div>
-						</div>
-						<div class="course_footer">
-							<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-								<div class="course_info">
-									<i class="fa fa-clock-o" aria-hidden="true"></i>
-									<span>Duration: 10 - 15 hrs </span>
-								</div>
-								<div class="course_price ml-auto">&#8377; 2500</div>
-							</div>
-						</div>
-					</div>
-				</div>
+					$loop = new WP_Query( $args );
 
-				<!-- Course -->
-				<div class="col-lg-4 col-sm-6 course_col">
-					<div class="course">
-						<div class="course_image"><img src="<?= get_template_directory_uri();?>/images/img1.jpg" alt=""></div>
-						<div class="course_body">
-							<h3 class="course_title"><a href="course.html">Spoken Languages:</a></h3>
-							<!-- <div class="course_teacher">Mr. Charles</div> -->
-							<div class="course_text">
-								<p>Train for languages through speaking sessions such as
-								English, Spanish, German etc. If you are stuck at 6.5,
-								this course is perfect for you...</p>
-								<a href="#" class="read-more">Read more</a>
-							</div>
-						</div>
-						<div class="course_footer">
-							<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-								<div class="course_info">
-									<i class="fa fa-clock-o" aria-hidden="true"></i>
-									<span>Duration: 3 months</span>
+					while ( $loop->have_posts() ) : $loop->the_post();
+						global $product;
+						// print_r($product);
+					?>
+						<!-- Course -->
+						<div class="col-lg-4 col-sm-6 course_col">
+							<div class="course">
+								<div class="course_image"><?= woocommerce_get_product_thumbnail();?></div>
+								<div class="course_body">
+									<h3 class="course_title"><a href="<?= get_permalink();?>"><?= get_the_title();?></a></h3>
+									<!-- <div class="course_teacher">Mr. John Taylor</div> -->
+									<div class="course_text">
+										<p><?= $product->get_short_description();?></p>
+										<a href="<?= get_permalink();?>" class="read-more">Read More</a>
+									</div>
 								</div>
-								<div class="course_price ml-auto"><span>&#8377;5500</span>&#8377; 3500</div>
+								<div class="course_footer">
+									<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+										<div class="course_info">
+											<i class="fa fa-clock-o" aria-hidden="true"></i>
+											<span>Duration: 2 - 3 months</span>
+										</div>
+										<div class="course_price ml-auto">&#8377;<?= $product->get_regular_price();?></div>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
+					<?php
+					endwhile;
+						wp_reset_query();
+					?>
 
 			</div>
 			<div class="row">

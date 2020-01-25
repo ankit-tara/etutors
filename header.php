@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <?php wp_head();?>
 </head>
-<body>
+<body <?php body_class();?>>
 
 <div class="super_container">
 
@@ -69,22 +69,21 @@
 								</a>
 							</div>
 							<nav class="main_nav_contaner ml-auto">
-								<ul class="main_nav">
-									<li class="active nav-item"><a href="http://arbites.in/e-tutors">Home</a></li>
-									<li class="nav-item"><a href="http://arbites.in/e-tutors/about/">About</a></li>
-									<li class="nav-item dropdown">
-										<a  class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="">Service</a>
-										<ul class="dropdown-menu">
-											<li class="dropdown-item"><a href="#">IELTS/TOEFL</a></li>
-											<li class="dropdown-item"><a href="#">CRITICAL THINKING &amp; PERSONALITY
-												DEVELOPMENT</a></li>
-											<li class="dropdown-item"><a href="#">Spoken English</a></li>
-										</ul>
-									</li>
-									<li class="nav-item"><a href="#">Counselling</a></li>
-									<li class="nav-item"><a href="http://arbites.in/e-tutors/contact-us">Contact</a></li>
-								</ul>
-								<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
+								<?php wp_nav_menu( array( 'theme_location' => 'header-menu' , 'menu_class'=>'main_nav') );?>
+								<!-- <div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div> -->
+
+								<?php if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+ 
+									$count = WC()->cart->cart_contents_count;
+									?><a class="cart-contents" href="<?php echo WC()->cart->get_cart_url(); ?>" title="<?php _e( 'View your shopping cart' ); ?>"><?php 
+									if ( $count > 0 ) {
+										?>
+										<span class="cart-contents-count"><?php echo esc_html( $count ); ?></span>
+										<?php
+									}
+										?></a>
+								
+								<?php } ?>
 
 								<!-- Hamburger -->
 								<div class="hamburger menu_mm">
@@ -99,7 +98,7 @@
 		</div>
 
 		<!-- Header Search Panel -->
-		<div class="header_search_container">
+		<!-- <div class="header_search_container">
 			<div class="container">
 				<div class="row">
 					<div class="col">
@@ -114,7 +113,7 @@
 					</div>
 				</div>
 			</div>			
-		</div>			
+		</div>			 -->
 	</header>
 
 	<!-- Menu -->

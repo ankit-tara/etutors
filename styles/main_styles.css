@@ -421,7 +421,7 @@ section
 
 .main_nav_contaner
 {
-
+	display:flex;
 }
 .main_nav,
 .search_button,
@@ -2321,3 +2321,42 @@ section
 	object-fit: cover;
 }
 
+.single-product .super_container {
+    overflow: hidden;
+    padding-top: 150px;
+}
+
+.single-product .content-area{
+	overflow: auto;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.cart-contents:before {
+    font-family:WooCommerce;
+    content: "\e01d";
+    font-size:28px;
+    margin-top:10px;
+    font-style:normal;
+    font-weight:400;
+    padding-right:5px;
+    vertical-align: bottom;
+}
+.cart-contents:hover {
+    text-decoration: none;
+}
+.cart-contents-count {
+    color: #fff;
+    background-color: #2ecc71;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 1px 6px;
+    line-height: 1;
+    font-family: Arial, Helvetica, sans-serif;
+    vertical-align: top;
+}
+
+
+.super_container{
+	padding-top:200px;
+}

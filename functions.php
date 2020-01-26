@@ -158,6 +158,8 @@ add_action('init', 'disable_woo_commerce_sidebar');
 /**
  * Ensure cart contents update when products are added to the cart via AJAX
  */
+
+ /*
 function my_header_add_to_cart_fragment( $fragments ) {
  
     ob_start();

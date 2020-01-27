@@ -2356,6 +2356,45 @@ section
     vertical-align: top;
 }
 
+.woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt{
+	background-color: #14bdee;
+}
+
+.woocommerce #respond input#submit.alt:hover,
+.woocommerce a.button.alt:hover, 
+.woocommerce button.button.alt:hover, 
+.woocommerce input.button.alt:hover{
+	background-color: #15a9d4;
+}
+
+.woocommerce div.product .product_title{
+	font-size: 2em;
+}
+
+.course_title {
+	line-height: 24px;
+}
+
+.woocommerce-breadcrumb,.woocommerce span.onsale,.woocommerce-result-count,.woocommerce-ordering{
+	display: none;
+}
+
+body.post-type-archive-product{
+	background: url('../images/courses_background.jpg');
+	background-size: contain;
+	background-repeat: repeat;
+}
+
+.woocommerce .content-area{
+	width:80%;
+	margin:0 auto;
+}
+
+
+.woocommerce-products-header__title.page-title{
+	margin-bottom: 50px;
+	text-align: center;
+}
 
 .super_container{
 	padding-top:200px;

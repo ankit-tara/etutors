@@ -422,6 +422,7 @@ section
 .main_nav_contaner
 {
 	display:flex;
+	align-items: center;
 }
 .main_nav,
 .search_button,
@@ -2368,34 +2369,60 @@ section
 }
 
 .woocommerce div.product .product_title{
-	font-size: 2em;
+	font-size: 2.5em;
+}
+
+.woocommerce div.product p.price{
+	font-size: 1.87em;
+	margin-bottom: 10px;
 }
 
 .course_title {
 	line-height: 24px;
 }
 
-.woocommerce-breadcrumb,.woocommerce span.onsale,.woocommerce-result-count,.woocommerce-ordering{
+.woocommerce-product-details__short-description , .woocommerce-breadcrumb,.woocommerce span.onsale,.woocommerce-result-count,.woocommerce-ordering{
 	display: none;
 }
 
-body.post-type-archive-product{
-	background: url('../images/courses_background.jpg');
-	background-size: contain;
-	background-repeat: repeat;
-}
-
-.woocommerce .content-area{
+.woocommerce .content-area,
+.woocommerce-page .content-area{
 	width:80%;
 	margin:0 auto;
 }
 
+
+.woocommerce-page table.cart td.actions .coupon{
+	display: none;
+}
 
 .woocommerce-products-header__title.page-title{
 	margin-bottom: 50px;
 	text-align: center;
 }
 
-.super_container{
+.cart-contents{
+	margin:0 30px;
+}
+
+.cart_totals h2{
+	margin-bottom: 20px;
+}
+
+.woocommerce-page .super_container{
 	padding-top:200px;
+}
+
+.woocommerce div.product .woocommerce-tabs .panel h2{
+	display: none;
+}
+
+.woocommerce-cart table.cart img{
+	width:170px;
+}
+
+.woocommerce-cart table.cart td.product-name a{
+	color: #1e2434;
+    font-size: 16px;
+    font-weight: bold;
 }

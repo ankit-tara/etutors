@@ -454,6 +454,20 @@
 	.banner_section{
 		height: 96px;
 	}
+
+	.woocommerce-page .super_container {
+		padding-top: 130px;
+	}
+
+	.home {
+		height: 440px;
+	}
+	.home_slider_title {
+		font-size: 22px;
+	}
+	.home_slider_subtitle{
+		font-size: 22px;
+	}
 }
 
 /************

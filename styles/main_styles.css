@@ -2426,3 +2426,63 @@ section
     font-size: 16px;
     font-weight: bold;
 }
+
+.woocommerce .col2-set, .woocommerce-page .col2-set .col-1,
+.woocommerce .col2-set, .woocommerce-page .col2-set .col-2{
+	width:100%;
+	max-width: 100%;
+}
+
+.woocommerce-billing-fields .woocommerce-billing-fields__field-wrapper{
+	display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.woocommerce form .form-row{
+	display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-end;	
+}
+
+.woocommerce form .form-row label {
+    color: #1e2434;
+    font-size: 18px;
+}
+
+.woocommerce form .form-row input.input-text,
+ .woocommerce form .form-row textarea{
+	height: 40px;
+	width: 95%;
+	border-radius: 4px;
+	padding: 10px;
+	border: solid 1px #bbb;
+ }
+
+.woocommerce-additional-fields{
+	display: none;
+}
+
+ .woocommerce form .form-row .select2-container{
+	 width: 95% !important;
+ }
+
+ .woocommerce-checkout-review-order{
+	 max-width: 500px;
+	 margin-left: auto;
+ }
+
+ .wc_payment_methods.payment_methods{
+	 display: none;
+ }
+
+ #order_review_heading{
+	max-width: 500px;
+    margin-left: auto;
+    margin-bottom: 20px;
+    text-align: center;
+ }
+
+ .woocommerce #payment #place_order, .woocommerce-page #payment #place_order{
+	 margin-top: 10px;
+ }

@@ -2486,3 +2486,18 @@ section
  .woocommerce #payment #place_order, .woocommerce-page #payment #place_order{
 	 margin-top: 10px;
  }
+
+ ul.sub-menu {
+    display: grid;
+    position: absolute;
+    padding: 10px;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+	display: none;
+}
+
+.nav-item.dropdown:hover ul.sub-menu{
+	display: grid;
+}

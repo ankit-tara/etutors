@@ -322,6 +322,9 @@
 	.footer-menu{
 	display: none;
 	}
+	.page-template-course .banner .course_title{
+		font-size: 22px;
+	}
 }
 
 
@@ -470,6 +473,14 @@
 	}
 	.woocommerce-billing-fields .woocommerce-billing-fields__field-wrapper {
 		grid-template-columns: 1fr;
+	}
+	.page-template-course .banner .course_title{
+		font-size: 18px;
+		text-align: center;
+	}
+	.page-template-course .banner {
+	margin-top: 90px;
+	height: 140px;
 	}
 }
 

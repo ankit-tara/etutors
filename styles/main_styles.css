@@ -2500,4 +2500,11 @@ section
 
 .nav-item.dropdown:hover ul.sub-menu{
 	display: grid;
+	min-width: 300px;
+}
+.nav-item.dropdown:hover ul.sub-menu li{
+	margin-bottom: 10px;
+}
+.nav-item.dropdown:hover ul.sub-menu li a {
+	font-size: 14px;
 }

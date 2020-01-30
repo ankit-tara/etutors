@@ -99,44 +99,22 @@
 			</div>
 		</div>
 
-		<!-- Header Search Panel -->
-		<!-- <div class="header_search_container">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="header_search_content d-flex flex-row align-items-center justify-content-end">
-							<form action="#" class="header_search_form">
-								<input type="search" class="search_input" placeholder="Search" required="required">
-								<button class="header_search_button d-flex flex-column align-items-center justify-content-center">
-									<i class="fa fa-search" aria-hidden="true"></i>
-								</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>			
-		</div>			 -->
 	</header>
 
 	<!-- Menu -->
 
-	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
+	<div class="menu menu_mm">
 		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
-		<div class="search">
-			<form action="#" class="header_search_form menu_mm">
-				<input type="search" class="search_input menu_mm" placeholder="Search" required="required">
-				<button class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">
-					<i class="fa fa-search menu_mm" aria-hidden="true"></i>
-				</button>
-			</form>
+		<div class="logo_container">
+			<a href="<?= site_url();?>">
+				<!-- <div class="logo_text">Wis<span>utors</span></div> -->
+				<img src="<?= get_template_directory_uri()?>/images/logo1.png" alt="" width="200">
+			</a>
 		</div>
+		<br>
+		<br>
+		<br>
 		<nav class="menu_nav">
-			<ul class="menu_mm">
-				<li class="menu_mm"><a href="http://arbites.in/e-tutors/about/">Home</a></li>
-				<li class="menu_mm"><a href="http://arbites.in/e-tutors/about/">About</a></li>
-				<li class="menu_mm"><a href="#">Courses</a></li>
-				<li class="nav-item"><a href="#">Counselling</a></li>
-				<li class="menu_mm"><a href="http://arbites.in/e-tutors/contact-us/">Contact</a></li>
-			</ul>
+			<?php wp_nav_menu( array( 'theme_location' => 'header-menu' , 'menu_class'=>'menu_mm') );?>
 		</nav>
 	</div>

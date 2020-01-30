@@ -482,6 +482,16 @@
 	margin-top: 90px;
 	height: 140px;
 	}
+
+	ul.sub-menu{
+		display: grid;
+		border:none;
+		position: static;
+	}
+	ul.sub-menu li a{
+		font-size: 12px;
+		color: #1b1b1b;
+	}
 }
 
 /************

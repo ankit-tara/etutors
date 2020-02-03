@@ -239,30 +239,12 @@ Template Name: HomePage
 			<div class="row team_row">
 				
 				<!-- Team Item -->
-				<div class="col-lg-3 col-md-6 team_col">
-					<div class="team_item">
-						<div class="team_image"><img src="<?= get_template_directory_uri();?>/images/team_1.jpg" alt=""></div>
-						<div class="team_body">
-							<div class="team_title"><a href="#">Jacke Masito</a></div>
-							<div class="team_subtitle">Marketing & Management</div>
-							<div class="social_list">
-								<ul>
-									<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-									<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-									<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Team Item -->
-				<div class="col-lg-3 col-md-6 team_col">
+				<!-- <div class="col-lg-3 col-md-6 team_col">
 					<div class="team_item">
 						<div class="team_image"><img src="<?= get_template_directory_uri();?>/images/team_2.jpg" alt=""></div>
 						<div class="team_body">
-							<div class="team_title"><a href="#">William James</a></div>
-							<div class="team_subtitle">Designer & Website</div>
+							<div class="team_title"><a href="#">Mr. Paras Jhokke</a></div>
+							<div class="team_subtitle">IELTS/TOEFL Instructor</div>
 							<div class="social_list">
 								<ul>
 									<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
@@ -272,39 +254,40 @@ Template Name: HomePage
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 
-				<!-- Team Item -->
-				<div class="col-lg-3 col-md-6 team_col">
+				<div class="col-lg-12 team_col">
 					<div class="team_item">
-						<div class="team_image"><img src="<?= get_template_directory_uri();?>/images/team_3.jpg" alt=""></div>
-						<div class="team_body">
-							<div class="team_title"><a href="#">John Tyler</a></div>
-							<div class="team_subtitle">Quantum mechanics</div>
-							<div class="social_list">
-								<ul>
-									<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-									<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-									<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-								</ul>
+						<div class="team_body detail">
+							<div class="left">
+								<div class=""><img src="<?= get_template_directory_uri();?>/images/instructor.png" alt=""></div>
+								<div class="team_title"><a href="#">Mr. Paras Jhokke</a></div>
+								<div class="team_subtitle">IELTS/TOEFL Instructor</div>
+								<div class="social_list">
+									<ul>
+										<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+										<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+										<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+									</ul>
+								</div>
 							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Team Item -->
-				<div class="col-lg-3 col-md-6 team_col">
-					<div class="team_item">
-						<div class="team_image"><img src="<?= get_template_directory_uri();?>/images/team_4.jpg" alt=""></div>
-						<div class="team_body">
-							<div class="team_title"><a href="#">Veronica Vahn</a></div>
-							<div class="team_subtitle">Math & Physics</div>
-							<div class="social_list">
-								<ul>
-									<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-									<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-									<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-								</ul>
+							<div class="right">
+								<div class="team_title">Mr. Paras Jhokke</div>
+								<div class="team_subtitle">Mr. Paras Jhokke is a Graduate from California State University, Northridge USA,
+								and he holds Bachelors of Science in Mechanical Engineer. Mr. Paras has Extensive
+								Experience with English language including Listening, Reading, Writing and
+								Speaking modules. His degree required him to go through rigorous Writing,
+								Speaking and Reading Courses which has made him an experienced teacher of
+								English Language. He has taken several reading and writing courses such as ENG
+								028: Intermediate Reading &amp; Composition, ENG 097: Development Reading, ENG
+								098: Development Writing, ENG 101: College Reading and Composition I, ENG
+								103: Advanced Writing and Critical Thinking. Additionally, he has taken Personality
+								Development and Critical Thinking Course for Overall growth and Development of
+								the personality. He has taken PSY 002: General Psychology 2, PSY 150: Principles
+								of Human Behavior, SPEECH 121: Interpersonal Communication/Process, PHIL:
+								001: Principles of Religions, POL SCI 100: Government and Constitution and many
+								more. So, whether you want to achieve higher bands in IELTS/TOEFL or just want to
+								develop and grow your personality, Mr. Paras is here to help you.</div>
 							</div>
 						</div>
 					</div>

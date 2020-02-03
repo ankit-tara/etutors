@@ -676,10 +676,10 @@ Sidebar
 	width: 102px;
 	height: 102px;
 }
-.teacher_image img
-{
+.teacher_image img {
     max-width: 100%;
-	height: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .teacher_title
 {

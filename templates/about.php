@@ -106,28 +106,29 @@ Template Name: About us
                 <div class="owl-carousel owl-theme testimonial_slider">
                     <div class="owl-item">
                         <div class="bubble-center">
-                            <div class="ava"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Poster-sized_portrait_of_Barack_Obama.jpg" alt=""></div>
+                            <!-- <div class="ava"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Poster-sized_portrait_of_Barack_Obama.jpg" alt=""></div> -->
                             <div class="bubble-3">
-                                <h3>Adam</h3>
-                                <p>It's just amazing. I will let my friend know about this, she could really make use of etutour! Thanks etutour! I am completely blown away.</p>
+                                <h3>Romica</h3>
+                                <p>Hi sir, Hope you are doing well. Thankyou for all your guidance and support. Finally I scored 7 in writing. Overall I got my score 7 <br> (R-7 , s-7 , W-7 ,L- 6.5). <br> Thankyou once again🙏
+                                                               </p>
                             </div>
                         </div>   
                     </div>
                     <div class="owl-item">
                         <div class="bubble-center">
-                            <div class="ava"><img src="https://www.ludoviccareme.com/files/image_211_image_fr.jpg" alt=""></div>
+                            <!-- <div class="ava"><img src="https://www.ludoviccareme.com/files/image_211_image_fr.jpg" alt=""></div> -->
                             <div class="bubble-3">
-                                <h3>John</h3>
-                                <p>It's just amazing. I will let my friend know about this, she could really make use of etutour! Thanks etutour! I am completely blown away.</p>  
+                                <h3>Shivani premi</h3>
+                                <p>Hi sir, So, finally today i got my result. It is listening:8.5, Speaking:7.5, Reading:7 , Writing:7. The result is satisfatory. Thankyou for all your guidance and support and Happy Diwali to you.</p>  
                             </div>
                         </div>   
                     </div>
                     <div class="owl-item">
                         <div class="bubble-center">
-                            <div class="ava"><img src="https://i.ytimg.com/vi/OtHrDCox_kI/maxresdefault.jpg" alt=""></div>
+                            <!-- <div class="ava"><img src="https://i.ytimg.com/vi/OtHrDCox_kI/maxresdefault.jpg" alt=""></div> -->
                             <div class="bubble-3">
-                                <h3>Peter</h3>
-                                <p>It's just amazing. I will let my friend know about this, she could really make use of etutour! Thanks etutour! I am completely blown away.</p>                    
+                                <h3>Gunu Dhingra</h3>
+                                <p>Hi paras sir , I wanted to come and tell you the results but due to some unavoidable circumstances in family could not come. I have scores 8.5, 7.5 , 7 ,7.5. Overall 7.5.</p>                    
                             </div>
                         </div>   
                     </div>

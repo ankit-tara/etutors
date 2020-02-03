@@ -585,8 +585,10 @@ section
 	background: #FFFFFF;
 	z-index: 101;
 	padding-right: 60px;
-	padding-top: 87px;
+    padding-top: 20px;
 	padding-left: 50px;
+	transition: all 400ms ease-in;
+    transform: translate(100%, 0);
 }
 .menu .logo a
 {
@@ -595,6 +597,8 @@ section
 .menu.active
 {
 	right: 0;
+	transform: translate(0, 0);
+
 }
 .menu_close_container
 {
@@ -1739,11 +1743,12 @@ section
 }
 .newsletter_title
 {
-	font-family: 'Roboto Slab', serif;
-	font-size: 20px;
-	font-weight: 700;
-	text-transform: uppercase;
-	color: #FFFFFF;
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: capitalize;
+    color: #FFFFFF;
+    margin-right: 15px;
 }
 .newsletter_subtitle
 {
@@ -2507,4 +2512,21 @@ section
 }
 .nav-item.dropdown:hover ul.sub-menu li a {
 	font-size: 14px;
+}
+
+.team_body.detail {
+    padding: 40px;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+.team_body.detail .team_title{
+    color: #384158;
+    font-size: 25px;
+    font-weight: bold;
+}
+.team_body.detail .team_title span{
+    color: #4b505d;
+    font-size: 15px;
+    font-weight: normal;
 }

@@ -51,14 +51,19 @@ Template Name: Course Template
 							<!-- <div class="sidebar_section_title">Teacher</div> -->
 							<div class="sidebar_teacher">
 								<div class="teacher_title_container d-flex flex-row align-items-center justify-content-start">
-									<div class="teacher_image"><img src="<?= get_template_directory_uri();?>/images/comment_2.jpg" alt=""></div>
+									<div class="teacher_image"><img src="<?= get_template_directory_uri();?>/images/instructor.png" alt=""></div>
 									<div class="teacher_title">
 										<div class="teacher_name"><a href="#">Paras Jhokke</a></div>
 										<div class="teacher_position">IELTS/TOEFL Instructor</div>
 									</div>
 								</div>
 								<div class="teacher_info">
-									<p>Hi! I am Paras Jhokke, I’m an IELTS/TOEFL Instructor  eros pulvinar velit laoreet, sit amet egestas erat dignissim. Sed quis rutrum tellus, sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum nam nulla ipsum.</p>
+									<p>Mr. Paras Jhokke is a Graduate from California State University, Northridge USA,
+										and he holds Bachelors of Science in Mechanical Engineer.
+										<br> Mr. Paras has Extensive
+										Experience with English language including Listening, Reading, Writing and
+										Speaking modules.So, whether you want to achieve higher bands in IELTS/TOEFL or just want to
+										develop and grow your personality, Mr. Paras is here to help you...... <a href="#">Read More</a></p>
 								</div>
 							</div>
 						</div>

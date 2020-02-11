@@ -2530,3 +2530,32 @@ section
     font-size: 15px;
     font-weight: normal;
 }
+
+.app.dashboard .dropdown-menu li i{
+	margin-right:10px;
+}
+
+.woocommerce-account .content-area{
+	padding-bottom: 100px;
+}
+
+li.woocommerce-MyAccount-navigation-link {
+    margin: 10px 0;
+    box-shadow: 3px 4px 5px rgba(0,0,0,0.1);
+    padding: 10px;
+    width: 60%;
+    text-align: center;
+    background: #c7c7c7;
+}
+
+li.woocommerce-MyAccount-navigation-link.is-active{
+	background: #2dc4ef;
+}
+
+li.woocommerce-MyAccount-navigation-link:hover{
+	background: #2dc4ef;
+}
+
+li.woocommerce-MyAccount-navigation-link a{
+	color: #fff;
+}

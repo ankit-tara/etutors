@@ -85,12 +85,18 @@ body {
   color: white;
   padding: 6px 10px;
   border-radius: 6px;
+  align-items: center;
 }
 
 .heading .title {
   margin: 0;
   font-size: 16px;
   font-weight: bold;
+  color:#fff
+}
+
+.heading .player{
+  margin: 0;
 }
 
 .bold {
@@ -127,11 +133,11 @@ body {
 }
 
 .qus-section {
-  margin: 30px 0;
-  padding: 12px;
+  margin: 0 0 30px;
+  /* padding: 12px; */
   /* border: 1px solid #b2c7fc; */
   border-radius: 6px;
-  box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.2);
+  /* box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.2); */
   width: max-content;
   max-width: 100%;
 }
@@ -139,6 +145,36 @@ body {
 .test input[type='text'] {
   border:none;
   border-bottom: solid 1px gray;
+}
+
+.test .card {
+  margin-bottom: 10px;
+}
+
+span.qus-index {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background: #12abd7;
+    color: #fff;
+    text-align: center;
+    border-radius: 50%;
+    margin: 5px 10px;
+}
+
+.test label.checkbox-inline {
+    display: block;
+    padding-left: 3.4em;
+}
+
+.test input[type=checkbox], .test input[type=radio] {
+  width:15px;
+  height:15px;
+  margin-right: 10px;
+}
+
+span.qus-index:empty {
+  display: none
 }
 
 .qus-section p {
@@ -197,7 +233,7 @@ body {
 .test {
   height: 70vh;
   overflow: auto;
-  border: 2px solid #efeeee;
+  /* border: 2px solid #efeeee; */
   padding: 10px;
   border-radius: 5px;
 }
@@ -342,7 +378,7 @@ button.submit {
 .qus-section .paragraph .para-heading{
     text-align: center;
     font-weight: bold;
-    margin: 0 0 17px 0;
+    margin: 16px 0 30px 0;
 }
 
 p.highlight,.pag-index.highlight{
@@ -361,9 +397,58 @@ p.highlight,.pag-index.highlight{
   color: green;
 }
 
+.overflow-table {
+    overflow: auto;
+}
+
+.card-body li {
+    list-style: disc;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    color: #333;
+}
 
 
-@media only screen and (max-width: 700px) {
+@media(max-width:992px){
+  .heading .title{
+    margin-bottom: 20px;
+  }
+}
+
+
+@media only screen and (max-width: 767px) {
+
+  .player .progress {
+    width: 100px;
+  }
+
+  .heading{
+    margin: 0;
+    padding: 10px 0;
+  }
+
+  .heading .col-lg-8{
+    padding: 0;
+  }
+
+  .pagination{
+    max-width:100%;
+  }
+
+  .pointers span.icon {
+    font-size: 24px;
+    margin: 3px;
+   }
+
+  .heading .player{
+    width:100%;
+  }
+
+  .player > div {
+    float: left;
+    margin-right: 4px;
+  }
+
   .test-header {
     font-size: 14px;
   }

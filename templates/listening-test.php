@@ -36,16 +36,18 @@ Template Name: Listening Test
     </nav>
   </header>
 
+  <div class="">
 
-  <div class="row heading">
-    <div class="col-md-6">
-      <h2 class="title">Test 1 Listening</h2>
-
+    <div class="row heading">
+      <div class="col-lg-4">
+        <h2 class="title">Test 1 Listening</h2>
+        
+      </div>
+      <div class="col-lg-8">
+        <div id="player" class="player ml-auto"></div>
+      </div>
+      
     </div>
-    <div class="col-md-6">
-      <div id="player" class="player"></div>
-    </div>
-
   </div>
   <div class="card step-1 test-sound">
     <div class="card-header">
@@ -56,7 +58,7 @@ Template Name: Listening Test
       <p class="card-text">
         Put on your headphones and check the sound using audio player.
       </p>
-      <p>
+      <p class="card-text">
         <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
         If you cannot hear the sound clearly, please tell the invigilator.
       </p>
@@ -66,20 +68,24 @@ Template Name: Listening Test
   </div>
 
   <div class="step-2 instructions" style="display: none;">
-    <h4><strong> IELTS Listening </strong></h4>
-    <p>
-      Time: Approximately 30 minutes
-    </p>
-    <h5>
+  <div class="card">
+    <div class="card-header">
+      <h4><strong> IELTS Listening </strong></h4>
+      <p>
+        Time: Approximately 30 minutes
+      </p>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">
       <strong>
         INSTRUCTIONS TO CANDIDATES
 
       </strong>
     </h5>
-    <p>
+    <p class="card-text">
       Answer all the questions.
     </p>
-    <p>
+    <p class="card-text">
       You can change your answers at any time during the test.
       INFORMATION FOR CANDIDATES
       <ul>
@@ -93,6 +99,9 @@ Template Name: Listening Test
     </p>
 
     <a href="#" class="btn btn-primary start-test">Start Test</a>
+    </div>
+  </div>
+    
   </div>
 
   <div class="step-3 test section-1 scroll-section" style="display: none;">
@@ -119,7 +128,7 @@ Template Name: Listening Test
       <div class="modal-body">
         <table class="table" id="result-table">
  
-</table>
+        </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary restart">Restart</button>

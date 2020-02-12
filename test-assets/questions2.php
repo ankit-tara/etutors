@@ -1,13 +1,14 @@
 <form action="">
-  <div class="section-block">
-    <h3 class="section">Section 1</h3>
-    <p class="qus-heading">Question 1-4</p>
-    <p>Complete the notes below</p>
-    <p>Write NO MORE THAN TWO WORDS AND/OR A NUMBER for each answer.</p>
-
-    <div class="qus-section">
+  <div class="section-block card">
+    <h3 class="section card-header">Section 1</h3>
+    <div class="card-body">
+      <p class="qus-heading">Question 1-4</p>
+      <p>Complete the notes below</p>
+      <p>Write NO MORE THAN TWO WORDS AND/OR A NUMBER for each answer.</p>
+    
+      <div class="qus-section">
       <p>
-      <span class="qus-index" data-index="1">1.</span>   Type of transportation
+        <span class="qus-index" data-index="1">1.</span>   Type of transportation
         <input type="text" class="qus-input" data-index="1" style="width:210px" id="ex1" />
       </p>
       <p>
@@ -25,8 +26,8 @@
     </div>
 
     <p class="qus-heading">Question 5 and 6</p>
-    <span class="qus-index" data-index="5"><span>
-    <span class="qus-index" data-index="6"><span>
+    <span class="qus-index" data-index="5"></span>
+    <span class="qus-index" data-index="6"></span>
     <p>Choose TWO LETTERS A-E.</p>
     <div class="qus-section">
       <p>
@@ -51,7 +52,7 @@
         <input type="text" class="qus-input" data-index="7" style="width:210px" id="ex7" />
       </p>
       <p>
-        <span class="qus-index" data-index="8">.</span> Bookings must be made no later than
+        <span class="qus-index" data-index="8">8.</span> Bookings must be made no later than
         <input type="text" class="qus-input" data-index="8" style="width:210px" id="ex8" /> days
         in advance.
       </p>
@@ -64,28 +65,32 @@
         <span class="qus-index" data-index="10">10.</span> The customer's reference number is<input type="text" class="qus-input" data-index="5" style="width:210px" id="ex10" />
       </p>
     </div>
+    </div>
   </div>
 
-  <div class="section-block">
-    <h3 class="section">Section 2</h3>
+  <div class="section-block card">
+    <h3 class="section card-header">Section 2</h3>
+    <div class="card-body">
     <p class="qus-heading">Question 11-19</p>
     <p>Complete the table below</p>
     <p>Write NO MORE THAN THREE WORDS for each answer.</p>
 
     <div class="qus-section">
-      <table class="table-bordered">
-        <tr>
-          <th>Brand of Cot</th>
-          <th>Good Points</th>
-          <th>Problems</th>
-          <th>Verdict</th>
-        </tr>
-        <tr>
-          <td>Baby Safe</td>
-          <td>
-            Easy to <span class="qus-index" data-index="11">11.</span>
-            <input type="text" class="qus-input" data-index="11" style="width:210px" id="ex11" />
-          </td>
+      <div class="overflow-table">
+
+        <table class="table-bordered">
+          <tr>
+            <th>Brand of Cot</th>
+            <th>Good Points</th>
+            <th>Problems</th>
+            <th>Verdict</th>
+          </tr>
+          <tr>
+            <td>Baby Safe</td>
+            <td>
+              Easy to <span class="qus-index" data-index="11">11.</span>
+              <input type="text" class="qus-input" data-index="11" style="width:210px" id="ex11" />
+            </td>
           <td>
             <ul>
               <li>
@@ -149,7 +154,8 @@
         </tr>
       </table>
     </div>
-
+    </div>
+    
     <p class="qus-heading">Question 20</p>
 
     <p>Complete the notes below</p>
@@ -164,10 +170,12 @@
         </li>
       </ul>
     </div>
+    </div>
   </div>
 
-  <div class="section-block">
-    <h3 class="section">Section 3</h3>
+  <div class="section-block card">
+    <h3 class="section card-header">Section 3</h3>
+    <div class="card-body">
     <p class="qus-heading">Question 21-23</p>
     <p>Choose the correct letter A,B and C</p>
 
@@ -252,10 +260,12 @@
         </p>
       </div>
     </div>
+    </div>
   </div>
 
-  <div class="section-block">
-    <h3 class="section">Section 4</h3>
+  <div class="section-block card">
+    <h3 class="section card-header">Section 4</h3>
+    <div class="card-body">
     <p class="qus-heading">Question 31-35</p>
     <p>Choose the sentences below</p>
     <p>Write NO MORE THAN THREE WORDS for each answer</p>
@@ -329,6 +339,7 @@
 
 
 
+    </div>
     </div>
   </div>
 </form>

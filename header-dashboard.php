@@ -138,7 +138,7 @@
                                 <div class="peer"><span class="fsz-sm c-grey-900"><?= wp_get_current_user()->user_login;?></span></div>
                             </a>
                             <ul class="dropdown-menu fsz-sm">
-                                <li><a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-user mR-10"></i> <span>Profile</span></a></li>
+                                <li><a href="<?php site_url(); ?>/my-account" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-user mR-10"></i> <span>My account</span></a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="<?php echo wp_logout_url(home_url()); ?>" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-power-off mR-10"></i> <span>Logout</span></a></li>
                             </ul>

@@ -77,7 +77,12 @@
 
 </head>
 
-<body class="app dashboard">
+<body class="app dashboard js-focus-visible is-collapsed">
+    <?php 
+        $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
+        $profile_url = home_url() . '/student-profile';
+        $profile_url_name = 'student-profile';
+    ?>
     <div id="loader">
         <div class="spinner"></div>
     </div>
@@ -111,17 +116,33 @@
                     </div>
                 </div>
                 <ul class="sidebar-menu scrollable pos-r">
-                    <li class="nav-item mT-30 actived"><a class="sidebar-link" href="#"><span class="icon-holder"><i class="c-blue-500 ti-home"></i> </span><span class="title">Dashboard</span></a></li>
-                    <li class="nav-item dropdown"><a class="sidebar-link" href="ui"><span class="icon-holder"><i class="c-pink-500 ti-user"></i> </span><span class="title">Profile</span></a></li>
-                    <li class="nav-item dropdown open"><a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-light-blue-500 ti-pencil"></i></span><span class="title">Tests</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a class="sidebar-link" href="#"><i class="c-green-500 ti-palette"></i>Reading</a></li>
-                            <li><a class="sidebar-link" href="#"><i class="c-purple-500 ti-headphone-alt"></i>Listening</a></li>
-                            <li><a class="sidebar-link" href="#"><i class="c-pink-500 ti-pencil-alt"></i>Writing</a></li>
-                            <li><a class="sidebar-link" href="#"><i class="c-red-500 ti-microphone"></i>Personality Development</a></li>
-                        </ul>
+                    <li class="nav-item mT-30 <?php echo $url_path == $profile_url ? 'active':''  ?>">
+                        <a class="sidebar-link" href="<?php  echo $profile_url?>">
+                            <span class="icon-holder"><i class="c-blue-500 ti-home"></i> </span>
+                            <span class="title">Dashboard</span>
+                        </a>
                     </li>
-                    <li class="nav-item"><a class="sidebar-link" href="#"><span class="icon-holder"><i class="c-purple-500 ti-shopping-cart"></i> </span><span class="title">Your Orders</span></a></li>
+                    
+                    <li class="nav-item dropdown <?php echo $url_path == $profile_url_name.'/listening' ? 'active':''  ?>">
+                        <a class="sidebar-link" href="<?php echo $profile_url .'/listening'?>">
+                            <span class="icon-holder"> <i class="c-purple-500 ti-headphone-alt"></i> </span>
+                            <span class="title">Listening</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown <?php echo $url_path == $profile_url_name.'/reading' ? 'active':''  ?>">
+                        <a class="sidebar-link" href="<?php echo $profile_url .'/reading'?>">
+                            <span class="icon-holder"> <i class="c-green-500 ti-palette"></i> </span>
+                            <span class="title">Reading</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown <?php echo $url_path == $profile_url_name.'/writing' ? 'active':''  ?>">
+                        <a class="sidebar-link" href="<?php echo $profile_url .'/writing'?>">
+                            <span class="icon-holder"> <i class="c-pink-500 ti-pencil-alt"></i> </span>
+                            <span class="title">Writing</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

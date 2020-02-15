@@ -43,7 +43,7 @@
 										}
 										else{
 											?>
-											<a href="http://arbites.in/e-tutors/login">Register or Login</a>
+											<a href="<?php home_url() ?>/login">Register or Login</a>
 										<?php
 										}
 										?>

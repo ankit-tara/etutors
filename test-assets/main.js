@@ -1,10 +1,10 @@
-$(function() {
-  $(".submit").click(function(e) {
+jQuery(function() {
+  jQuery(".submit").click(function(e) {
     e.preventDefault();
-    $(".loading").css("display", "flex");
+    jQuery(".loading").css("display", "flex");
     setTimeout(() => {
       check();
-      $(".loading").hide();
+      jQuery(".loading").hide();
     }, 1000);
   });
 
@@ -15,12 +15,12 @@ $(function() {
 
       let element = "#select" + i;
       if ($(element).val() == 1) {
-        $("#s" + i).html(
+        jQuery("#s" + i).html(
           '<i class="fa fa-check right-ans" aria-hidden="true" ></i>'
         );
         score++;
       } else {
-        $("#s" + i).html(
+        jQuery("#s" + i).html(
           '<i class="fa fa-times wrong-ans" aria-hidden="true" ></i>'
         );
       }
@@ -38,34 +38,34 @@ $(function() {
       let element = "#ex" + i;
 
       if (
-        $(element)
+        jQuery(element)
           .val()
           .toLowerCase() == ex[9 - i]
       ) {
-        $("#s" + i).html(
+        jQuery("#s" + i).html(
           '<i class="fa fa-check right-ans" aria-hidden="true" ></i>'
         );
         score++;
       } else {
-        $("#s" + i).html(
+        jQuery("#s" + i).html(
           '<i class="fa fa-times wrong-ans" aria-hidden="true" ></i>'
         );
       }
     }
 
-    $(".score").html("Your score is " + score);
+    jQuery(".score").html("Your score is " + score);
   }
 
-  $(".left-help").click(function() {
-    $(".left-help").hide();
-    $(".right").show();
-    $(".right-help").show();
+  jQuery(".left-help").click(function() {
+    jQuery(".left-help").hide();
+    jQuery(".right").show();
+    jQuery(".right-help").show();
   });
 
-  $(".right-help").click(function() {
-    $(".left-help").show();
-    $(".right").hide();
-    $(".right-help").hide();
+  jQuery(".right-help").click(function() {
+    jQuery(".left-help").show();
+    jQuery(".right").hide();
+    jQuery(".right-help").hide();
   });
 
   function startTimer(duration, display) {
@@ -90,79 +90,79 @@ $(function() {
   }
 
   // var fiveMinutes = 15,
-  //   display = $("#time");
+  //   display =jQuery("#time");
   // startTimer(fiveMinutes, display);
 
-  $(".test-sound-btn").click(function() {
-    let value = $(this).val();
+  jQuery(".test-sound-btn").click(function() {
+    let value = jQuery(this).val();
     let new_value = value == "Play Sound" ? "Stop Sound" : "Play Sound";
     let action = value == "Play Sound" ? "play" : "pause";
-    $("#player").trigger(action);
-    $(this).val(new_value);
+    jQuery("#player").trigger(action);
+    jQuery(this).val(new_value);
   });
 
-  $("#volume").on("input", function() {
-    let value = $(this).val();
-    $(this)
+  jQuery("#volume").on("input", function() {
+    let value = jQuery(this).val();
+    jQuery(this)
       .parent("div")
       .find("audio")[0].volume = value / 100;
   });
 
-  $(".continue").click(function() {
-    $(".step-1").hide();
-    $(".step-2").show();
+  jQuery(".continue").click(function() {
+    jQuery(".step-1").hide();
+    jQuery(".step-2").show();
   });
-  $(".start-test").click(function() {
-    $(".test-footer").show();
-    $(".step-2").hide();
-    $(".step-3").show();
-    // $("audio").attr("src", "./assets/audio/section1.mp3");
-    $(".fa-pause").trigger("click");
+  jQuery(".start-test").click(function() {
+    jQuery(".test-footer").show();
+    jQuery(".step-2").hide();
+    jQuery(".step-3").show();
+    //jQuery("audio").attr("src", "./assets/audio/section1.mp3");
+    jQuery(".fa-pause").trigger("click");
 
-    $("#player").html("");
-    $("#player").player("./assets/audio/section1.mp3");
+    jQuery("#player").html("");
+    jQuery("#player").player("./assets/audio/section1.mp3");
     setTimeout(() => {
       var fiveMinutes = 60 * 5,
-        display = $("#time");
-      $(".time-block").show();
+        display = jQuery("#time");
+      jQuery(".time-block").show();
       startTimer(fiveMinutes, display);
-      // $("#player").trigger('play');
+      //jQuery("#player").trigger('play');
     }, 1000);
   });
 
-  // $(".form-btn").click(function(e) {
-    // e.preventDefault();
-    // let section = $(this).data("section");
-    // console.log(section);
-    // if (section == 1) {
-    //   $(this).data("section", "2");
-    //   $("#player .fa-pause").trigger("click");
+  //jQuery(".form-btn").click(function(e) {
+  // e.preventDefault();
+  // let section =jQuery(this).data("section");
+  // console.log(section);
+  // if (section == 1) {
+  //  jQuery(this).data("section", "2");
+  //  jQuery("#player .fa-pause").trigger("click");
 
-    //   $("#player").html("");
-    //   // $("audio").attr("src", "./assets/audio/section2.mp3");
-    //   $("#player").player("./assets/audio/section2.mp3");
-    // }
-    // if (section == 2) {
-    //                     $(this).data("section", "3");
-    //                     $(".fa-pause").trigger("click");
+  //  jQuery("#player").html("");
+  //   //jQuery("audio").attr("src", "./assets/audio/section2.mp3");
+  //  jQuery("#player").player("./assets/audio/section2.mp3");
+  // }
+  // if (section == 2) {
+  //                    jQuery(this).data("section", "3");
+  //                    jQuery(".fa-pause").trigger("click");
 
-    //                     $("#player").html("");
-    //                     // $("audio").attr("src", "./assets/audio/section3.mp3");
-    //                     $("#player").player("./assets/audio/section3.mp3");
-    //                   }
-    // if (section == 3) {
-    //                     $(this).text("Submit");
-    //                     $(this).data("section", "4");
-    //                     $(".fa-pause").trigger("click");
+  //                    jQuery("#player").html("");
+  //                     //jQuery("audio").attr("src", "./assets/audio/section3.mp3");
+  //                    jQuery("#player").player("./assets/audio/section3.mp3");
+  //                   }
+  // if (section == 3) {
+  //                    jQuery(this).text("Submit");
+  //                    jQuery(this).data("section", "4");
+  //                    jQuery(".fa-pause").trigger("click");
 
-    //                     $("#player").html("");
-    //                     // $("audio").attr("src", "./assets/audio/section4.mp3");
-    //                     $("#player").player("./assets/audio/section4.mp3");
-    //                   }
-    // console.log(section);
+  //                    jQuery("#player").html("");
+  //                     //jQuery("audio").attr("src", "./assets/audio/section4.mp3");
+  //                    jQuery("#player").player("./assets/audio/section4.mp3");
+  //                   }
+  // console.log(section);
   // });
 
-  // $(" audio").mediaelementplayer({
+  //jQuery(" audio").mediaelementplayer({
   //   // Do not forget to put a final slash (/)
   //   pluginPath: "https://cdnjs.com/libraries/mediaelement/",
   //   // this will allow the CDN to use Flash without restrictions
@@ -179,45 +179,44 @@ $(function() {
     url: "./assets/simple-audio-player/dist/"
   }); // path to soundmanager2 files
 
-  $(document).ready(function() {
-    $("#player").player("./assets/audio/sample-audio.ogg"); // relative path to mp3
+  jQuery(document).ready(function() {
+    jQuery("#player").player("./assets/audio/sample-audio.ogg"); // relative path to mp3
   });
   let activeClass = "highlight";
 
-  $(".pag-index").click(function() {
-    let index = $(this).data("id");
-    let element = $(".qus-index[data-index='" + index + "']");
+  jQuery(".pag-index").click(function() {
+    let index = jQuery(this).data("id");
+    let element = jQuery(".qus-index[data-index='" + index + "']");
     if ($(element).hasClass(activeClass)) {
       return;
     } else {
-      $(".pag-index").removeClass(activeClass);
-      $(".qus-index")
+      jQuery(".pag-index").removeClass(activeClass);
+      jQuery(".qus-index")
         .parent()
         .removeClass(activeClass);
     }
-    $(element)
+    jQuery(element)
       .parent()
       .addClass(activeClass);
     setTimeout(() => {
-      $(element)
+      jQuery(element)
         .parent()
         .removeClass(activeClass);
     }, 1000);
-    $(this).addClass(activeClass);
-    let parentDiv = $(".test");
-  
-    $("div.test").animate(
+    jQuery(this).addClass(activeClass);
+    let parentDiv = jQuery(".test");
+
+    jQuery("div.test").animate(
       {
         scrollTop: parentDiv.scrollTop() + element.position().top - 200
       },
       100
     );
-   
   });
 
-  $(".move").click(function() {
-    let direction = $(this).hasClass("up");
-    let element = $(".pagination").find("." + activeClass);
+  jQuery(".move").click(function() {
+    let direction = jQuery(this).hasClass("up");
+    let element = jQuery(".pagination").find("." + activeClass);
     let activeIndex = element.data("id");
 
     if (direction && activeIndex == 1) {
@@ -229,14 +228,14 @@ $(function() {
     if (direction) {
       activeIndex--;
 
-      $(".pagination")
+      jQuery(".pagination")
         .find(".pag-index[data-id='" + activeIndex + "'")
 
         .trigger("click");
     } else {
       activeIndex++;
 
-      $(".pagination")
+      jQuery(".pagination")
         .find(".pag-index[data-id='" + activeIndex + "']")
         .trigger("click");
     }

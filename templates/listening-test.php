@@ -139,8 +139,8 @@ Template Name: Listening Test
 </div>
 
   <?php wp_footer();?>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script> -->
   <script src="<?= get_template_directory_uri()?>/test-assets/soundmanager2.js"></script>
   <script src="<?= get_template_directory_uri()?>/test-assets/player.js"></script>
   <script src="<?= get_template_directory_uri()?>/test-assets/main.js"></script>

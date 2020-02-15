@@ -1,4 +1,5 @@
-jQuery(function() {
+// jQuery(function() {
+  jQuery('document').ready(function(){
   let separator = "<&&separator&&>";
   let check = '<i class="fa fa-check result-icon check" aria-hidden="true"></i>'
   let cross =
@@ -280,3 +281,5 @@ jQuery(function() {
 
   });
 });
+
+

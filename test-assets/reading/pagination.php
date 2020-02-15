@@ -1,4 +1,4 @@
-<div class="test-footer row" style="display:none">
+<div class="test-footer row">
     <div class="col-md-10 col-9">
         <div class="pagination">
             <ul class="scroll-section">

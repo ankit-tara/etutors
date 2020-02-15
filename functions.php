@@ -9,6 +9,7 @@ function ar_scripts() {
 	wp_enqueue_style( 'owl-theme',  $url . '/plugins/OwlCarousel2-2.2.1/owl.theme.default.css' );
 	wp_enqueue_style( 'animate',  $url . '/plugins/OwlCarousel2-2.2.1/animate.css' );
 	wp_enqueue_style( 'themify-icons',  $url . '/plugins/themify-icons.css' );
+	wp_enqueue_style( 'color-box-css',  $url . '/plugins/colorbox/colorbox.css' );
 	wp_enqueue_style( 'main',  $url . '/styles/main_styles.css' );
 	wp_enqueue_style( 'aboutcss',  $url . '/styles/about.css' );
 	wp_enqueue_style( 'blogcss',  $url . '/styles/blog.css' );
@@ -19,6 +20,7 @@ function ar_scripts() {
 	wp_enqueue_style( 'responsive',  $url . '/styles/responsive.css' );  
 	wp_enqueue_script( 'jquery',  $url . '/js/jquery-3.2.1.min.js', array( 'jquery' ), '3.3.6', true );
 	wp_enqueue_script( 'tweenmax',  $url . '/plugins/greensock/TweenMax.min.js', array( 'jquery' ), '3.3.6', true );
+	wp_enqueue_script( 'colorbox-js',  $url . '/plugins/colorbox/jquery.colorbox-min.js', array( 'jquery' ), '3.3.6', true );
 	wp_enqueue_script( 'popper',  $url . '/styles/bootstrap4/popper.js', array( 'jquery' ), true );
 	wp_enqueue_script( 'bootstrap',  $url . '/styles/bootstrap4/bootstrap.min.js', array( 'jquery' ), true );
 	wp_enqueue_script( 'timelineMax',  $url . '/plugins/greensock/TimelineMax.min.js', array( 'jquery' ), '3.3.6', true );

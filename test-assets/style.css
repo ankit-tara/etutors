@@ -132,6 +132,10 @@ body {
   background-color: #14bdee;
 }
 
+.test .scroll-section{
+  height:64vh;
+}
+
 .qus-section {
   margin: 0 0 30px;
   /* padding: 12px; */

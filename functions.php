@@ -183,3 +183,30 @@ add_filter( 'woocommerce_add_to_cart_fragments', 'my_header_add_to_cart_fragment
 */
 
 
+// add_action( 'init', 'wpse26388_rewrites_init' );
+// function wpse26388_rewrites_init(){
+//     add_rewrite_rule(
+//         'student-profile/([0-9]+)/?$',
+//         'index.php?pagename=student-profile&property_id=$matches[1]',
+//         'top' );
+// }
+
+// add_filter( 'query_vars', 'wpse26388_query_vars' );
+// function wpse26388_query_vars( $query_vars ){
+//     $query_vars[] = 'property_id';
+//     return $query_vars;
+// }
+
+add_action('init', function() {
+  $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
+  if ( $url_path === 'student-profile/test' ) {
+      echo "sdfsdfsdf";
+      exit();
+
+    //  // load the file if exists
+    //  $load = locate_template('template-retail.php', true);
+    //  if ($load) {
+    //     exit(); // just exit if template was found and loaded
+    //  }
+  }
+});

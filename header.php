@@ -36,9 +36,14 @@
 								</ul>
 								<div class="top_bar_login ml-auto">
 									<div class="login_button">
-										<?php if (is_user_logged_in()){
+										<?php if (is_user_logged_in() && current_user_can('instructor')){
 											?>
-											<a href="<?php echo wp_logout_url(home_url()); ?>">Logout</a>
+											<a href="<?php echo site_url() ?>/instructor-profile">Dashboard</a>
+										<?php
+										}
+										elseif(is_user_logged_in() && current_user_can('student')){
+											?>
+											<a href="<?php echo site_url() ?>/student-profile">Dashboard</a>
 										<?php
 										}
 										else{

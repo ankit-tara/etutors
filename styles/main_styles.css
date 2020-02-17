@@ -2559,3 +2559,12 @@ li.woocommerce-MyAccount-navigation-link:hover{
 li.woocommerce-MyAccount-navigation-link a{
 	color: #fff;
 }
+
+.main_nav li.current-menu-item a {
+    color: #14bdee;
+}		
+
+.woocommerce-MyAccount-navigation-link.woocommerce-MyAccount-navigation-link--customer-logout,
+.woocommerce-MyAccount-navigation-link.woocommerce-MyAccount-navigation-link--dashboard{
+	display: none;
+}

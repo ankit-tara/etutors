@@ -10,6 +10,7 @@ jQuery(document).ready(function()
 
 	initHomeSlider();
 	initMilestones();
+	initVideo();
     var ctrl = new ScrollMagic.Controller();
 
 	function initHomeSlider()
@@ -46,6 +47,20 @@ jQuery(document).ready(function()
 			}
 		}
 	}
+
+
+		function initVideo()
+			{
+				jQuery(".vimeo").colorbox(
+				{
+					iframe:true,
+					innerWidth:640,
+					innerHeight:409,
+					maxWidth: '90%'
+				});
+			}
+
+
 
 	/* 
 

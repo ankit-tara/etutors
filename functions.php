@@ -1,43 +1,46 @@
 <?php
 
 //Add scripts and stylesheets
-function ar_scripts()
-{
-    $url = get_template_directory_uri();
-    wp_enqueue_style('bootstrap', $url . '/styles/bootstrap4/bootstrap.min.css');
-    wp_enqueue_style('fontAwesome', $url . '/plugins/font-awesome-4.7.0/css/font-awesome.min.css');
-    wp_enqueue_style('owl', $url . '/plugins/OwlCarousel2-2.2.1/owl.carousel.css');
-    wp_enqueue_style('owl-theme', $url . '/plugins/OwlCarousel2-2.2.1/owl.theme.default.css');
-    wp_enqueue_style('animate', $url . '/plugins/OwlCarousel2-2.2.1/animate.css');
-    wp_enqueue_style('themify-icons', $url . '/plugins/themify-icons.css');
-    wp_enqueue_style('main', $url . '/styles/main_styles.css');
-    wp_enqueue_style('aboutcss', $url . '/styles/about.css');
-    wp_enqueue_style('blogcss', $url . '/styles/blog.css');
-    wp_enqueue_style('blog_single', $url . '/styles/blog_single.css');
-    wp_enqueue_style('contactpage', $url . '/styles/contactpage.css');
-    wp_enqueue_style('courses', $url . '/styles/courses.css');
-    wp_enqueue_style('course', $url . '/styles/course.css');
-    wp_enqueue_style('responsive', $url . '/styles/responsive.css');
-    wp_enqueue_script('jquery', $url . '/js/jquery-3.2.1.min.js', array('jquery'), '3.3.6', true);
-    wp_enqueue_script('tweenmax', $url . '/plugins/greensock/TweenMax.min.js', array('jquery'), '3.3.6', true);
-    wp_enqueue_script('popper', $url . '/styles/bootstrap4/popper.js', array('jquery'), true);
-    wp_enqueue_script('bootstrap', $url . '/styles/bootstrap4/bootstrap.min.js', array('jquery'), true);
-    wp_enqueue_script('timelineMax', $url . '/plugins/greensock/TimelineMax.min.js', array('jquery'), '3.3.6', true);
-    wp_enqueue_script('scrollMagic', $url . '/plugins/scrollmagic/ScrollMagic.min.js', array('jquery'), '3.3.6', true);
-    wp_enqueue_script('animationGsap', $url . '/plugins/greensock/animation.gsap.min.js', array('jquery'), '3.3.6', true);
-    wp_enqueue_script('scrolltoplugin', $url . '/plugins/greensock/ScrollToPlugin.min.js', array('jquery'), '3.3.6', true);
-    wp_enqueue_script('owljs', $url . '/plugins/OwlCarousel2-2.2.1/owl.carousel.js', array('jquery'), '3.3.6', true);
-    wp_enqueue_script('easing', $url . '/plugins/easing/easing.js', array('jquery'), '3.3.6', true);
-    wp_enqueue_script('parallax', $url . '/plugins/parallax-js-master/parallax.min.js', array('jquery'), '3.3.6', true);
-    wp_enqueue_script('App', $url . '/js/app.js', array('jquery'), '3.3.6', true);
+function ar_scripts() {
+  $url = get_template_directory_uri() ;
+	wp_enqueue_style( 'bootstrap',  $url . '/styles/bootstrap4/bootstrap.min.css');
+	wp_enqueue_style( 'fontAwesome',  $url . '/plugins/font-awesome-4.7.0/css/font-awesome.min.css' );
+	wp_enqueue_style( 'owl',  $url . '/plugins/OwlCarousel2-2.2.1/owl.carousel.css' );
+	wp_enqueue_style( 'owl-theme',  $url . '/plugins/OwlCarousel2-2.2.1/owl.theme.default.css' );
+	wp_enqueue_style( 'animate',  $url . '/plugins/OwlCarousel2-2.2.1/animate.css' );
+	wp_enqueue_style( 'themify-icons',  $url . '/plugins/themify-icons.css' );
+	wp_enqueue_style( 'color-box-css',  $url . '/plugins/colorbox/colorbox.css' );
+	wp_enqueue_style( 'main',  $url . '/styles/main_styles.css' );
+	wp_enqueue_style( 'aboutcss',  $url . '/styles/about.css' );
+	wp_enqueue_style( 'blogcss',  $url . '/styles/blog.css' );
+	wp_enqueue_style( 'blog_single',  $url . '/styles/blog_single.css' );
+	wp_enqueue_style( 'contactpage',  $url . '/styles/contactpage.css' );
+	wp_enqueue_style( 'courses',  $url . '/styles/courses.css' );
+	wp_enqueue_style( 'course',  $url . '/styles/course.css' );
+	wp_enqueue_style( 'responsive',  $url . '/styles/responsive.css' );  
+	wp_enqueue_script( 'jquery',  $url . '/js/jquery-3.2.1.min.js', array( 'jquery' ), '3.3.6', true );
+	wp_enqueue_script( 'tweenmax',  $url . '/plugins/greensock/TweenMax.min.js', array( 'jquery' ), '3.3.6', true );
+	wp_enqueue_script( 'colorbox-js',  $url . '/plugins/colorbox/jquery.colorbox-min.js', array( 'jquery' ), '3.3.6', true );
+	wp_enqueue_script( 'popper',  $url . '/styles/bootstrap4/popper.js', array( 'jquery' ), true );
+	wp_enqueue_script( 'bootstrap',  $url . '/styles/bootstrap4/bootstrap.min.js', array( 'jquery' ), true );
+	wp_enqueue_script( 'timelineMax',  $url . '/plugins/greensock/TimelineMax.min.js', array( 'jquery' ), '3.3.6', true );
+	wp_enqueue_script( 'scrollMagic',  $url . '/plugins/scrollmagic/ScrollMagic.min.js', array( 'jquery' ), '3.3.6', true );
+	wp_enqueue_script( 'animationGsap',  $url . '/plugins/greensock/animation.gsap.min.js', array( 'jquery' ), '3.3.6', true );
+	wp_enqueue_script( 'scrolltoplugin',  $url . '/plugins/greensock/ScrollToPlugin.min.js', array( 'jquery' ), '3.3.6', true );
+	wp_enqueue_script( 'owljs',  $url . '/plugins/OwlCarousel2-2.2.1/owl.carousel.js', array( 'jquery' ), '3.3.6', true );
+	wp_enqueue_script( 'easing',  $url . '/plugins/easing/easing.js', array( 'jquery' ), '3.3.6', true );
+	wp_enqueue_script( 'parallax',  $url . '/plugins/parallax-js-master/parallax.min.js', array( 'jquery' ), '3.3.6', true );
+	wp_enqueue_script( 'App',  $url . '/js/app.js', array( 'jquery' ), '3.3.6', true );
 
-    if (is_page('home')) {
-        wp_enqueue_script('homejs', $url . '/js/home.js', array('jquery'), '3.3.6', true);
-    }
-    if (is_page('about')) {
-        wp_enqueue_script('aboutjs', $url . '/js/about.js', array('jquery'), '3.3.6', true);
-    }
+	if(is_page('home')){
+		wp_enqueue_script( 'homejs',  $url . '/js/home.js', array( 'jquery' ), '3.3.6', true );
+	}
+	if(is_page('about')){
+		wp_enqueue_script( 'aboutjs',  $url . '/js/about.js', array( 'jquery' ), '3.3.6', true );
+	}
 }
+
+add_action( 'wp_enqueue_scripts', 'ar_scripts' );
 
 add_action('wp_enqueue_scripts', 'ar_scripts');
 
@@ -261,6 +264,24 @@ add_action('init', function () {
             }
         }
 
+    }
+});
+add_action('init', function () {
+    if (is_user_logged_in() && current_user_can('instructor')) {
+        $valid_test_url = [
+            'instructor-profile/tests',
+            'instructor-profile/students',
+        ];
+        $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
+
+        if (in_array($url_path, $valid_test_url)) {
+
+            // load the file if exists
+            $load = locate_template('instructor-dashboard/tests.php', true);
+            if ($load) {
+                exit(); // just exit if template was found and loaded
+            }
+        }
     }
 });
 

@@ -16,7 +16,7 @@ Template Name: Contact Page
 					<div class="col">
 						<div class="breadcrumbs">
 							<ul>
-								<li><a href="index.html">Home</a></li>
+								<li><a href="/home">Home</a></li>
 								<li>Contact</li>
 							</ul>
 						</div>
@@ -40,23 +40,7 @@ Template Name: Contact Page
 					<div class="col-lg-6">
 						<div class="contact_form">
 							<div class="contact_info_title">Contact Form</div>
-							<form action="#" class="comment_form">
-								<div>
-									<div class="form_title">Name</div>
-									<input type="text" class="comment_input" required="required">
-								</div>
-								<div>
-									<div class="form_title">Email</div>
-									<input type="text" class="comment_input" required="required">
-								</div>
-								<div>
-									<div class="form_title">Message</div>
-									<textarea class="comment_input comment_textarea" required="required"></textarea>
-								</div>
-								<div>
-									<button type="submit" class="comment_button trans_200">submit now</button>
-								</div>
-							</form>
+							<?php echo do_shortcode(' [contact-form-7 id="60" title="Contact form 1"]' )?>
 						</div>
 					</div>
 

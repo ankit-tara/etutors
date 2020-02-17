@@ -108,11 +108,11 @@ Template Name: HomePage
 				<div class="col-lg-3 col-sm-6 feature_col">
 					<div class="feature text-center trans_400">
 						<div class="feature_icon"><img src="<?= get_template_directory_uri();?>/images/icon_2.png" alt=""></div>
-						<h3 class="feature_title">Heading
+						<h3 class="feature_title">60+ Tests
 
 
 						</h3>
-						<div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
+						<div class="feature_text"><p>Get Access to 60 plus practice tests for ielts</p></div>
 					</div>
 				</div>
 
@@ -178,7 +178,7 @@ Template Name: HomePage
 			</div>
 			<div class="row">
 				<div class="col">
-					<div class="courses_button trans_200"><a href="#">view all courses</a></div>
+					<div class="courses_button trans_200"><a href="/shop">view all courses</a></div>
 				</div>
 			</div>
 		</div>
@@ -186,40 +186,31 @@ Template Name: HomePage
 
 	<!-- Counter -->
 
-	<div class="counter">
-		<div class="counter_background" style="background-image:url(<?= get_template_directory_uri();?>/images/counter_background.jpg)"></div>
+	<div class="courses">
+		<div class="section_background parallax-window" data-parallax="scroll" data-image-src="<?= get_template_directory_uri();?>/images/courses_background.jpg" data-speed="0.8"></div>
 		<div class="container">
 			<div class="row">
+				<div class="col">
+					<div class="section_title_container text-center">
+						<h2 class="section_title">Register for Online Demo</h2>
+						<div class="section_subtitle mb-5"></div>
+
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-6 feature_col">
+					<div class="feature_video d-flex flex-column align-items-center justify-content-center">
+						<div class="feature_video_background" style="background-image:url(<?= get_template_directory_uri();?>/images/test-screenshot.png)"></div>
+						<a class="vimeo feature_video_button cboxElement" href="<?= get_template_directory_uri();?>/test-video.mp4">
+							<img src="<?= get_template_directory_uri();?>/images/play.png" alt="">
+						</a>
+					</div>
+				</div>
 				<div class="col-lg-6">
-					<div class="counter_content">
-						<h2 class="counter_title">Register Now</h2>
-						<div class="counter_text"><p>Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dumy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p></div>
-						<div class="courses_button trans_200 ml-0"><a href="#">Learn More</a></div>
-					</div>
-
+					<?php echo do_shortcode( '[contact-form-7 id="61" title="Demo" html_class="counter_form_content d-flex flex-column align-items-center justify-content-center"]' )?>
 				</div>
 			</div>
-
-			<div class="counter_form">
-				<div class="row fill_height">
-					<div class="col fill_height">
-						<form class="counter_form_content d-flex flex-column align-items-center justify-content-center" action="#">
-							<div class="counter_form_title">courses now</div>
-							<input type="text" class="counter_input" placeholder="Your Name:" required="required">
-							<input type="tel" class="counter_input" placeholder="Phone:" required="required">
-							<select name="counter_select" id="counter_select" class="counter_input counter_options">
-								<option>Choose Subject</option>
-								<option>Subject</option>
-								<option>Subject</option>
-								<option>Subject</option>
-							</select>
-							<textarea class="counter_input counter_text_input" placeholder="Message:" required="required"></textarea>
-							<button type="submit" class="counter_form_button">submit now</button>
-						</form>
-					</div>
-				</div>
-			</div>
-
 		</div>
 	</div>
 

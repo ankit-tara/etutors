@@ -30,7 +30,9 @@ $tests = get_type_tests($test_type);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($tests as $test) {?>
+                    <?php foreach ($tests as $test) {
+                        $url = home_url().'/student-profile/test/listening?test='.base64_encode($test['id']).'&et=Mc=='
+                        ?>
                     <tr>
                         <td class="fw-600"><?php echo $test_type . ' ' . $test['id'] ?></td>
                         <td>
@@ -47,9 +49,9 @@ if ($test_type == 'listening') {
     ?>
                             </<span>
                         <td><?php echo $test['module_type'] ?></td>
-                        <td><?php echo date('d j , Y', strtotime($test['created_at'])); ?></td>
+                        <td><?php echo date('F j , Y', strtotime($test['created_at'])); ?></td>
                         <td>
-                            <a href="" class="btn bgc-deep-purple-50 c-deep-purple-700">Start Test</a>
+                            <a href="<?php echo   $url ?>" class="btn bgc-deep-purple-50 c-deep-purple-700">Start Test</a>
                         </td>
                     </tr>
                     <?php }?>

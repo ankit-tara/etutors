@@ -1,8 +1,8 @@
 <?php
 /*
 Template Name: Listening Test
-*/
- 
+ */
+
 ?>
 
 <!DOCTYPE html>
@@ -13,12 +13,16 @@ Template Name: Listening Test
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Document</title>
-  <?php wp_head(); ?>
-  <link rel="stylesheet" href="<?= get_template_directory_uri()?>/test-assets/player.css">
-  <link rel="stylesheet" href="<?= get_template_directory_uri()?>/test-assets/style.css" />
+  <?php wp_head();?>
+  <link rel="stylesheet" href="<?=get_template_directory_uri()?>/test-assets/player.css">
+  <link rel="stylesheet" href="<?=get_template_directory_uri()?>/test-assets/style.css" />
 </head>
 
 <body>
+<?php
+$id = isset($_GET['test']) && $_GET['test'] ? base64_decode($_GET['test']) : '';
+$test = getTest($id);
+?>
   <header class="test-header">
     <nav>
       <div class="timer">
@@ -37,16 +41,20 @@ Template Name: Listening Test
   </header>
 
   <div class="">
-
     <div class="row heading">
       <div class="col-lg-4">
         <h2 class="title">Test 1 Listening</h2>
-        
+
       </div>
       <div class="col-lg-8">
-        <div id="player" class="player ml-auto"></div>
+<?php
+$audio = get_stylesheet_directory_uri() . '/test-assets/sample-audio.ogg';
+echo do_shortcode('[audio src="' . $audio . '"]')?>
+
+
+<!-- <div id="player" class="player ml-auto"></div> -->
       </div>
-      
+
     </div>
   </div>
   <div class="card step-1 test-sound">
@@ -72,7 +80,7 @@ Template Name: Listening Test
     <div class="card-header">
       <h4><strong> IELTS Listening </strong></h4>
       <p>
-        Time: Approximately 30 minutes
+        Time: Approximately <?php echo date('H:i', strtotime($test['time'])); ?> minutes
       </p>
     </div>
     <div class="card-body">
@@ -101,19 +109,29 @@ Template Name: Listening Test
     <a href="#" class="btn btn-primary start-test">Start Test</a>
     </div>
   </div>
-    
+
   </div>
 
   <div class="step-3 test section-1 scroll-section" style="display: none;">
     <div class="section-qus">
 
-      <?php include get_theme_file_path('/test-assets/questions2.php') ?>
+          <?php
+           for ($i=1; $i <=4 ; $i++) { ?>
+              <div class="section-block card">
+               <h3 class="section card-header">Section <?php echo $i ?></h3>
+                 <div class="card-body">
+                 <?php echo $test['test_form_editor_'.$i] ?>
+                 </div>
+              </div>
+         <?php  }
+          ?>
+      <?php// include get_theme_file_path('/test-assets/questions2.php')?>
     </div>
     <a href="#" class="btn btn-primary form-btn" data-section="1">Submit</a>
   </div>
 
 
-   <?php include get_theme_file_path('./test-assets/pagination.php') ?> 
+   <?php include get_theme_file_path('./test-assets/pagination.php')?>
 
 
   <div class="modal" id="result-modal" tabindex="-1" role="dialog">
@@ -127,7 +145,7 @@ Template Name: Listening Test
       </div>
       <div class="modal-body">
         <table class="table" id="result-table">
- 
+
         </table>
       </div>
       <div class="modal-footer">
@@ -139,12 +157,10 @@ Template Name: Listening Test
 </div>
 
   <?php wp_footer();?>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script> -->
-  <script src="<?= get_template_directory_uri()?>/test-assets/soundmanager2.js"></script>
-  <script src="<?= get_template_directory_uri()?>/test-assets/player.js"></script>
-  <script src="<?= get_template_directory_uri()?>/test-assets/main.js"></script>
-  <script src="<?= get_template_directory_uri()?>/test-assets/question.js"></script>
+  <script src="<?=get_template_directory_uri()?>/test-assets/soundmanager2.js"></script>
+  <script src="<?=get_template_directory_uri()?>/test-assets/player.js"></script>
+  <script src="<?=get_template_directory_uri()?>/test-assets/main.js"></script>
+  <script src="<?=get_template_directory_uri()?>/test-assets/question.js"></script>
 </body>
 
 </html>

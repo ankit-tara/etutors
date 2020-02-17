@@ -234,14 +234,14 @@ add_filter( 'woocommerce_add_to_cart_fragments', 'my_header_add_to_cart_fragment
 
 add_action('init', function () {
     if (is_user_logged_in() && current_user_can('student')) {
-        $valid_test_url = [
+        $valid_test_list_url = [
             'student-profile/listening',
             'student-profile/reading',
             'student-profile/writing',
         ];
         $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
 
-        if (in_array($url_path, $valid_test_url)) {
+        if (in_array($url_path, $valid_test_list_url)) {
 
             // load the file if exists
             $load = locate_template('student-dashboard/tests.php', true);
@@ -249,6 +249,18 @@ add_action('init', function () {
                 exit(); // just exit if template was found and loaded
             }
         }
+
+      
+
+        if ($url_path == 'student-profile/test/listening' && isset($_GET['test']) && $_GET['test']) {
+
+            // load the file if exists
+            $load = locate_template('student-dashboard/listening-test.php', true);
+            if ($load) {
+                exit(); // just exit if template was found and loaded
+            }
+        }
+
     }
 });
 

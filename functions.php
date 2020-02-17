@@ -254,6 +254,24 @@ add_action('init', function () {
         }
     }
 });
+add_action('init', function () {
+    if (is_user_logged_in() && current_user_can('instructor')) {
+        $valid_test_url = [
+            'instructor-profile/tests',
+            'instructor-profile/students',
+        ];
+        $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
+
+        if (in_array($url_path, $valid_test_url)) {
+
+            // load the file if exists
+            $load = locate_template('instructor-dashboard/tests.php', true);
+            if ($load) {
+                exit(); // just exit if template was found and loaded
+            }
+        }
+    }
+});
 
 function contains($needle, $haystack)
 {

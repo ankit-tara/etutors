@@ -39,7 +39,7 @@ Template Name: Reading Test
     <div class="heading">
         <h2 class="title">Sample Academic Readings</h2>
     </div>
-    <div class="wrapper test">
+    <div class="wrapper test ">
         <div class="content-wrapper row reading1">
             <div class="left col-md-6 scroll-section">
                 <div class="content">

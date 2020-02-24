@@ -518,6 +518,10 @@
 	.team_body.detail {
     	grid-template-columns: 1fr;
 	}
+
+	.woocommerce div.product .product_title {
+    	font-size: 1.8em;
+	}
 }
 
 /************

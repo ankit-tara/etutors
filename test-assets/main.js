@@ -3,28 +3,24 @@ jQuery(function() {
     event.returnValue = "Do You want to close reload ?.";
   });
 
+  // create pagination
+  let lis = "";
+  let arr = [];
+  let count = 0;
+  jQuery(".qus-input").each(function(index) {
+    // console.log(jQuery(this).data('index'))
+    let indexid = jQuery(this).data("index");
+    if (!arr.includes(indexid)) {
+      count = count + 1;
+      arr.push(indexid);
+      lis += '     <li class="pag-index  " data-id="' + indexid + '">' + count;
+    }
+  });
 
-// create pagination
-let lis = '';
-let arr = []
-let count = 0;
-jQuery(".qus-input").each(function(index) {
-  // console.log(jQuery(this).data('index'))
-  let indexid = jQuery(this).data("index")
-  if (!arr.includes(indexid)) {
-    count = count+1
-    arr.push(indexid);
-    lis += '     <li class="pag-index  " data-id="' + indexid + '">' + count;
-  }
-});
-
-let html = ' <ul class="scroll-section">'
-html += lis
-html+='</ul>'
-jQuery(".pagination").html(html);
-
-
-
+  let html = ' <ul class="scroll-section">';
+  html += lis;
+  html += "</ul>";
+  jQuery(".pagination").html(html);
 
   jQuery(".submit").click(function(e) {
     e.preventDefault();
@@ -136,7 +132,7 @@ jQuery(".pagination").html(html);
   });
 
   jQuery(".continue").click(function() {
-    console.log('clicked')
+    console.log("clicked");
     jQuery(".step-1").hide();
     jQuery(".step-2").show();
   });
@@ -215,8 +211,7 @@ jQuery(".pagination").html(html);
   jQuery(".pag-index").click(function() {
     let index = jQuery(this).data("id");
     let element = jQuery(".qus-input[data-index='" + index + "']");
-    console.log(element)
-    console.log(index)
+   
     if (jQuery(element).hasClass(activeClass)) {
       return;
     } else {
@@ -234,9 +229,8 @@ jQuery(".pagination").html(html);
         .removeClass(activeClass);
     }, 1000);
     jQuery(this).addClass(activeClass);
-    let parentDiv = jQuery(".test");
-
-    jQuery("div.test").animate(
+    let parentDiv = element.parents(".test");
+    jQuery(parentDiv).animate(
       {
         scrollTop: parentDiv.scrollTop() + element.position().top - 200
       },

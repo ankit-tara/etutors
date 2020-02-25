@@ -1,29 +1,29 @@
-<?php
-get_header('test');
-
+<?php get_header('test');
 
 $id = isset($_GET['et']) && $_GET['et'] ? base64_decode($_GET['et']) : '';
 $test = get_post($id);
 
 ?>
-
-
-<div class="step-3 test section-1 scroll-section" style="display: none;">
-    <div class="section-qus">
-
-        <?php
-           for ($i=1; $i <=4 ; $i++) { ?>
-        <div class="section-block card">
-            <h3 class="section card-header">Section <?php echo $i ?></h3>
-            <div class="card-body">
-                <?php the_field('section_'.$i.'_test',$test->ID) ?>
+    <?php for ($i = 1; $i <= 4; $i++) {
+        $style = $i != 1 ? 'display:none':'';
+        $class = $i != 1 ? 'wrapper test':'step-3 wrapper test'
+        ?>
+            <div class="<?php echo  $class ?>" style="display:none" >
+                        <div class="content-wrapper row reading<?php echo $i ?>">
+                            <div class="left col-md-6 scroll-section">
+                                <div class="content">
+                                    <?php the_field('section_'.$i.'_paragraph',$test->ID) ?>
+                                </div>
+                            </div>
+                            <div class="right col-md-6 scroll-section ">
+                                <div class="content">
+                                    <?php  the_field('section_'.$i.'_test',$test->ID) ?>
+                                </div>
+                            </div>
+                        </div>
             </div>
-        </div>
-        <?php  }
-          ?>
-    </div>
-    <a href="#" class="btn btn-primary form-btn" data-section="1">Submit</a>
-</div>
+    <?php }?>
+
 
 
 <?php include get_theme_file_path('./test-assets/pagination.php')?>
@@ -50,5 +50,4 @@ $test = get_post($id);
         </div>
     </div>
 </div>
-
-<?php get_footer('test') ?>
+<?php get_footer('test')?>

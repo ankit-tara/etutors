@@ -1,5 +1,6 @@
 <?php
 
+include('includes/test_functions.php');
 //Add scripts and stylesheets
 function ar_scripts() {
   $url = get_template_directory_uri() ;
@@ -21,6 +22,7 @@ function ar_scripts() {
 	wp_enqueue_script( 'jquery',  $url . '/js/jquery-3.2.1.min.js', array( 'jquery' ), '3.3.6', true );
 	wp_enqueue_script( 'tweenmax',  $url . '/plugins/greensock/TweenMax.min.js', array( 'jquery' ), '3.3.6', true );
 	wp_enqueue_script( 'colorbox-js',  $url . '/plugins/colorbox/jquery.colorbox-min.js', array( 'jquery' ), '3.3.6', true );
+	wp_enqueue_script( 'slim', 'https: //code.jquery.com/jquery-3.2.1.slim.min.js', array( 'jquery' ), true );
 	wp_enqueue_script( 'popper',  $url . '/styles/bootstrap4/popper.js', array( 'jquery' ), true );
 	wp_enqueue_script( 'bootstrap',  $url . '/styles/bootstrap4/bootstrap.min.js', array( 'jquery' ), true );
 	wp_enqueue_script( 'timelineMax',  $url . '/plugins/greensock/TimelineMax.min.js', array( 'jquery' ), '3.3.6', true );
@@ -255,10 +257,18 @@ add_action('init', function () {
 
       
 
-        if ($url_path == 'student-profile/test/listening' && isset($_GET['test']) && $_GET['test']) {
+        if ($url_path == 'student-profile/test/listening' && isset($_GET['et']) && $_GET['et']) {
 
             // load the file if exists
             $load = locate_template('student-dashboard/listening-test.php', true);
+            if ($load) {
+                exit(); // just exit if template was found and loaded
+            }
+        }
+        if ($url_path == 'student-profile/test/reading' && isset($_GET['et']) && $_GET['et']) {
+
+            // load the file if exists
+            $load = locate_template('student-dashboard/reading-test.php', true);
             if ($load) {
                 exit(); // just exit if template was found and loaded
             }
@@ -268,16 +278,24 @@ add_action('init', function () {
 });
 add_action('init', function () {
     if (is_user_logged_in() && current_user_can('instructor')) {
-        $valid_test_url = [
-            'instructor-profile/tests',
-            'instructor-profile/students',
-        ];
+        // $valid_test_url = [
+        //     'instructor-profile/tests',
+        //     'instructor-profile/students',
+        // ];
         $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
 
-        if (in_array($url_path, $valid_test_url)) {
+        if ( $url_path == 'instructor-profile/tests') {
 
             // load the file if exists
             $load = locate_template('instructor-dashboard/tests.php', true);
+            if ($load) {
+                exit(); // just exit if template was found and loaded
+            }
+        }
+        if ( $url_path == 'instructor-profile/students') {
+
+            // load the file if exists
+            $load = locate_template('instructor-dashboard/students.php', true);
             if ($load) {
                 exit(); // just exit if template was found and loaded
             }

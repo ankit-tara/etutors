@@ -1,4 +1,31 @@
 jQuery(function() {
+  window.addEventListener("beforeunload", function(event) {
+    event.returnValue = "Do You want to close reload ?.";
+  });
+
+
+// create pagination
+let lis = '';
+let arr = []
+let count = 0;
+jQuery(".qus-input").each(function(index) {
+  // console.log(jQuery(this).data('index'))
+  let indexid = jQuery(this).data("index")
+  if (!arr.includes(indexid)) {
+    count = count+1
+    arr.push(indexid);
+    lis += '     <li class="pag-index  " data-id="' + indexid + '">' + count;
+  }
+});
+
+let html = ' <ul class="scroll-section">'
+html += lis
+html+='</ul>'
+jQuery(".pagination").html(html);
+
+
+
+
   jQuery(".submit").click(function(e) {
     e.preventDefault();
     jQuery(".loading").css("display", "flex");
@@ -14,7 +41,7 @@ jQuery(function() {
       // for select statements
 
       let element = "#select" + i;
-      if ($(element).val() == 1) {
+      if (jQuery(element).val() == 1) {
         jQuery("#s" + i).html(
           '<i class="fa fa-check right-ans" aria-hidden="true" ></i>'
         );
@@ -109,6 +136,7 @@ jQuery(function() {
   });
 
   jQuery(".continue").click(function() {
+    console.log('clicked')
     jQuery(".step-1").hide();
     jQuery(".step-2").show();
   });
@@ -186,12 +214,14 @@ jQuery(function() {
 
   jQuery(".pag-index").click(function() {
     let index = jQuery(this).data("id");
-    let element = jQuery(".qus-index[data-index='" + index + "']");
-    if ($(element).hasClass(activeClass)) {
+    let element = jQuery(".qus-input[data-index='" + index + "']");
+    console.log(element)
+    console.log(index)
+    if (jQuery(element).hasClass(activeClass)) {
       return;
     } else {
       jQuery(".pag-index").removeClass(activeClass);
-      jQuery(".qus-index")
+      jQuery(".qus-input")
         .parent()
         .removeClass(activeClass);
     }

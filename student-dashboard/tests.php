@@ -5,15 +5,25 @@ Template Name: Student Dashboard
  */
 
 get_header('dashboard');
+
 $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
 if (contains('listening', $url_path)) {
-    $test_type = 'listening';
+    $test_part = 'listening';
 } elseif (contains('reading', $url_path)) {
-    $test_type = 'reading';
+    $test_part = 'reading';
 } else {
-    $test_type = 'writing';
+    $test_part = 'writing';
 }
-$tests = get_type_tests($test_type);
+$tests = [];
+
+$args = array(
+    'post_type' => 'ar-ielts-tests',
+    'meta_key'		=> 'test_part',
+	'meta_value'	=> $test_part
+);
+
+$tests = new WP_Query($args);
+
 ?>
 
 <main class="main-content bgc-grey-100">
@@ -30,35 +40,34 @@ $tests = get_type_tests($test_type);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($tests as $test) {
-                        $url = home_url().'/student-profile/test/listening?test='.base64_encode($test['id']).'&et=Mc=='
-                        ?>
-                    <tr>
-                        <td class="fw-600"><?php echo $test_type . ' ' . $test['id'] ?></td>
-                        <td>
-                            <?php
-if ($test_type == 'listening') {
-    echo '<span class="badge bgc-deep-purple-50 c-deep-purple-700 p-10 lh-0 tt-c badge-pill">Listening</span>';
-} elseif ($test_type == 'listening') {
-    echo '<span class="badge bgc-green-50 c-green-700 p-10 lh-0 tt-c badge-pill">Reading</span>';
-} else {
-    echo '
-                            <span class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c badge-pill">Writing</span>
-                                 ';
-}
-    ?>
-                            </<span>
-                        <td><?php echo $test['module_type'] ?></td>
-                        <td><?php echo date('F j , Y', strtotime($test['created_at'])); ?></td>
-                        <td>
-                            <a href="<?php echo   $url ?>" class="btn bgc-deep-purple-50 c-deep-purple-700">Start Test</a>
-                        </td>
-                    </tr>
-                    <?php }?>
-
-                    <?php if(!count($tests)){
-                        echo '<tr><td colspan=5" class="text-center">New Tests Coming up soon!!</td></tr>';
-                    } ?>
+                    <?php if ($tests->have_posts()):
+                        while ($tests->have_posts()):
+                            $tests->the_post();
+                            $url = home_url().'/student-profile/test/'.get_field('test_part').'?et='.base64_encode(get_the_ID());
+                            $url = wp_nonce_url($url,'ar-tests-noonce')
+                            ?>
+                            <tr>
+                                <td><?php the_title() ?></td>
+                                <td>
+                                  <?php 
+                                  $test_part = get_field('test_part');
+                                    if ($test_part == 'listening') {
+                                        echo '<span class="badge bgc-deep-purple-50 c-deep-purple-700 p-10 lh-0 tt-c badge-pill">Listening</span>';
+                                    } elseif ($test_part == 'reading') {
+                                        echo '<span class="badge bgc-green-50 c-green-700 p-10 lh-0 tt-c badge-pill">Reading</span>';
+                                    } else {
+                                        echo ' <span class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c badge-pill">Writing</span> ';
+                                    }
+                                    ?>
+                                </td>
+                                <td><?php the_field('test_type') ?></td>
+                                <td><?php echo get_the_date() ?></td>
+                                <td>
+                                    <a href="<?php echo   $url ?>" class="btn bgc-deep-purple-50 c-deep-purple-700">Start Test</a>
+                                </td>
+                            </tr>
+                     <?php   endwhile;
+                    endif;?>
                 </tbody>
             </table>
         </div>

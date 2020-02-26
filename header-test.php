@@ -36,7 +36,7 @@ $test_part = get_field('test_part', $test->ID)
         </nav>
     </header>
 
-    <div class="">
+    <div class="container-fluid">
         <div class="row heading">
             <div class="col-lg-4">
                 <h2 class="title"><?php echo $test->post_title ?></h2>

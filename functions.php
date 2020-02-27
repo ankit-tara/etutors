@@ -4,6 +4,12 @@ include('includes/test_functions.php');
 //Add scripts and stylesheets
 function ar_scripts() {
   $url = get_template_directory_uri() ;
+wp_register_script("questions-script", $url . '/test-assets/question.js', array('jquery'));
+wp_localize_script('questions-script', 'myAjax', array('ajaxurl' => admin_url('admin-ajax.php')));
+
+wp_enqueue_script('jquery', $url . '/js/jquery-3.2.1.min.js', array('jquery'), '3.3.6', true);
+wp_enqueue_script('questions-script');
+
 	wp_enqueue_style( 'bootstrap',  $url . '/styles/bootstrap4/bootstrap.min.css');
 	wp_enqueue_style( 'fontAwesome',  $url . '/plugins/font-awesome-4.7.0/css/font-awesome.min.css' );
 	wp_enqueue_style( 'owl',  $url . '/plugins/OwlCarousel2-2.2.1/owl.carousel.css' );
@@ -19,7 +25,6 @@ function ar_scripts() {
 	wp_enqueue_style( 'courses',  $url . '/styles/courses.css' );
 	wp_enqueue_style( 'course',  $url . '/styles/course.css' );
 	wp_enqueue_style( 'responsive',  $url . '/styles/responsive.css' );  
-	wp_enqueue_script( 'jquery',  $url . '/js/jquery-3.2.1.min.js', array( 'jquery' ), '3.3.6', true );
 	wp_enqueue_script( 'tweenmax',  $url . '/plugins/greensock/TweenMax.min.js', array( 'jquery' ), '3.3.6', true );
 	wp_enqueue_script( 'colorbox-js',  $url . '/plugins/colorbox/jquery.colorbox-min.js', array( 'jquery' ), '3.3.6', true );
 	wp_enqueue_script( 'slim', 'https: //code.jquery.com/jquery-3.2.1.slim.min.js', array( 'jquery' ), true );
@@ -306,4 +311,12 @@ add_action('init', function () {
 function contains($needle, $haystack)
 {
     return strpos($haystack, $needle) !== false;
+}
+add_filter('woocommerce_new_customer_data', 'wc_assign_custom_role', 10, 1);
+
+function wc_assign_custom_role($args)
+{
+    $args['role'] = 'student';
+
+    return $args;
 }

@@ -19,6 +19,7 @@ $id = isset($_GET['et']) && $_GET['et'] ? base64_decode($_GET['et']) : '';
 $test = get_post($id);
 $test_part = get_field('test_part', $test->ID)
 ?>
+<input type="hidden" name="ar-test-id" id="ar-test-id" value="<?php echo $id ?>">
     <div class="loading-test" style="display:none"> 
         <img src="<?php echo get_stylesheet_directory_uri() . '/images/loader.svg' ?>" alt="">
     </div>

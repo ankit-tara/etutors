@@ -110,8 +110,8 @@
           (index + 1) +
           '" class="qus-input" data-index="' +
           id +
-          "-" +
-          index +
+          // "-" +
+          // index +
           '">' +
           val +
           "<br/>";

@@ -10,8 +10,12 @@ jQuery(function() {
   jQuery(".qus-input").each(function(index) {
     // console.log(jQuery(this).data('index'))
     let indexid = jQuery(this).data("index");
+    console.log(arr)
+    console.log(arr.includes(indexid))
+    console.log(indexid)
     if (!arr.includes(indexid)) {
       count = count + 1;
+      console.log(arr.push(indexid))
       arr.push(indexid);
       lis += '     <li class="pag-index  " data-id="' + indexid + '">' + count;
     }
@@ -24,10 +28,10 @@ jQuery(function() {
 
   jQuery(".submit").click(function(e) {
     e.preventDefault();
-    jQuery(".loading").css("display", "flex");
+    jQuery(".loading-test").show();
     setTimeout(() => {
-      check();
-      jQuery(".loading").hide();
+      // check();
+      jQuery(".loading-test").hide();
     }, 1000);
   });
 

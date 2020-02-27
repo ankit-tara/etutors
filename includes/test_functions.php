@@ -93,7 +93,7 @@ function wdm_add_tinymce_plugin($plugin_array)
 function my_editor_settings($settings)
 {
     global $current_screen;
-    if ( $current_screen->post_type == 'ar-ielts-tests'
+    if ($current_screen->post_type == 'ar-ielts-tests'
     ) {
         $settings['quicktags'] = false;
         return $settings;
@@ -104,3 +104,34 @@ function my_editor_settings($settings)
 }
 
 add_filter('wp_editor_settings', 'my_editor_settings');
+
+add_action("wp_ajax_get_test_answers", "get_test_answers");
+add_action("wp_ajax_nopriv_get_test_answers", "my_must_login");
+
+function get_test_answers()
+{
+
+    $id = $_GET['test_id'];
+    // $answers = the_field('answers', $id);
+    $rows = get_field('answers', $id);
+    $arr = [];
+    if ($rows) {
+        foreach ($rows as $row) {
+            $ans=[];
+
+            foreach($row['answer'] as $a){
+                $ans[] = $a['answer'];
+            }
+            $arr[]=[
+                'state'=>$row['type'],
+                'ans'=> $ans
+            ];
+            // get_sub_field('type');
+        }
+
+    }
+// print_r($arr);
+    echo json_encode($arr);
+    wp_die();
+}
+

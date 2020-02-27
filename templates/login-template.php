@@ -36,7 +36,7 @@ Template Name: Login Template
             <div class="head">
                 <h2 class="h-main">Welcome Back!</h2>
             <p class="h-sec">Please log in with your username and password </p>
-            <button class="toggle-log">Register</button>
+            <!-- <button class="toggle-log">Register</button> -->
         </div>
         </div>
         <div class="side-2">

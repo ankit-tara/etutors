@@ -2568,3 +2568,30 @@ li.woocommerce-MyAccount-navigation-link a{
 .woocommerce-MyAccount-navigation-link.woocommerce-MyAccount-navigation-link--dashboard{
 	display: none;
 }
+
+.woocommerce div.product form.cart .variations{
+	width: 280px;
+    margin-bottom: 10px;
+}
+
+.woocommerce div.product form.cart .variations select{
+	height: 34px;
+    padding: 5px 10px;
+}
+
+.woocommerce-variation.single_variation{
+	margin-bottom: 10px;
+}
+
+.mejs-controls{
+	height: 0 !important;
+}
+
+.mejs-container.mejs-container-keyboard-inactive.wp-audio-shortcode.mejs-audio{
+	width:50% !important;
+	margin: 20px 0;
+}
+
+.heading .mejs-container.mejs-container-keyboard-inactive.wp-audio-shortcode.mejs-audio{
+	margin: 0;
+}

@@ -334,6 +334,16 @@
 	.team_body.detail .right .team_title{
 		display: none;
 	}
+	.mejs-container.mejs-container-keyboard-inactive.wp-audio-shortcode.mejs-audio{
+		width:80% !important
+	}
+	.heading .title{
+		margin-bottom: 10px;
+	}
+
+	.test {
+		height: 65vh;
+	}
 }
 
 
@@ -517,6 +527,10 @@
 
 	.team_body.detail {
     	grid-template-columns: 1fr;
+	}
+
+	.woocommerce div.product .product_title {
+    	font-size: 1.8em;
 	}
 }
 

@@ -10,12 +10,9 @@ jQuery(function() {
   jQuery(".qus-input").each(function(index) {
     // console.log(jQuery(this).data('index'))
     let indexid = jQuery(this).data("index");
-    console.log(arr)
-    console.log(arr.includes(indexid))
-    console.log(indexid)
+
     if (!arr.includes(indexid)) {
       count = count + 1;
-      console.log(arr.push(indexid))
       arr.push(indexid);
       lis += '     <li class="pag-index  " data-id="' + indexid + '">' + count;
     }
@@ -109,16 +106,17 @@ jQuery(function() {
       display.text(minutes + ":" + seconds);
 
       if (--timer < 0) {
-        // timer = duration;
-        console.log("reached");
+        
+       
         clearInterval(test);
+        jQuery(".form-btn").trigger("click");
+
+        alert("Oops!! The time is over.");
+
       }
     }, 1000);
   }
 
-  // var fiveMinutes = 15,
-  //   display =jQuery("#time");
-  // startTimer(fiveMinutes, display);
 
   jQuery(".test-sound-btn").click(function() {
     let value = jQuery(this).val();
@@ -144,6 +142,7 @@ jQuery(function() {
     jQuery(".test-footer").show();
     jQuery(".step-2").hide();
     jQuery(".step-3").show();
+    jQuery(".demo-audio").hide();
     //jQuery("audio").attr("src", "./assets/audio/section1.mp3");
     jQuery(".fa-pause").trigger("click");
 
@@ -152,8 +151,11 @@ jQuery(function() {
     setTimeout(() => {
       var fiveMinutes = 60 * 5,
         display = jQuery("#time");
+      let seconds = jQuery("#time").data("time");
+      seconds = 5
+      startTimer(seconds, display);
       jQuery(".time-block").show();
-      startTimer(fiveMinutes, display);
+
       //jQuery("#player").trigger('play');
     }, 1000);
   });
@@ -215,7 +217,7 @@ jQuery(function() {
   jQuery(".pag-index").click(function() {
     let index = jQuery(this).data("id");
     let element = jQuery(".qus-input[data-index='" + index + "']");
-   
+
     if (jQuery(element).hasClass(activeClass)) {
       return;
     } else {

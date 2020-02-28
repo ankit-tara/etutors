@@ -17,7 +17,11 @@
     <?php
 $id = isset($_GET['et']) && $_GET['et'] ? base64_decode($_GET['et']) : '';
 $test = get_post($id);
-$test_part = get_field('test_part', $test->ID)
+$test_part = get_field('test_part', $test->ID);
+$time = get_field('test_time', $test->ID);
+$parsed = date_parse($time);
+$seconds = $parsed['hour'] * 3600 + $parsed['minute'] * 60 + $parsed['second'];
+
 ?>
 <input type="hidden" name="ar-test-id" id="ar-test-id" value="<?php echo $id ?>">
     <div class="loading-test" style="display:none"> 
@@ -28,7 +32,9 @@ $test_part = get_field('test_part', $test->ID)
             <div class="timer">
                 <span style="display: none;" class="time-block">
                     <i class="fa fa-clock-o" aria-hidden="true"></i>
-                    <span id="time"> </span> minutes left</span>
+                    <span id="time" data-time="<?php echo $seconds?>
+"> <?php the_field('test_time', $test->ID) ?> </span> 
+                </span>
             </div>
 
             <div class="actions">
@@ -46,7 +52,7 @@ $test_part = get_field('test_part', $test->ID)
                 <h2 class="title"><?php echo $test->post_title ?></h2>
 
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-8 demo-audio">
                 <?php
 if ($test_part == 'listening') {
     $audio = get_stylesheet_directory_uri() . '/test-assets/sample-audio.ogg';

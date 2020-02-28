@@ -14,10 +14,10 @@ jQuery("document").ready(function() {
 
   jQuery(".form-btn").click(function(e) {
     e.preventDefault();
-    var result = confirm("Are you sure you want to submit the test?");
-    if (!result) {
-      return;
-    }
+    // var result = confirm("Are you sure you want to submit the test?");
+    // if (!result) {
+    //   return;
+    // }
     jQuery(".loading-test").show();
     let id = jQuery("#ar-test-id").val();
     jQuery.ajax({
@@ -122,7 +122,7 @@ answers = response
     jQuery("#result-table").html("");
     jQuery("#result-table ").html(html);
     jQuery("#result-modal").show();
-    jQuery(".loading-test").show();
+    jQuery(".loading-test").hide();
 
   }
 

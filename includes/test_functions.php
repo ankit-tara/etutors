@@ -111,20 +111,90 @@ add_action("wp_ajax_nopriv_get_test_answers", "my_must_login");
 function get_test_answers()
 {
 
+    $id = $_POST['test_id'];
+    $test_part = $_POST['test_part'];
+    $user_id = get_current_user_id();
+    global $wpdb;
+    $tbl_name = $wpdb->prefix . 'ar_ielts_student_results';
+
+    if ($test_part == 'writing') {
+        $response = $wpdb->insert(
+            $tbl_name,
+            array(
+                'created_at' => current_time('y-m-d h-m-s'),
+                'test_id' => $id,
+                'user_id' => $user_id,
+                'wrting_1' => $_POST['writing_ans_1'],
+                'wrting_2' => $_POST['writing_ans_2'],
+            )
+        );
+        $test_id = $wpdb->insert_id;
+
+        wp_die();
+    }
+
+    $user_answers = json_encode($_POST['user_answers']);
+
+    // $result = $wpdb->get_row('SELECT * FROM ' . $tbl_name . ' WHERE `test_id` = ' . $id . '', ARRAY_A);
+
+    // $answers = the_field('answers', $id);
+    $rows = get_field('answers', $id);
+
+    $arr = [];
+    if ($rows) {
+        foreach ($rows as $row) {
+            $ans = [];
+
+            foreach ($row['answer'] as $a) {
+                $ans[] = $a['answer'];
+            }
+            $arr[] = [
+                'state' => $row['type'],
+                'ans' => $ans,
+            ];
+            // get_sub_field('type');
+        }
+
+    }
+    $response = $wpdb->insert(
+        $tbl_name,
+        array(
+            'created_at' => current_time('y-m-d h-m-s'),
+            'test_id' => $id,
+            'user_id' => $user_id,
+            'student_response' => $user_answers,
+            'test_response' => json_encode($arr),
+        )
+    );
+    $test_id = $wpdb->insert_id;
+
+    echo json_encode($arr);
+    wp_die();
+}
+
+add_action("wp_ajax_save_test_answers", "save_test_answers");
+add_action("wp_ajax_nopriv_save_test_answers", "my_must_login");
+
+function save_test_answers()
+{
+
     $id = $_GET['test_id'];
+    $user_answers = $_POST['user_answers'];
+    $user_id = get_current_user_id();
+
     // $answers = the_field('answers', $id);
     $rows = get_field('answers', $id);
     $arr = [];
     if ($rows) {
         foreach ($rows as $row) {
-            $ans=[];
+            $ans = [];
 
-            foreach($row['answer'] as $a){
+            foreach ($row['answer'] as $a) {
                 $ans[] = $a['answer'];
             }
-            $arr[]=[
-                'state'=>$row['type'],
-                'ans'=> $ans
+            $arr[] = [
+                'state' => $row['type'],
+                'ans' => $ans,
             ];
             // get_sub_field('type');
         }
@@ -134,4 +204,3 @@ function get_test_answers()
     echo json_encode($arr);
     wp_die();
 }
-

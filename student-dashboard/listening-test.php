@@ -8,12 +8,12 @@ $test = get_post($id);
 ?>
 
 
-<div class="step-3 test section-1 scroll-section" style="display: none;">
+<div class="step-3 test section-1 scroll-section pag-qus-sec" style="display: none;">
     <div class="section-qus">
 
         <?php
            for ($i=1; $i <=4 ; $i++) { ?>
-        <div class="section-block card">
+        <div class="section-block card ">
             <h3 class="section card-header">Section <?php echo $i ?></h3>
             <div class="card-body">
                 <?php the_field('section_'.$i.'_test',$test->ID) ?>
@@ -22,11 +22,10 @@ $test = get_post($id);
         <?php  }
           ?>
     </div>
-    <a href="#" class="btn btn-primary form-btn" data-section="1">Submit</a>
 </div>
 
 
-<?php include get_theme_file_path('./test-assets/pagination.php')?>
+<?php //include get_theme_file_path('./test-assets/pagination.php')?>
 
 
 

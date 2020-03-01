@@ -1,53 +1,55 @@
 <?php
 
-include('includes/test_functions.php');
+include 'includes/test_functions.php';
 //Add scripts and stylesheets
-function ar_scripts() {
-  $url = get_template_directory_uri() ;
-wp_register_script("questions-script", $url . '/test-assets/question.js', array('jquery'));
-wp_localize_script('questions-script', 'myAjax', array('ajaxurl' => admin_url('admin-ajax.php')));
+function ar_scripts()
+{
+    $url = get_template_directory_uri();
+    wp_enqueue_script('jquery', $url . '/js/jquery-3.2.1.min.js', array('jquery'), '3.3.6', true);
 
-wp_enqueue_script('jquery', $url . '/js/jquery-3.2.1.min.js', array('jquery'), '3.3.6', true);
-wp_enqueue_script('questions-script');
+    wp_register_script("questions-script", $url . '/test-assets/question.js', array('jquery'));
+    wp_localize_script('questions-script', 'myAjax', array('ajaxurl' => admin_url('admin-ajax.php')));
 
-	wp_enqueue_style( 'bootstrap',  $url . '/styles/bootstrap4/bootstrap.min.css');
-	wp_enqueue_style( 'fontAwesome',  $url . '/plugins/font-awesome-4.7.0/css/font-awesome.min.css' );
-	wp_enqueue_style( 'owl',  $url . '/plugins/OwlCarousel2-2.2.1/owl.carousel.css' );
-	wp_enqueue_style( 'owl-theme',  $url . '/plugins/OwlCarousel2-2.2.1/owl.theme.default.css' );
-	wp_enqueue_style( 'animate',  $url . '/plugins/OwlCarousel2-2.2.1/animate.css' );
-	wp_enqueue_style( 'themify-icons',  $url . '/plugins/themify-icons.css' );
-	wp_enqueue_style( 'color-box-css',  $url . '/plugins/colorbox/colorbox.css' );
-	wp_enqueue_style( 'main',  $url . '/styles/main_styles.css' );
-	wp_enqueue_style( 'aboutcss',  $url . '/styles/about.css' );
-	wp_enqueue_style( 'blogcss',  $url . '/styles/blog.css' );
-	wp_enqueue_style( 'blog_single',  $url . '/styles/blog_single.css' );
-	wp_enqueue_style( 'contactpage',  $url . '/styles/contactpage.css' );
-	wp_enqueue_style( 'courses',  $url . '/styles/courses.css' );
-	wp_enqueue_style( 'course',  $url . '/styles/course.css' );
-	wp_enqueue_style( 'responsive',  $url . '/styles/responsive.css' );  
-	wp_enqueue_script( 'tweenmax',  $url . '/plugins/greensock/TweenMax.min.js', array( 'jquery' ), '3.3.6', true );
-	wp_enqueue_script( 'colorbox-js',  $url . '/plugins/colorbox/jquery.colorbox-min.js', array( 'jquery' ), '3.3.6', true );
-	wp_enqueue_script( 'slim', 'https: //code.jquery.com/jquery-3.2.1.slim.min.js', array( 'jquery' ), true );
-	wp_enqueue_script( 'popper',  $url . '/styles/bootstrap4/popper.js', array( 'jquery' ), true );
-	wp_enqueue_script( 'bootstrap',  $url . '/styles/bootstrap4/bootstrap.min.js', array( 'jquery' ), true );
-	wp_enqueue_script( 'timelineMax',  $url . '/plugins/greensock/TimelineMax.min.js', array( 'jquery' ), '3.3.6', true );
-	wp_enqueue_script( 'scrollMagic',  $url . '/plugins/scrollmagic/ScrollMagic.min.js', array( 'jquery' ), '3.3.6', true );
-	wp_enqueue_script( 'animationGsap',  $url . '/plugins/greensock/animation.gsap.min.js', array( 'jquery' ), '3.3.6', true );
-	wp_enqueue_script( 'scrolltoplugin',  $url . '/plugins/greensock/ScrollToPlugin.min.js', array( 'jquery' ), '3.3.6', true );
-	wp_enqueue_script( 'owljs',  $url . '/plugins/OwlCarousel2-2.2.1/owl.carousel.js', array( 'jquery' ), '3.3.6', true );
-	wp_enqueue_script( 'easing',  $url . '/plugins/easing/easing.js', array( 'jquery' ), '3.3.6', true );
-	wp_enqueue_script( 'parallax',  $url . '/plugins/parallax-js-master/parallax.min.js', array( 'jquery' ), '3.3.6', true );
-	wp_enqueue_script( 'App',  $url . '/js/app.js', array( 'jquery' ), '3.3.6', true );
+    wp_enqueue_script('questions-script');
 
-	if(is_page('home')){
-		wp_enqueue_script( 'homejs',  $url . '/js/home.js', array( 'jquery' ), '3.3.6', true );
-	}
-	if(is_page('about')){
-		wp_enqueue_script( 'aboutjs',  $url . '/js/about.js', array( 'jquery' ), '3.3.6', true );
-	}
+    wp_enqueue_style('bootstrap', $url . '/styles/bootstrap4/bootstrap.min.css');
+    wp_enqueue_style('fontAwesome', $url . '/plugins/font-awesome-4.7.0/css/font-awesome.min.css');
+    wp_enqueue_style('owl', $url . '/plugins/OwlCarousel2-2.2.1/owl.carousel.css');
+    wp_enqueue_style('owl-theme', $url . '/plugins/OwlCarousel2-2.2.1/owl.theme.default.css');
+    wp_enqueue_style('animate', $url . '/plugins/OwlCarousel2-2.2.1/animate.css');
+    wp_enqueue_style('themify-icons', $url . '/plugins/themify-icons.css');
+    wp_enqueue_style('color-box-css', $url . '/plugins/colorbox/colorbox.css');
+    wp_enqueue_style('main', $url . '/styles/main_styles.css');
+    wp_enqueue_style('aboutcss', $url . '/styles/about.css');
+    wp_enqueue_style('blogcss', $url . '/styles/blog.css');
+    wp_enqueue_style('blog_single', $url . '/styles/blog_single.css');
+    wp_enqueue_style('contactpage', $url . '/styles/contactpage.css');
+    wp_enqueue_style('courses', $url . '/styles/courses.css');
+    wp_enqueue_style('course', $url . '/styles/course.css');
+    wp_enqueue_style('responsive', $url . '/styles/responsive.css');
+    wp_enqueue_script('tweenmax', $url . '/plugins/greensock/TweenMax.min.js', array('jquery'), '3.3.6', true);
+    wp_enqueue_script('colorbox-js', $url . '/plugins/colorbox/jquery.colorbox-min.js', array('jquery'), '3.3.6', true);
+    wp_enqueue_script('slim', 'https: //code.jquery.com/jquery-3.2.1.slim.min.js', array('jquery'), true);
+    wp_enqueue_script('popper', $url . '/styles/bootstrap4/popper.js', array('jquery'), true);
+    wp_enqueue_script('bootstrap', $url . '/styles/bootstrap4/bootstrap.min.js', array('jquery'), true);
+    wp_enqueue_script('timelineMax', $url . '/plugins/greensock/TimelineMax.min.js', array('jquery'), '3.3.6', true);
+    wp_enqueue_script('scrollMagic', $url . '/plugins/scrollmagic/ScrollMagic.min.js', array('jquery'), '3.3.6', true);
+    wp_enqueue_script('animationGsap', $url . '/plugins/greensock/animation.gsap.min.js', array('jquery'), '3.3.6', true);
+    wp_enqueue_script('scrolltoplugin', $url . '/plugins/greensock/ScrollToPlugin.min.js', array('jquery'), '3.3.6', true);
+    wp_enqueue_script('owljs', $url . '/plugins/OwlCarousel2-2.2.1/owl.carousel.js', array('jquery'), '3.3.6', true);
+    wp_enqueue_script('easing', $url . '/plugins/easing/easing.js', array('jquery'), '3.3.6', true);
+    wp_enqueue_script('parallax', $url . '/plugins/parallax-js-master/parallax.min.js', array('jquery'), '3.3.6', true);
+    wp_enqueue_script('App', $url . '/js/app.js', array('jquery'), '3.3.6', true);
+
+    if (is_page('home')) {
+        wp_enqueue_script('homejs', $url . '/js/home.js', array('jquery'), '3.3.6', true);
+    }
+    if (is_page('about')) {
+        wp_enqueue_script('aboutjs', $url . '/js/about.js', array('jquery'), '3.3.6', true);
+    }
 }
 
-add_action( 'wp_enqueue_scripts', 'ar_scripts' );
+add_action('wp_enqueue_scripts', 'ar_scripts');
 
 add_action('wp_enqueue_scripts', 'ar_scripts');
 
@@ -244,12 +246,18 @@ add_filter( 'woocommerce_add_to_cart_fragments', 'my_header_add_to_cart_fragment
 
 add_action('init', function () {
     if (is_user_logged_in() && current_user_can('student')) {
+        $current_user = wp_get_current_user();
+
         $valid_test_list_url = [
             'student-profile/listening',
             'student-profile/reading',
             'student-profile/writing',
         ];
         $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
+
+        if (contains('student-profile', $url_path) && $current_user->user_email != 'demo@demo.com') {
+            checkCurrentUserOrder($current_user);
+        }
 
         if (in_array($url_path, $valid_test_list_url)) {
 
@@ -259,8 +267,6 @@ add_action('init', function () {
                 exit(); // just exit if template was found and loaded
             }
         }
-
-      
 
         if ($url_path == 'student-profile/test/listening' && isset($_GET['et']) && $_GET['et']) {
 
@@ -278,6 +284,14 @@ add_action('init', function () {
                 exit(); // just exit if template was found and loaded
             }
         }
+        if ($url_path == 'student-profile/test/writing' && isset($_GET['et']) && $_GET['et']) {
+
+            // load the file if exists
+            $load = locate_template('student-dashboard/writing-test.php', true);
+            if ($load) {
+                exit(); // just exit if template was found and loaded
+            }
+        }
 
     }
 });
@@ -289,7 +303,7 @@ add_action('init', function () {
         // ];
         $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
 
-        if ( $url_path == 'instructor-profile/tests') {
+        if ($url_path == 'instructor-profile/tests') {
 
             // load the file if exists
             $load = locate_template('instructor-dashboard/tests.php', true);
@@ -297,7 +311,7 @@ add_action('init', function () {
                 exit(); // just exit if template was found and loaded
             }
         }
-        if ( $url_path == 'instructor-profile/students') {
+        if ($url_path == 'instructor-profile/students') {
 
             // load the file if exists
             $load = locate_template('instructor-dashboard/students.php', true);
@@ -306,6 +320,31 @@ add_action('init', function () {
             }
         }
     }
+
+    global $wpdb;
+    $charset_collate = $wpdb->get_charset_collate();
+
+    $table_name = $wpdb->prefix . 'ar_ielts_student_results';
+    if ($wpdb->get_var("show tables like '$table_name'") != $table_name) {
+
+        $sql = "CREATE TABLE $table_name (
+            id mediumint(9) NOT NULL AUTO_INCREMENT,
+            test_id mediumint(9) NOT NULL ,
+            user_id mediumint(9) NOT NULL ,
+            student_response longtext  NULL ,
+            test_response longtext  NULL ,
+            wrting_1 longtext  NULL ,
+            wrting_2 longtext  NULL ,
+            instrutor_resp_1 longtext  NULL ,
+            instrutor_resp_2 longtext  NULL ,
+            created_at datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+            PRIMARY KEY  (id)
+        ) $charset_collate;";
+
+        require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+        dbDelta($sql);
+    }
+
 });
 
 function contains($needle, $haystack)
@@ -319,4 +358,26 @@ function wc_assign_custom_role($args)
     $args['role'] = 'student';
 
     return $args;
+}
+
+function checkCurrentUserOrder($current_user)
+{
+
+    $args = array(
+        'customer_id' => $current_user->ID,
+    );
+    $orders = wc_get_orders($args);
+    if (!count($orders)) {
+        student_invalid_order();
+    }
+
+}
+
+function student_invalid_order()
+{
+    wp_redirect('student-locked-profile');
+// load the file if exists
+    // $load = locate_template('student-dashboard/student_invalid_order.php', true);
+    // exit(); // just exit if template was found and loaded
+
 }

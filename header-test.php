@@ -23,8 +23,9 @@ $parsed = date_parse($time);
 $seconds = $parsed['hour'] * 3600 + $parsed['minute'] * 60 + $parsed['second'];
 
 ?>
-<input type="hidden" name="ar-test-id" id="ar-test-id" value="<?php echo $id ?>">
-    <div class="loading-test" style="display:none"> 
+    <input type="hidden" name="ar-test-id" id="ar-test-id" value="<?php echo $id ?>">
+    <input type="hidden" name="ar-test-type" id="ar-test-type" value="<?php echo $test_part ?>">
+    <div class="loading-test" style="display:none">
         <img src="<?php echo get_stylesheet_directory_uri() . '/images/loader.svg' ?>" alt="">
     </div>
     <header class="test-header">
@@ -32,15 +33,20 @@ $seconds = $parsed['hour'] * 3600 + $parsed['minute'] * 60 + $parsed['second'];
             <div class="timer">
                 <span style="display: none;" class="time-block">
                     <i class="fa fa-clock-o" aria-hidden="true"></i>
-                    <span id="time" data-time="<?php echo $seconds?>
-"> <?php the_field('test_time', $test->ID) ?> </span> 
+                    <span id="time" data-time="<?php echo $seconds ?>
+"> <?php the_field('test_time', $test->ID)?> </span>
                 </span>
             </div>
 
             <div class="actions">
-                <a href="#" class="help">Help <i class="fa fa-info-circle" aria-hidden="true"></i>
-                </a>
-                <a href="#" class="user"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+    <a href="#" class="btn btn-primary form-btn" data-section="1" data-test-part="<?php echo $test_part ?>
+">Submit</a>
+
+                <!-- <a href="#" class="help">Help <i class="fa fa-info-circle" aria-hidden="true"></i>
+                </a> -->
+                <a href="<?php echo home_url() .'/student-profile' ?>" class="user">
+                Dashboard
+                <!-- <i class="fa fa-user-circle-o" aria-hidden="true"></i> -->
                 </a>
             </div>
         </nav>

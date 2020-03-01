@@ -48,7 +48,7 @@
 										}
 										else{
 											?>
-											<a href="<?php home_url() ?>/login">Register or Login</a>
+											<a href="<?php home_url() ?>/login">Login</a>
 										<?php
 										}
 										?>

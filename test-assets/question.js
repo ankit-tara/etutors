@@ -5,44 +5,64 @@ jQuery("document").ready(function() {
     '<i class="fa fa-check result-icon check" aria-hidden="true"></i>';
   let cross =
     '<i class="fa fa-times result-icon cross" aria-hidden="true"></i>';
-  let answers = [
-   
-  ];
+  let answers = [];
 
   let user_answers = [];
   let report = [];
 
   jQuery(".form-btn").click(function(e) {
     e.preventDefault();
+    let test_part = jQuery(this).data("test-part");
+
+    jQuery("audio").each(function() {
+      this.pause(); // Stop playing
+      this.currentTime = 0; // Reset time
+    });
     // var result = confirm("Are you sure you want to submit the test?");
     // if (!result) {
     //   return;
     // }
+    let user_input = [];
+    let pre_input_num = "";
+    let writing_ans_1 =
+      test_part == "writing" ? jQuery("#writing-ans-1").val() : "";
+    let writing_ans_2 =
+      test_part == "writing" ? jQuery("#writing-ans-2").val() : "";
+    report = [];
+    jQuery(".qus-input").each((index, element) => {
+      let qus_num = jQuery(element).data("index");
+      let jQueryinput = jQuery(element);
+      let input_type = jQueryinput.attr("type");
+
+      let value = getInputValue(input_type, jQueryinput);
+      value = value == undefined ? "" : jQuery.trim(value);
+      pre_input_num != qus_num && user_input.push(value);
+      pre_input_num = qus_num;
+    });
+    user_answers = user_input;
+
     jQuery(".loading-test").show();
     let id = jQuery("#ar-test-id").val();
     jQuery.ajax({
-      type: "get",
+      type: "post",
       dataType: "json",
       url: myAjax.ajaxurl,
-      data: { action: "get_test_answers", test_id: id },
+      data: {
+        action: "get_test_answers",
+        test_id: id,
+        user_answers: user_answers,
+        test_part: test_part,
+        writing_ans_1: writing_ans_1,
+        writing_ans_2: writing_ans_2
+      },
       success: function(response) {
-        console.log(response);
-answers = response
-        let user_input = [];
-        let pre_input_num = "";
-        report = [];
-        jQuery(".qus-input").each((index, element) => {
-          let qus_num = jQuery(element).data("index");
-          let jQueryinput = jQuery(element);
-          let input_type = jQueryinput.attr("type");
-
-          let value = getInputValue(input_type, jQueryinput);
-          value = value == undefined ? "" : jQuery.trim(value);
-          pre_input_num != qus_num && user_input.push(value);
-          pre_input_num = qus_num;
-        });
-        user_answers = user_input;
-        checkAnswers();
+        if (test_part == "writing") {
+           jQuery(".loading-test").hide();
+           alert('Your answers have been stored .You can go back to your dashboard for more tests.')
+        } else {
+          answers = response;
+          checkAnswers();
+        }
       }
     });
   });
@@ -100,7 +120,6 @@ answers = response
   }
 
   function showResults() {
-    
     let html =
       " <thead> <tr> <th>Your input</th>   <th>Answers</th>   <th>Result</th>  </tr></thead>";
     for (let i = 0; i < answers.length; i++) {
@@ -123,13 +142,12 @@ answers = response
     jQuery("#result-table ").html(html);
     jQuery("#result-modal").show();
     jQuery(".loading-test").hide();
-
   }
 
   jQuery(".restart").click(function() {
     location.reload();
   });
   jQuery(".modal .close").click(function() {
-     jQuery("#result-modal").hide();
+    jQuery("#result-modal").hide();
   });
 });

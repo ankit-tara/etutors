@@ -152,7 +152,6 @@ jQuery(function() {
       var fiveMinutes = 60 * 5,
         display = jQuery("#time");
       let seconds = jQuery("#time").data("time");
-      seconds = 5
       startTimer(seconds, display);
       jQuery(".time-block").show();
 
@@ -217,7 +216,10 @@ jQuery(function() {
   jQuery(".pag-index").click(function() {
     let index = jQuery(this).data("id");
     let element = jQuery(".qus-input[data-index='" + index + "']");
-
+     jQuery(".test").hide();
+     // console.log(element.parents());
+     element.parents(".test").show();
+console.log(element)
     if (jQuery(element).hasClass(activeClass)) {
       return;
     } else {
@@ -235,7 +237,9 @@ jQuery(function() {
         .removeClass(activeClass);
     }, 1000);
     jQuery(this).addClass(activeClass);
-    let parentDiv = element.parents(".test");
+    let parentDiv = element.parents(".pag-qus-sec ");
+    // let parentDiv = element.parents(".pag-qus-sec ");
+    console.log(parentDiv)
     jQuery(parentDiv).animate(
       {
         scrollTop: parentDiv.scrollTop() + element.position().top - 200
@@ -259,7 +263,7 @@ jQuery(function() {
       activeIndex--;
 
       jQuery(".pagination")
-        .find(".pag-index[data-id='" + activeIndex + "'")
+        .find(".pag-index[data-id='" + activeIndex + "']")
 
         .trigger("click");
     } else {
@@ -269,5 +273,16 @@ jQuery(function() {
         .find(".pag-index[data-id='" + activeIndex + "']")
         .trigger("click");
     }
+  });
+
+
+
+  jQuery(".writing textarea").keyup(function() {
+    var characterCount = jQuery(this).val().length,
+      current = jQuery(this)
+        .siblings("#the-count")
+        .find("#current");
+
+    current.text(characterCount);
   });
 });

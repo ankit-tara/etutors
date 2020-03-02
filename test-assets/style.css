@@ -503,3 +503,14 @@ p.highlight,.pag-index.highlight{
   }
 }
 
+.writing textarea {
+    width: 100%;
+    min-height: 350px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    margin: 10px;
+}
+
+.writing .right {
+    background: #efe9e9;
+}

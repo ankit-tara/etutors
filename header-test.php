@@ -44,8 +44,8 @@ $seconds = $parsed['hour'] * 3600 + $parsed['minute'] * 60 + $parsed['second'];
 
                 <!-- <a href="#" class="help">Help <i class="fa fa-info-circle" aria-hidden="true"></i>
                 </a> -->
-                <a href="<?php echo home_url() .'/student-profile' ?>" class="user">
-                Dashboard
+                <a href="<?php echo home_url() .'/student-profile' ?>" class="">
+                Go to Dashboard
                 <!-- <i class="fa fa-user-circle-o" aria-hidden="true"></i> -->
                 </a>
             </div>

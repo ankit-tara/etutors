@@ -2600,3 +2600,14 @@ li.woocommerce-MyAccount-navigation-link a{
     align-items: center;
     background: rgba(255,255,255,.7);
 }
+
+footer .nav-item.dropdown{
+	display:none;
+}
+
+.home_search_button{
+	line-height: 35px;
+}
+.test-header nav .actions .form-btn{
+	color:#fff;
+}

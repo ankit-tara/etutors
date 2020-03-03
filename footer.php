@@ -64,16 +64,7 @@
 								<div class="footer_section footer_links">
 									<div class="footer_title">Menu Links</div>
 									<div class="footer_links_container">
-										<ul>
-											<li><a href="index.html">Home</a></li>
-											<li><a href="about.html">About</a></li>
-											<li><a href="contact.html">Contact</a></li>
-											<li><a href="#">Features</a></li>
-											<li><a href="courses.html">Courses</a></li>
-											<li><a href="#">TOEFL</a></li>
-											<li><a href="#">IELTS</a></li>
-											<li><a href="#">FAQs</a></li>
-										</ul>
+										<?php wp_nav_menu( array( 'theme_location' => 'header-menu' , 'menu_class'=>'main_nav') );?>	
 									</div>
 								</div>
 								
@@ -110,12 +101,12 @@
 						<div class="cr_text">
 							Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
 						</div>
-						<div class="ml-lg-auto cr_links">
+						<!-- <div class="ml-lg-auto cr_links">
 							<ul class="cr_list">
 								<li><a href="#">Terms of Use</a></li>
 								<li><a href="#">Privacy Policy</a></li>
 							</ul>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>

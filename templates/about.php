@@ -42,23 +42,14 @@ Template Name: About us
             
             <!-- About Item -->
             <div class="col-md-12">
-                <p>e-Tutuor aims to impart necessary skills, knowledge and
-                education for the overall-personality development of the Individuals who aspire to
-                succeed in all aspects of life. Nowadays, Effective Communication and Strong-
-                Personality is must in a competitive-world, where most Industries and professional-
-                sphere require strong personality and communication either in English or a foreign
-                language. We aim to develop those skills through courses that are specifically
-                designed to meet those requirements.</p>
+                <p>Etutour aims to impart necessary Skills, Knowledge and Education for the Overall-Personality Development of the Individuals who aspire to succeed in all aspects of life. Nowadays, Effective Communication and Strong- Personality is must in a competitive-world, where most Industries and professional- sphere require communication either in English or a foreign language. We aim to develop those skills through courses that are specifically designed to meet those requirements.</p>
                 <br>
                 <br>
             </div>
             <div class="col-lg-4 about_col about_col_left">
                 <div class="about_item">
                     <div class="about_item_image"><img src="<?= get_template_directory_uri();?>/images/about_1.jpg" alt=""></div>
-                    <div class="about_item_title"><a href="#">Our Stories</a></div>
-                    <div class="about_item_text">
-                        <p>Lorem ipsum dolor sit , consectet adipisi elit, sed do eiusmod tempor for enim en consectet adipisi elit, sed do consectet adipisi elit, sed doadesg.</p>
-                    </div>
+                    <div class="about_item_title text-center"><a href="#">Get evaluated by instrutor</a></div>
                 </div>
             </div>
 
@@ -66,10 +57,7 @@ Template Name: About us
             <div class="col-lg-4 about_col about_col_middle">
                 <div class="about_item">
                     <div class="about_item_image"><img src="<?= get_template_directory_uri();?>/images/about_2.jpg" alt=""></div>
-                    <div class="about_item_title"><a href="#">Our Mission</a></div>
-                    <div class="about_item_text">
-                        <p>Lorem ipsum dolor sit , consectet adipisi elit, sed do eiusmod tempor for enim en consectet adipisi elit, sed do consectet adipisi elit, sed doadesg.</p>
-                    </div>
+                    <div class="about_item_title text-center"><a href="#"> “ONLINE at your convenience”</a></div>
                 </div>
             </div>
 
@@ -77,10 +65,7 @@ Template Name: About us
             <div class="col-lg-4 about_col about_col_right">
                 <div class="about_item">
                     <div class="about_item_image"><img src="<?= get_template_directory_uri();?>/images/about_3.jpg" alt=""></div>
-                    <div class="about_item_title"><a href="#">Our Vision</a></div>
-                    <div class="about_item_text">
-                        <p>Lorem ipsum dolor sit , consectet adipisi elit, sed do eiusmod tempor for enim en consectet adipisi elit, sed do consectet adipisi elit, sed doadesg.</p>
-                    </div>
+                    <div class="about_item_title text-center"><a href="#">100% result oriented material</a></div>
                 </div>
             </div>
 

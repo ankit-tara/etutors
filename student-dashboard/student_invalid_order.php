@@ -41,7 +41,7 @@ get_header();?>
 
                     </h2>
                     <p>
-                    Either you dont have any order yet or your orders have expired.
+                    Either you dont have any valid order yet or your orders have expired.
                     </p>
                     <p class="text text-success">Please contact us for any query</p>
                     <!-- <div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu Vestibulum</p></div> -->

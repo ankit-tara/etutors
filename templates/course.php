@@ -63,7 +63,7 @@ Template Name: Course Template
 										<br> Mr. Paras has Extensive
 										Experience with English language including Listening, Reading, Writing and
 										Speaking modules.So, whether you want to achieve higher bands in IELTS/TOEFL or just want to
-										develop and grow your personality, Mr. Paras is here to help you...... <a href="#">Read More</a></p>
+										develop and grow your personality, Mr. Paras is here to help you.</p>
 								</div>
 							</div>
 						</div>

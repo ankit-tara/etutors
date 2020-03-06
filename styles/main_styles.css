@@ -139,15 +139,7 @@ h1, h2, h3, h4, h5, h6
 	color: #384158;
 	margin-bottom: 0;
 }
-h1::selection, 
-h2::selection, 
-h3::selection, 
-h4::selection, 
-h5::selection, 
-h6::selection
-{
-	
-}
+
 .form-control
 {
 	color: #db5246;
@@ -1824,6 +1816,8 @@ section
 	color: #14bdee;
 	font-weight: 500;
 	letter-spacing: 0.1em;
+	text-align: center;
+    line-height: 40px;
 }
 
 /*********************************
@@ -2594,4 +2588,26 @@ li.woocommerce-MyAccount-navigation-link a{
 
 .heading .mejs-container.mejs-container-keyboard-inactive.wp-audio-shortcode.mejs-audio{
 	margin: 0;
+}
+
+.loading-test{
+	position: fixed;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255,255,255,.7);
+}
+
+footer .nav-item.dropdown{
+	display:none;
+}
+
+.home_search_button{
+	line-height: 35px;
+}
+.test-header nav .actions .form-btn{
+	color:#fff;
 }

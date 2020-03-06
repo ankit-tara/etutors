@@ -17,7 +17,7 @@ Template Name: HomePage
 			<div class="owl-carousel owl-theme home_slider">
 				
 				<!-- Home Slider Item -->
-				<div class="owl-item">
+				 <div class="owl-item">
 					<div class="home_slider_background" style="background-image:url(<?= get_template_directory_uri();?>/images/home_slider_1.jpg)"></div>
 					<div class="home_slider_content">
 						<div class="container">
@@ -32,7 +32,37 @@ Template Name: HomePage
 						</div>
 					</div>
 				</div>
-
+				<!--<div class="owl-item">
+					<div class="home_slider_background" style="background-image:url(<?= get_template_directory_uri();?>/images/home_slider_2.jpg)"></div>
+					<div class="home_slider_content">
+						<div class="container">
+							<div class="row">
+								<div class="col text-center">
+									<div class="home_slider_title">Institute For Growth &amp; Development</div>
+									<div class="home_slider_subtitle">Get a demo and know your instructor</div>
+									<br>
+									<button type="submit" class="home_search_button">Learn More</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> -->
+				<div class="owl-item">
+					<div class="home_slider_background" style="background-image:url(<?= get_template_directory_uri();?>/images/home_slider_3.jpg)"></div>
+					<div class="home_slider_content">
+						<div class="container">
+							<div class="row">
+								<div class="col text-center">
+									<div class="home_slider_title">Institute For Growth &amp; Development</div>
+									<div class="home_slider_subtitle">Get a demo and know your instructor</div>
+									<br>
+									<!-- <a href="#" type="submit" class="home_search_button">Learn More</a> -->
+									<a href="<?php echo site_url();?>#get-demo" class="home_search_button btn">Get a Demo</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -53,7 +83,7 @@ Template Name: HomePage
 						<div class="section_subtitle">One-To-One Instruction “ONLINE at your convivence”</div>
 					</div>
 					<br>
-					<p class="text-center">Wisutors aims to impart necessary Skills, Knowledge and
+					<p class="text-center">Etutour aims to impart necessary Skills, Knowledge and
 						Education for the Overall-Personality Development of the Individuals who aspire to
 						succeed in all aspects of life. Nowadays, Effective Communication and Strong-
 						Personality is must in a competitive-world, where most Industries and professional-
@@ -69,7 +99,7 @@ Template Name: HomePage
 						Learning, means you are the focus of our attention. With one-to-one instruction, you
 						can expect quicker progress and more engaged learning. Results matter. Don’t settle
 						for small-group instruction.
-						At e-Tutor, we overcome every obstacle faced in small group instruction by creating
+						At e-Tutour, we overcome every obstacle faced in small group instruction by creating
 						a one-to-one learning environment and supplying the attention students need and
 						then giving them the tools that foster confidence, necessary for long-term academic
 						success.</p>
@@ -186,7 +216,7 @@ Template Name: HomePage
 
 	<!-- Counter -->
 
-	<div class="courses">
+	<div class="courses" id="get-demo">
 		<div class="section_background parallax-window" data-parallax="scroll" data-image-src="<?= get_template_directory_uri();?>/images/courses_background.jpg" data-speed="0.8"></div>
 		<div class="container">
 			<div class="row">
@@ -208,7 +238,7 @@ Template Name: HomePage
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<?php echo do_shortcode( '[contact-form-7 id="61" title="Demo" html_class="counter_form_content d-flex flex-column align-items-center justify-content-center"]' )?>
+					<?php echo do_shortcode( '[contact-form-7 id="277" title="Demo" html_class="counter_form_content d-flex flex-column align-items-center justify-content-center"]' )?>
 				</div>
 			</div>
 		</div>
@@ -223,7 +253,7 @@ Template Name: HomePage
 				<div class="col">
 					<div class="section_title_container text-center">
 						<h2 class="section_title">The Best Tutors in Town</h2>
-						<div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div>
+						<!-- <div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div> -->
 					</div>
 				</div>
 			</div>

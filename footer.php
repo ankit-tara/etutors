@@ -7,7 +7,7 @@
 				<div class="col">
 					<div class="newsletter_container d-flex  align-items-center justify-content-center">
 						<div class="newsletter_title">Sign up for free demo and get to know your instructor</div>
-						<button type="submit" class="newsletter_button">Get a Demo</button>
+						<a href="<?php echo site_url();?>#get-demo" class="newsletter_button">Get a Demo</a>
 					</div>
 				</div>
 			</div>
@@ -36,9 +36,7 @@
 										</a>
 									</div>
 									<div class="footer_about_text">
-										<p>Lorem ipsum dolor sit ametium, consectetur adipiscing elit.										Lorem ipsum dolor sit ametium, consectetur adipiscing elit.
-										Lorem ipsum dolor sit ametium, consectetur adipiscing elit.
-										Lorem elit.</p>
+										<p>Etutour aims to impart necessary Skills, Knowledge and Education for the Overall-Personality Development of the Individuals who aspire to succeed in all aspects of life.</p>
 									</div>
 								</div>
 								
@@ -53,7 +51,7 @@
 										<ul>
 											<li>Email: parasjhokke@gmail.com</li>
 											<li>Phone:  +(91) 423 555 666</li>
-											<li>40 Baria Sreet 133/2 New York City, United States</li>
+											<!-- <li>40 Baria Sreet 133/2 New York City, United States</li> -->
 										</ul>
 									</div>
 								</div>
@@ -66,16 +64,7 @@
 								<div class="footer_section footer_links">
 									<div class="footer_title">Menu Links</div>
 									<div class="footer_links_container">
-										<ul>
-											<li><a href="index.html">Home</a></li>
-											<li><a href="about.html">About</a></li>
-											<li><a href="contact.html">Contact</a></li>
-											<li><a href="#">Features</a></li>
-											<li><a href="courses.html">Courses</a></li>
-											<li><a href="#">TOEFL</a></li>
-											<li><a href="#">IELTS</a></li>
-											<li><a href="#">FAQs</a></li>
-										</ul>
+										<?php wp_nav_menu( array( 'theme_location' => 'header-menu' , 'menu_class'=>'main_nav') );?>	
 									</div>
 								</div>
 								
@@ -112,12 +101,12 @@
 						<div class="cr_text">
 							Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
 						</div>
-						<div class="ml-lg-auto cr_links">
+						<!-- <div class="ml-lg-auto cr_links">
 							<ul class="cr_list">
 								<li><a href="#">Terms of Use</a></li>
 								<li><a href="#">Privacy Policy</a></li>
 							</ul>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>

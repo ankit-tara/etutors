@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <title>Etutour - Test</title>
 
     <link rel="stylesheet" href="<?=get_stylesheet_directory_uri()?>/test-assets/style.css" />
     <link rel="stylesheet" href="<?=get_stylesheet_directory_uri()?>/test-assets/player.css">
@@ -44,8 +44,8 @@ $seconds = $parsed['hour'] * 3600 + $parsed['minute'] * 60 + $parsed['second'];
 
                 <!-- <a href="#" class="help">Help <i class="fa fa-info-circle" aria-hidden="true"></i>
                 </a> -->
-                <a href="<?php echo home_url() .'/student-profile' ?>" class="user">
-                Dashboard
+                <a href="<?php echo home_url() .'/student-profile' ?>" class="">
+                Go to Dashboard
                 <!-- <i class="fa fa-user-circle-o" aria-hidden="true"></i> -->
                 </a>
             </div>

@@ -145,7 +145,7 @@ jQuery(function() {
     jQuery(".demo-audio").hide();
     //jQuery("audio").attr("src", "./assets/audio/section1.mp3");
     jQuery(".fa-pause").trigger("click");
-
+jQuery(".form-btn").show();
     jQuery("#player").html("");
     jQuery("#player").player("./assets/audio/section1.mp3");
     setTimeout(() => {

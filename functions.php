@@ -533,15 +533,36 @@ function checkIfUserCanTest($meta_name)
 }
 
 function getNoDays($is_general, $is_academic)
-{
+{$user_id = get_current_user_id();
+
     $days = null;
     if ($is_general) {
         $user_meta = get_user_meta($user_id, 'is_general', true);
-        $days = json_decode($user_meta) && $user_meta->days ? $user_meta->days : '';
+        $user_meta = json_decode($user_meta);
+        $days =  $user_meta && $user_meta->days ? $user_meta->days : '';
     }
     if ($is_academic) {
         $user_meta = get_user_meta($user_id,'is_acedemic', true);
-        $days = json_decode($user_meta) && $user_meta->days && $user_meta->days > $days ? $user_meta->days : $days;
+        $user_meta = json_decode($user_meta);
+        $days =  $user_meta && $user_meta->days && $user_meta->days > $days ? $user_meta->days : $days;
     }
     return $days;
+}
+
+function getExpiryDate($is_general, $is_academic)
+{$user_id = get_current_user_id();
+
+    $date = null;
+    if ($is_general) {
+        $user_meta = get_user_meta($user_id, 'is_general', true);
+        $user_meta = json_decode($user_meta);
+        $date =  $user_meta && $user_meta->end_date ? $user_meta->end_date : '';
+    }
+    if ($is_academic) {
+        $user_meta = get_user_meta($user_id,'is_acedemic', true);
+        $user_meta = json_decode($user_meta);
+        $date =  $user_meta && $user_meta->end_date && $user_meta->end_date > $date ? $user_meta->end_date : $date;
+    }
+    
+    return $date;
 }

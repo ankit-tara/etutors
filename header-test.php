@@ -39,7 +39,7 @@ $seconds = $parsed['hour'] * 3600 + $parsed['minute'] * 60 + $parsed['second'];
             </div>
 
             <div class="actions">
-    <a href="#" class="btn btn-primary form-btn" data-section="1" data-test-part="<?php echo $test_part ?>
+    <a href="#" style="display:none" class="btn btn-primary form-btn" data-section="1" data-test-part="<?php echo $test_part ?>
 ">Submit</a>
 
                 <!-- <a href="#" class="help">Help <i class="fa fa-info-circle" aria-hidden="true"></i>

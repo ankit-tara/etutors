@@ -2611,3 +2611,10 @@ footer .nav-item.dropdown{
 .test-header nav .actions .form-btn{
 	color:#fff;
 }
+
+footer a {
+	color:#b5b8be
+}
+footer a:hover{
+	color:#2dc4ef
+}

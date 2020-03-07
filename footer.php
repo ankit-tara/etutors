@@ -49,8 +49,8 @@
 									<div class="footer_title">Contact Us</div>
 									<div class="footer_contact_info">
 										<ul>
-											<li>Email: parasjhokke@gmail.com</li>
-											<li>Phone:  +(91) 423 555 666</li>
+											<li>Email: <a href="mailto:parasjhokke@gmail.com">parasjhokke@gmail.com</a></li>
+											<li> Phone:  <a href="tel:9996740459">+(91) 999 674 0459</a></li>
 											<!-- <li>40 Baria Sreet 133/2 New York City, United States</li> -->
 										</ul>
 									</div>

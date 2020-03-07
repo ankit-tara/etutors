@@ -32,21 +32,6 @@ Template Name: HomePage
 						</div>
 					</div>
 				</div>
-				<!--<div class="owl-item">
-					<div class="home_slider_background" style="background-image:url(<?= get_template_directory_uri();?>/images/home_slider_2.jpg)"></div>
-					<div class="home_slider_content">
-						<div class="container">
-							<div class="row">
-								<div class="col text-center">
-									<div class="home_slider_title">Institute For Growth &amp; Development</div>
-									<div class="home_slider_subtitle">Get a demo and know your instructor</div>
-									<br>
-									<button type="submit" class="home_search_button">Learn More</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div> -->
 				<div class="owl-item">
 					<div class="home_slider_background" style="background-image:url(<?= get_template_directory_uri();?>/images/home_slider_3.jpg)"></div>
 					<div class="home_slider_content">
@@ -183,7 +168,6 @@ Template Name: HomePage
 								<div class="course_image"><?= woocommerce_get_product_thumbnail();?></div>
 								<div class="course_body">
 									<h3 class="course_title"><a href="<?= get_permalink();?>"><?= get_the_title();?></a></h3>
-									<!-- <div class="course_teacher">Mr. John Taylor</div> -->
 									<div class="course_text">
 										<p><?= $product->get_short_description();?></p>
 										<a href="<?= get_permalink();?>" class="read-more">Read More</a>
@@ -193,9 +177,9 @@ Template Name: HomePage
 									<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
 										<div class="course_info">
 											<i class="fa fa-clock-o" aria-hidden="true"></i>
-											<span>Duration: 2 - 3 months</span>
+											<span>Duration: 15 to 60 days</span>
 										</div>
-										<div class="course_price ml-auto">&#8377;<?= $product->get_regular_price();?></div>
+										<div class="course_price ml-auto">&#8377;<?= $product->get_price();?></div>
 									</div>
 								</div>
 							</div>

@@ -27,11 +27,11 @@
 									<li><div class="question">Have any questions?</div></li>
 									<li>
 										<i class="fa fa-phone" aria-hidden="true"></i>
-										<div><a href="#">221-1234-8228</a></div>
+										<div><a href="tel:9996740459">+(91) 999 674 0459</a></div>
 									</li>
 									<li>
 										<i class="fa fa-envelope-o" aria-hidden="true"></i>
-										<div><a href="#">parasjhokke@gmail.com</a></div>
+										<div><a href="mailto:parasjhokke@gmail.com">parasjhokke@gmail.com</a></div>
 									</li>
 								</ul>
 								<div class="top_bar_login ml-auto">
@@ -116,10 +116,25 @@
 				<img src="<?= get_template_directory_uri()?>/images/logo1.png" alt="" width="200">
 			</a>
 		</div>
-		<br>
-		<br>
-		<br>
 		<nav class="menu_nav">
 			<?php wp_nav_menu( array( 'theme_location' => 'header-menu' , 'menu_class'=>'menu_mm') );?>
 		</nav>
+		<div class="login_button">
+			<?php if (is_user_logged_in() && current_user_can('instructor')){
+			?>
+			<a href="<?php echo site_url() ?>/instructor-profile">Go to Dashboard</a>
+			<?php
+			}
+			elseif(is_user_logged_in() && current_user_can('student')){
+			?>
+			<a href="<?php echo site_url() ?>/student-profile">Go to Dashboard</a>
+			<?php
+			}
+			else{
+			?>
+			<a href="<?php home_url() ?>/login">Login</a>
+			<?php
+			}
+			?>
+		</div>
 	</div>

@@ -254,7 +254,8 @@ add_action('init', function () {
             'student-profile/writing',
         ];
         $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
-
+// print_r(get_user_meta($current_user->ID));
+        // die;
         if (contains('student-profile', $url_path) && $current_user->user_email != 'demo@demo.com') {
             checkCurrentUserOrder($current_user);
         }
@@ -371,13 +372,197 @@ function checkCurrentUserOrder($current_user)
         student_invalid_order();
     }
 
+    $customer_orders = get_posts(array(
+        'numberposts' => -1,
+        'meta_key' => '_customer_user',
+        'meta_value' => get_current_user_id(),
+        'post_type' => wc_get_order_types(),
+        'post_status' => ['wc-processing', 'wc-completed'],
+    ));
+
+    if (!count($customer_orders)) {
+
+        student_invalid_order();
+    }
+
+    // $completed_count = get_orders_count_from_status('completed', get_current_user_id());
+    // $processing_count = get_orders_count_from_status('processing', get_current_user_id());
+    // if(!$completed_count && !$processing_count){
+    //  student_invalid_order();
+    // }
+
+    // $completed_tests = 0;
+    // foreach(wc_get_is_paid_statuses() as $status){
+
+    // }
+
+    // print_r(wc_get_is_paid_statuses());
+
+    // $orders = wc_get_orders([
+    //     'type' => 'shop_order',
+    //     'limit' => -1,
+    //     'customer_id' => $current_user->ID,
+    //     // 'status' => $paid_status,
+    // ]);
+
+    // print_r($orders);
+
+    // die;
+
 }
 
 function student_invalid_order()
 {
+
     wp_redirect('student-locked-profile');
-// load the file if exists
+    // die;
+    // load the file if exists
     // $load = locate_template('student-dashboard/student_invalid_order.php', true);
     // exit(); // just exit if template was found and loaded
 
+}
+
+function get_orders_count_from_status($status, $customer_id)
+{
+    global $wpdb;
+
+    // We add 'wc-' prefix when is missing from order staus
+    $status = 'wc-' . str_replace('wc-', '', $status);
+
+    // return $wpdb->get_var("
+    //     SELECT count(ID)  FROM {$wpdb->prefix}posts WHERE post_status LIKE '$status' AND `post_type` LIKE 'shop_order'
+    // ");
+
+    global $wpdb;
+
+    return $wpdb->get_var("
+    SELECT count(p.ID) FROM {$wpdb->prefix}posts p
+    INNER JOIN {$wpdb->prefix}postmeta pm ON p.ID = pm.post_id
+    WHERE p.post_type = 'shop_order'
+    AND p.post_status ='$status'
+    AND pm.meta_key = '_customer_user'
+    AND pm.meta_value = '$customer_id'
+    ORDER BY p.ID DESC LIMIT 1
+");
+
+}
+
+add_action('woocommerce_thankyou', 'bbloomer_checkout_save_user_meta');
+
+function bbloomer_checkout_save_user_meta($order_id)
+{
+
+    $order = wc_get_order($order_id);
+    $user_id = $order->get_user_id();
+    $items = $order->get_items();
+
+    $product_ids = [];
+    foreach ($items as $key => $item) {
+        $product = $item->get_product();
+        $product_id = $item->get_product_id();
+        $product_ids[] = $product_id;
+        $product_variation_id = $item->get_variation_id();
+
+        $test_type = get_field('test_type', $product_id) ?: 'general';
+
+        $variation = new WC_Product_Variation($product_variation_id);
+        $variationName = implode(" / ", $variation->get_variation_attributes());
+
+        if ($test_type == 'academic') {
+            $user_data = get_user_meta($user_id, 'is_acedemic', true);
+        } else {
+            $user_data = get_user_meta($user_id, 'is_general', true);
+        }
+
+        if ($user_data && json_decode($user_data)) {
+            $data = json_decode($user_data);
+            if (isset($data->order_id) && $data->order_id == $order_id) {
+                return;
+            }
+
+            $days = explode('-', $variationName)[0];
+            $dt = date($data->end_date);
+
+            $data = [
+                'days' => (int) $data->days + (int) $days,
+                'end_date' => date("Y-m-d", strtotime("$dt +$days day")),
+                'order_id' => $order_id,
+            ];
+
+        } else {
+            $days = explode('-', $variationName)[0];
+            $dt = date("Y-m-d");
+
+            $data = [
+                'days' => $days,
+                'end_date' => date("Y-m-d", strtotime("$dt +$days day")),
+                'order_id' => $order_id,
+            ];
+
+        }
+
+        if (!$data) {
+            return;
+        }
+
+    }
+
+    if ($test_type == 'academic') {
+        $user_data = update_user_meta($user_id, 'is_acedemic', json_encode($data));
+    } else {
+        $user_data = update_user_meta($user_id, 'is_general', json_encode($data));
+    }
+
+}
+
+function checkIfUserCanTest($meta_name)
+{
+    $user_id = get_current_user_id();
+    $user_meta = get_user_meta($user_id, $meta_name, true);
+
+    if ($user_meta && json_decode($user_meta)) {
+        $date_now = date("Y-m-d");
+        $meta = json_decode($user_meta);
+
+        if ($date_now < $meta->end_date) {
+            return true;
+        }
+
+    }
+    return false;
+}
+
+function getNoDays($is_general, $is_academic)
+{$user_id = get_current_user_id();
+
+    $days = null;
+    if ($is_general) {
+        $user_meta = get_user_meta($user_id, 'is_general', true);
+        $user_meta = json_decode($user_meta);
+        $days =  $user_meta && $user_meta->days ? $user_meta->days : '';
+    }
+    if ($is_academic) {
+        $user_meta = get_user_meta($user_id,'is_acedemic', true);
+        $user_meta = json_decode($user_meta);
+        $days =  $user_meta && $user_meta->days && $user_meta->days > $days ? $user_meta->days : $days;
+    }
+    return $days;
+}
+
+function getExpiryDate($is_general, $is_academic)
+{$user_id = get_current_user_id();
+
+    $date = null;
+    if ($is_general) {
+        $user_meta = get_user_meta($user_id, 'is_general', true);
+        $user_meta = json_decode($user_meta);
+        $date =  $user_meta && $user_meta->end_date ? $user_meta->end_date : '';
+    }
+    if ($is_academic) {
+        $user_meta = get_user_meta($user_id,'is_acedemic', true);
+        $user_meta = json_decode($user_meta);
+        $date =  $user_meta && $user_meta->end_date && $user_meta->end_date > $date ? $user_meta->end_date : $date;
+    }
+    
+    return $date;
 }

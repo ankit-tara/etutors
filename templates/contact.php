@@ -45,7 +45,7 @@ Template Name: Contact Page
 					</div>
 
 					<!-- Contact Info -->
-					<div class="col-lg-6">
+					<!-- <div class="col-lg-6">
 						<div class="contact_info">
 							<div class="contact_info_title">Contact Info</div>
 							<div class="contact_info_text">
@@ -68,7 +68,7 @@ Template Name: Contact Page
 								</ul>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>

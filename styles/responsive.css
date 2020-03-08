@@ -551,6 +551,16 @@
 		display:grid;
 		overflow:auto;
 	}
+	.feature_video{
+		margin-top:0;
+	}
+	.home_search_button {
+		line-height: 29px;
+	}
+	.course_tabs_container .tab_panels .tab_panel li,
+	.course_tabs_container .tab_panels .tab_panel p{
+		font-size: 13px;
+	}
 }
 
 /************

@@ -2266,14 +2266,16 @@ section
 
 .testimonial_slider .owl-item .bubble-3{
 	display: inline-block;
-    margin: 2em 2em 2em 5em;
+    margin: 2em 2em 2em 3em;
     min-height: 4em;
     padding: 1.5em 1.8em;
     position: relative;
     border-radius: 3em;
-    line-height: 1.3;
+    line-height: 26px;
     color: black;
-    background-color: white;
+	background-color: white;
+	word-break: break-word;
+	min-height: 240px;
 }
 .testimonial_slider .owl-item.center .bubble-3{
 	background: #14bdee;
@@ -2611,10 +2613,31 @@ footer .nav-item.dropdown{
 .test-header nav .actions .form-btn{
 	color:#fff;
 }
-
+.about_col{
+	margin-bottom: 10px;
+}
 footer a {
 	color:#b5b8be
 }
 footer a:hover{
 	color:#2dc4ef
+}
+
+.course_tabs_container .tab_panels h4{
+	margin-bottom: 20px;
+	line-height: 30px;
+}
+
+.course_tabs_container .tab_panels .tab_panel li,
+.course_tabs_container .tab_panels .tab_panel p {
+	font-size: 16px;
+    font-weight: 400;
+    color: #76777a;
+    line-height: 1.75;
+}
+
+.course_tabs_container .tab_panels .tab_panel ul {
+	list-style-type: disc;
+	padding-left: 20px;
+	margin-top:10px;
 }

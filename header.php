@@ -70,7 +70,7 @@
 							<div class="logo_container">
 								<a href="<?= site_url();?>">
 									<!-- <div class="logo_text">Wis<span>utors</span></div> -->
-									<img src="<?= get_template_directory_uri()?>/images/logo1.png" alt="" width="200">
+									<img src="<?php echo of_get_option('header-logo2'); ?>" alt="" width="200">
 								</a>
 							</div>
 							<nav class="main_nav_contaner ml-auto">
@@ -113,7 +113,7 @@
 		<div class="logo_container">
 			<a href="<?= site_url();?>">
 				<!-- <div class="logo_text">Wis<span>utors</span></div> -->
-				<img src="<?= get_template_directory_uri()?>/images/logo1.png" alt="" width="200">
+				<img src="<?php echo of_get_option('header-logo2'); ?>" alt="" width="200">
 			</a>
 		</div>
 		<nav class="menu_nav">

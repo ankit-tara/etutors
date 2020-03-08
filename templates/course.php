@@ -24,7 +24,7 @@ Template Name: Course Template
 						<!-- Course Tabs -->
 						<div class="course_tabs_container">
 							<div class="tab_panels">
-
+								<div class="tab_panel active">
 								<!-- Description -->
                                 <?php
                                     if( have_posts() ) {
@@ -36,7 +36,7 @@ Template Name: Course Template
                                     }
                                     }
                                     ?>
-
+								</div>
 							</div>
 						</div>
 					</div>

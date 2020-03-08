@@ -805,12 +805,12 @@ section
 	font-size: 60px;
 	font-weight: 700;
 	line-height: 1.2;
-	color: #384158;
+	color: #fff;
 }
 .home_slider_subtitle
 {
 	font-size: 24px;
-	color: #76777a;
+	color: #fff;
 	margin-top: 9px;
 }
 .home_slider_form_container
@@ -893,13 +893,13 @@ section
 {
 	width: 160px;
 	height: 46px;
-	background: #14bdee;
+	background: #fff;
 	border: none;
 	outline: none;
 	border-radius: 3px;
 	font-size: 14px;
 	font-weight: 500;
-	color: #FFFFFF;
+	color: #14bdee;
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
 	cursor: pointer;

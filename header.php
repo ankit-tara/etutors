@@ -27,11 +27,11 @@
 									<li><div class="question">Have any questions?</div></li>
 									<li>
 										<i class="fa fa-phone" aria-hidden="true"></i>
-										<div><a href="tel:9996740459">+(91) 999 674 0459</a></div>
+										<div><a href="tel:<?php echo of_get_option('header_phone'); ?>"><?php echo of_get_option('header_phone'); ?></a></div>
 									</li>
 									<li>
 										<i class="fa fa-envelope-o" aria-hidden="true"></i>
-										<div><a href="mailto:parasjhokke@gmail.com">parasjhokke@gmail.com</a></div>
+										<div><a href="mailto:<?php echo of_get_option('header_email'); ?>"><?php echo of_get_option('header_email'); ?></a></div>
 									</li>
 								</ul>
 								<div class="top_bar_login ml-auto">

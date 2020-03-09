@@ -256,9 +256,9 @@ add_action('init', function () {
         $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
 // print_r(get_user_meta($current_user->ID));
         // die;
-        if (contains('student-profile', $url_path) && $current_user->user_email != 'demo@demo.com') {
-            checkCurrentUserOrder($current_user);
-        }
+        // if (contains('student-profile', $url_path) && $current_user->user_email != 'demo@demo.com') {
+        //     checkCurrentUserOrder($current_user);
+        // }
 
         if (in_array($url_path, $valid_test_list_url)) {
 

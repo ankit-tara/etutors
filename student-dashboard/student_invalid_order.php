@@ -3,7 +3,9 @@
 /*
 Template Name: Student Dashboard
  */
-
+if(!is_user_logged_in()){
+    wp_redirect('/login');
+}
 get_header('dashboard');
 ?>
 <main class="main-content bgc-grey-100">

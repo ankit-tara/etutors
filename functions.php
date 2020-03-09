@@ -338,6 +338,7 @@ add_action('init', function () {
             wrting_2 longtext  NULL ,
             instrutor_resp_1 longtext  NULL ,
             instrutor_resp_2 longtext  NULL ,
+            score mediumint(9) NULL,
             created_at datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
             PRIMARY KEY  (id)
         ) $charset_collate;";
@@ -539,12 +540,12 @@ function getNoDays($is_general, $is_academic)
     if ($is_general) {
         $user_meta = get_user_meta($user_id, 'is_general', true);
         $user_meta = json_decode($user_meta);
-        $days =  $user_meta && $user_meta->days ? $user_meta->days : '';
+        $days = $user_meta && $user_meta->days ? $user_meta->days : '';
     }
     if ($is_academic) {
-        $user_meta = get_user_meta($user_id,'is_acedemic', true);
+        $user_meta = get_user_meta($user_id, 'is_acedemic', true);
         $user_meta = json_decode($user_meta);
-        $days =  $user_meta && $user_meta->days && $user_meta->days > $days ? $user_meta->days : $days;
+        $days = $user_meta && $user_meta->days && $user_meta->days > $days ? $user_meta->days : $days;
     }
     return $days;
 }
@@ -556,13 +557,137 @@ function getExpiryDate($is_general, $is_academic)
     if ($is_general) {
         $user_meta = get_user_meta($user_id, 'is_general', true);
         $user_meta = json_decode($user_meta);
-        $date =  $user_meta && $user_meta->end_date ? $user_meta->end_date : '';
+        $date = $user_meta && $user_meta->end_date ? $user_meta->end_date : '';
     }
     if ($is_academic) {
-        $user_meta = get_user_meta($user_id,'is_acedemic', true);
+        $user_meta = get_user_meta($user_id, 'is_acedemic', true);
         $user_meta = json_decode($user_meta);
-        $date =  $user_meta && $user_meta->end_date && $user_meta->end_date > $date ? $user_meta->end_date : $date;
+        $date = $user_meta && $user_meta->end_date && $user_meta->end_date > $date ? $user_meta->end_date : $date;
     }
-    
+
     return $date;
+}
+
+function getStudentResults()
+{
+    $user_id = get_current_user_id();
+
+    global $wpdb;
+    $tbl_name = $wpdb->prefix . 'ar_ielts_student_results';
+    $posts_per_page = 20;
+    $start = 0;
+    $paged = isset($_GET['paged']) && $_GET['paged'] ? $_GET['paged'] : 1; // Current page number
+    $start = ($paged - 1) * $posts_per_page;
+
+    $result = $wpdb->get_results('SELECT * FROM ' . 
+    $tbl_name . ' as t
+    LEFT JOIN '.$wpdb->prefix.'posts as p
+    ON p.id = t.test_id
+     WHERE (t.user_id="' . $user_id . '")  
+     ORDER BY t.id DESC
+     LIMIT ' . $start . ', ' . $posts_per_page . '',
+      ARRAY_A);
+    return $result;
+
+}
+
+getStudentResults();
+
+function custom_user_profile_fields($user)
+{
+    $test_data = get_test_user_meta($user);
+    ?>
+    <h3>User Test Information (Only valid for student Role)</h3>
+    <table class="form-table">
+        <tr>
+            <th><label for="company">General</label></th>
+            <td>
+                <input type="checkbox" class="regular-text"
+                <?php echo $test_data['is_general'] ? 'checked' : '' ?>
+                name="is_general" id="is_general" /><br />
+            </td>
+        </tr>
+        <tr>
+            <th><label for="company">Academic</label></th>
+            <td>
+                <input type="checkbox" class="regular-text"
+                    <?php echo $test_data['is_academic'] ? 'checked' : '' ?>
+                 name="is_acedemic" id="is_acedemic" /><br />
+            </td>
+        </tr>
+        <tr>
+            <th><label for="company">Days</label></th>
+            <td>
+                <input type="text" class="regular-text" name="days" id="days"
+                value="<?php echo $test_data['days'] ?>"
+                /><br />
+                <span class="description"> Eg. 15 , 30 , 40 etc </span>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="company">Expiry Date</label></th>
+            <td>
+                <input type="date" class="regular-text"
+                 value="<?php echo $test_data['end_date'] ?>"
+                name="expiry_date" id="expiry_date" /><br />
+                <span class="description">Last date when user is allowed to give tests</span>
+            </td>
+        </tr>
+    </table>
+  <?php
+}
+add_action('show_user_profile', 'custom_user_profile_fields');
+add_action('edit_user_profile', 'custom_user_profile_fields');
+add_action("user_new_form", "custom_user_profile_fields");
+
+function save_custom_user_profile_fields($user_id)
+{
+    # again do this only if you can
+    if (!current_user_can('manage_options')) {
+        return false;
+    }
+
+    $data = [
+        'days' => $_POST['days'],
+        'end_date' =>$_POST['expiry_date'],
+        'order_id' => '',
+    ];
+    $data = json_encode($data);
+    update_user_meta($user_id,'is_general',$_POST['is_general'] ? $data : '');
+    update_user_meta($user_id,'is_acedemic',$_POST['is_acedemic'] ? $data : '');
+
+    # save my custom field
+    // update_usermeta($user_id, 'company', $_POST['company']);
+}
+add_action('user_register', 'save_custom_user_profile_fields');
+add_action('profile_update', 'save_custom_user_profile_fields');
+
+function get_test_user_meta($user)
+{
+    $user_id = $user->ID;
+    $academic = get_user_meta($user_id, 'is_acedemic', true);
+    $general = get_user_meta($user_id, 'is_general', true);
+    $days = '';
+    $end_date = '';
+
+    if ($academic && json_decode($academic)) {
+        $a_data = json_decode($academic);
+        $days = $a_data->days;
+        $end_date = $a_data->end_date;
+    }
+
+    if ($general && json_decode($general)) {
+        $g_data = json_decode($general);
+        $days = $g_data->days > $days ? $g_data->days : $days;
+        $end_date = $g_data->end_date > $end_date ? $g_data->end_date : $end_date;
+
+    }
+    $data = [
+        'is_academic' => $academic && json_decode($academic),
+        'is_general' => $general && json_decode($general),
+        'days' => $days,
+        'end_date' => $end_date,
+    ];
+
+    return $data;
 }

@@ -4,8 +4,6 @@
 Template Name: Student Dashboard
  */
 
-get_header('dashboard');
-
 $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
 if (contains('listening', $url_path)) {
     $test_part = 'listening';
@@ -14,49 +12,79 @@ if (contains('listening', $url_path)) {
 } else {
     $test_part = 'writing';
 }
-$tests = [];
+
 $current_user = wp_get_current_user();
 $is_demo_user = $current_user->user_email == 'demo@demo.com';
 
-$no_of_posts = $current_user->user_email != 'demo@demo.com' ? 60 : 1;
+$no_of_posts = $is_demo_user ? 1 : 15;
 
-$meta_query = [
-    'relation' => 'AND',
-    [
-        'key' => 'test_part',
-        'value' => $test_part,
-        'compare' => '=',
-    ],
-    [
-        'key' => 'status',
-        'value' => 'active',
-        'compare' => '=',
-    ],
+$test_data = get_test_user_meta($current_user);
 
-];
+if ((!$test_data['is_academic'] && !$test_data['is_general']) || date("Y-m-d") > $test_data['end_date']) {
+    $tests = [];
+    wp_redirect(site_url() . '/student-locked-profile');
 
-$is_academic = checkIfUserCanTest('is_acedemic');
-$is_general = checkIfUserCanTest('is_general');
+} else {
+    $meta_query = [
+        'relation' => 'AND',
+        [
+            'key' => 'test_part',
+            'value' => $test_part,
+            'compare' => '=',
+        ],
+        [
+            'key' => 'status',
+            'value' => 'active',
+            'compare' => '=',
+        ],
 
-if ($is_general || $is_academic) {
-    $no_of_days = getNoDays($is_general, $is_academic);
-    if (!$is_demo_user) {
-        $no_of_posts = $no_of_days ?: $no_of_posts;
-    }
-    $meta_query[] = [
-        'key' => 'test_type',
-        'value' => $is_academic ? '"academic"' : '"general"',
-        'compare' => 'LIKE',
     ];
+
+    if (!$is_demo_user && $test_data['days']) {
+        $no_of_posts = $test_data['days'];
+    }
+
+    if (!($test_data['is_academic'] && $test_data['is_general'])) {
+        $meta_query[] = [
+            'key' => 'test_type',
+            'value' => $test_data['is_academic'] ? '"academic"' : '"general"',
+            'compare' => 'LIKE',
+        ];
+
+    }
+    $args = array(
+        'post_type' => 'ar-ielts-tests',
+        'posts_per_page' => $no_of_posts,
+        'meta_query' => $meta_query,
+    );
+
+    $tests = new WP_Query($args);
+
 }
 
-$args = array(
-    'post_type' => 'ar-ielts-tests',
-    'posts_per_page' => $no_of_posts,
-    'meta_query' => $meta_query,
-);
+get_header('dashboard');
 
-$tests = new WP_Query($args);
+// $is_academic = checkIfUserCanTest('is_acedemic');
+// $is_general = checkIfUserCanTest('is_general');
+
+// if ($is_general || $is_academic) {
+//     $no_of_days = getNoDays($is_general, $is_academic);
+//     if (!$is_demo_user) {
+//         $no_of_posts = $no_of_days ?: $no_of_posts;
+//     }
+//     $meta_query[] = [
+//         'key' => 'test_type',
+//         'value' => $is_academic ? '"academic"' : '"general"',
+//         'compare' => 'LIKE',
+//     ];
+// }
+// print_r($meta_query);
+// $args = array(
+//     'post_type' => 'ar-ielts-tests',
+//     'posts_per_page' => $no_of_posts,
+//     'meta_query' => $meta_query,
+// );
+
 ?>
 
 <main class="main-content bgc-grey-100">
@@ -79,10 +107,10 @@ $tests = new WP_Query($args);
         $url = home_url() . '/student-profile/test/' . get_field('test_part') . '?et=' . base64_encode(get_the_ID());
         $url = wp_nonce_url($url, 'ar-tests-noonce')
         ?>
-										                            <tr>
-										                                <td><?php the_title()?></td>
-										                                <td>
-										                                  <?php
+																								                            <tr>
+																								                                <td><?php the_title()?></td>
+																								                                <td>
+																								                                  <?php
         $test_part = get_field('test_part');
         if ($test_part == 'listening') {
             echo '<span class="badge bgc-deep-purple-50 c-deep-purple-700 p-10 lh-0 tt-c badge-pill">Listening</span>';
@@ -92,14 +120,14 @@ $tests = new WP_Query($args);
         echo ' <span class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c badge-pill">Writing</span> ';
     }
     ?>
-					                                </td>
-					                                <td><?php the_field('test_type')?></td>
-					                                <td><?php echo get_the_date() ?></td>
-					                                <td>
-					                                    <a href="<?php echo $url ?>" class="btn bgc-deep-purple-50 c-deep-purple-700">Start Test</a>
-					                                </td>
-					                            </tr>
-					                     <?php endwhile;
+												                                </td>
+												                                <td><?php the_field('test_type')?></td>
+												                                <td><?php echo get_the_date() ?></td>
+												                                <td>
+												                                    <a href="<?php echo $url ?>" class="btn bgc-deep-purple-50 c-deep-purple-700">Start Test</a>
+												                                </td>
+												                            </tr>
+												                     <?php endwhile;
 endif;?>
                 </tbody>
             </table>

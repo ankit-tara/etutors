@@ -27,11 +27,11 @@
 									<li><div class="question">Have any questions?</div></li>
 									<li>
 										<i class="fa fa-phone" aria-hidden="true"></i>
-										<div><a href="#">221-1234-8228</a></div>
+										<div><a href="tel:<?php echo of_get_option('header_phone'); ?>"><?php echo of_get_option('header_phone'); ?></a></div>
 									</li>
 									<li>
 										<i class="fa fa-envelope-o" aria-hidden="true"></i>
-										<div><a href="#">parasjhokke@gmail.com</a></div>
+										<div><a href="mailto:<?php echo of_get_option('header_email'); ?>"><?php echo of_get_option('header_email'); ?></a></div>
 									</li>
 								</ul>
 								<div class="top_bar_login ml-auto">
@@ -70,7 +70,7 @@
 							<div class="logo_container">
 								<a href="<?= site_url();?>">
 									<!-- <div class="logo_text">Wis<span>utors</span></div> -->
-									<img src="<?= get_template_directory_uri()?>/images/logo1.png" alt="" width="200">
+									<img src="<?php echo of_get_option('header-logo2'); ?>" alt="" width="200">
 								</a>
 							</div>
 							<nav class="main_nav_contaner ml-auto">
@@ -113,13 +113,28 @@
 		<div class="logo_container">
 			<a href="<?= site_url();?>">
 				<!-- <div class="logo_text">Wis<span>utors</span></div> -->
-				<img src="<?= get_template_directory_uri()?>/images/logo1.png" alt="" width="200">
+				<img src="<?php echo of_get_option('header-logo2'); ?>" alt="" width="200">
 			</a>
 		</div>
-		<br>
-		<br>
-		<br>
 		<nav class="menu_nav">
 			<?php wp_nav_menu( array( 'theme_location' => 'header-menu' , 'menu_class'=>'menu_mm') );?>
 		</nav>
+		<div class="login_button">
+			<?php if (is_user_logged_in() && current_user_can('instructor')){
+			?>
+			<a href="<?php echo site_url() ?>/instructor-profile">Go to Dashboard</a>
+			<?php
+			}
+			elseif(is_user_logged_in() && current_user_can('student')){
+			?>
+			<a href="<?php echo site_url() ?>/student-profile">Go to Dashboard</a>
+			<?php
+			}
+			else{
+			?>
+			<a href="<?php home_url() ?>/login">Login</a>
+			<?php
+			}
+			?>
+		</div>
 	</div>

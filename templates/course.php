@@ -24,7 +24,7 @@ Template Name: Course Template
 						<!-- Course Tabs -->
 						<div class="course_tabs_container">
 							<div class="tab_panels">
-
+								<div class="tab_panel active">
 								<!-- Description -->
                                 <?php
                                     if( have_posts() ) {
@@ -36,7 +36,7 @@ Template Name: Course Template
                                     }
                                     }
                                     ?>
-
+								</div>
 							</div>
 						</div>
 					</div>
@@ -90,7 +90,7 @@ Template Name: Course Template
 									<div class="latest_image"><div><?= woocommerce_get_product_thumbnail();?></div></div>
 									<div class="latest_content">
 										<div class="latest_title"><a href="<?= get_permalink();?>"><?= get_the_title();?></a></div>
-										<div class="latest_price">₹ <?= $product->get_regular_price();?></div>
+										<div class="latest_price">₹ <?= $product->get_price();?></div>
 									</div>
 								</div>
 

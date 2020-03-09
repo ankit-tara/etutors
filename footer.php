@@ -31,12 +31,12 @@
 								<div class="footer_section footer_about">
 									<div class="footer_logo_container">
 										<a href="<?= site_url();?>">
-										<img src="<?= get_template_directory_uri();?>/images/logo2.png" alt="" width="200">
+										<img src="<?php echo of_get_option('footer_logo1'); ?>" alt="" width="200">
 											<!-- <div class="footer_logo_text">wis<span>utors</span></div> -->
 										</a>
 									</div>
 									<div class="footer_about_text">
-										<p>Etutour aims to impart necessary Skills, Knowledge and Education for the Overall-Personality Development of the Individuals who aspire to succeed in all aspects of life.</p>
+										<p><?php echo of_get_option('footer_copyright'); ?></p>
 									</div>
 								</div>
 								
@@ -49,9 +49,8 @@
 									<div class="footer_title">Contact Us</div>
 									<div class="footer_contact_info">
 										<ul>
-											<li>Email: parasjhokke@gmail.com</li>
-											<li>Phone:  +(91) 423 555 666</li>
-											<!-- <li>40 Baria Sreet 133/2 New York City, United States</li> -->
+											<li>Email: <a href="mailto:<?php echo of_get_option('header_email'); ?>"><?php echo of_get_option('header_email'); ?></a></li>
+											<li> Phone:  <a href="tel:<?php echo of_get_option('header_phone'); ?>"><?php echo of_get_option('header_phone'); ?></a></li>
 										</ul>
 									</div>
 								</div>
@@ -80,10 +79,9 @@
 									</div>
 									<div class="footer_social">
 										<ul>
-											<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+											<li><a href="<?php echo of_get_option('fb_link'); ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+											<li><a href="<?php echo of_get_option('skype_link'); ?>"><i class="fa fa-skype" aria-hidden="true"></i></a></li>
+											<li><a href="<?php echo of_get_option('insta_link'); ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
 										</ul>
 									</div>
 								</div>

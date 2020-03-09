@@ -691,3 +691,17 @@ function get_test_user_meta($user)
 
     return $data;
 }
+
+add_action( 'init', 'create_post_type' );
+function create_post_type() {
+    register_post_type( 'student_reviews',
+        array(
+            'labels' => array(
+                'name' => __( 'Student Reviews' ),
+                'singular_name' => __( 'Reviews' )
+            ),
+        'public' => true,
+        'has_archive' => false,
+        )
+    );
+}

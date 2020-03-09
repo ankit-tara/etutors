@@ -47,8 +47,8 @@ $results = getStudentResults();
                         <th class="bdwT-0">Test Name</th>
                         <th class="bdwT-0">Test Type</th>
                         <th class="bdwT-0">Date</th>
-                        <th class="bdwT-0">Score</th>
-                        <th class="bdwT-0">View</th>
+                        <th class="bdwT-0">Score(By Instrutor)</th>
+                        <!-- <th class="bdwT-0">View</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -78,9 +78,9 @@ if ($test_type == 'listening') {
                         </td>
                         <td><?php echo date('j F , Y', strtotime($result['created_at'])); ?></td>
                         <td><?php echo $result['score'] ?: '' ?></td>
-                        <td>
-				            <a href="<?php echo $url ?>" class="btn bgc-deep-purple-50 c-deep-purple-700">View</a>
-                        </td>
+                        <!-- <td>
+				            <a href="<?php //echo $url ?>" class="btn bgc-deep-purple-50 c-deep-purple-700">View</a>
+                        </td> -->
                     </tr>
                     <?php }?>
 

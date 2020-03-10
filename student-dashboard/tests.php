@@ -1,9 +1,5 @@
 <?php
 
-/*
-Template Name: Student Dashboard
- */
-
 $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
 if (contains('listening', $url_path)) {
     $test_part = 'listening';

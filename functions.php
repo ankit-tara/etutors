@@ -1,6 +1,7 @@
 <?php
 
 include 'includes/test_functions.php';
+include 'includes/admin_functions.php';
 //Add scripts and stylesheets
 function ar_scripts()
 {
@@ -579,14 +580,14 @@ function getStudentResults()
     $paged = isset($_GET['paged']) && $_GET['paged'] ? $_GET['paged'] : 1; // Current page number
     $start = ($paged - 1) * $posts_per_page;
 
-    $result = $wpdb->get_results('SELECT * FROM ' . 
-    $tbl_name . ' as t
-    LEFT JOIN '.$wpdb->prefix.'posts as p
+    $result = $wpdb->get_results('SELECT * FROM ' .
+        $tbl_name . ' as t
+    LEFT JOIN ' . $wpdb->prefix . 'posts as p
     ON p.id = t.test_id
-     WHERE (t.user_id="' . $user_id . '")  
+     WHERE (t.user_id="' . $user_id . '")
      ORDER BY t.id DESC
      LIMIT ' . $start . ', ' . $posts_per_page . '',
-      ARRAY_A);
+        ARRAY_A);
     return $result;
 
 }
@@ -649,12 +650,12 @@ function save_custom_user_profile_fields($user_id)
 
     $data = [
         'days' => $_POST['days'],
-        'end_date' =>$_POST['expiry_date'],
+        'end_date' => $_POST['expiry_date'],
         'order_id' => '',
     ];
     $data = json_encode($data);
-    update_user_meta($user_id,'is_general',$_POST['is_general'] ? $data : '');
-    update_user_meta($user_id,'is_acedemic',$_POST['is_acedemic'] ? $data : '');
+    update_user_meta($user_id, 'is_general', $_POST['is_general'] ? $data : '');
+    update_user_meta($user_id, 'is_acedemic', $_POST['is_acedemic'] ? $data : '');
 
     # save my custom field
     // update_usermeta($user_id, 'company', $_POST['company']);
@@ -692,16 +693,90 @@ function get_test_user_meta($user)
     return $data;
 }
 
-add_action( 'init', 'create_post_type' );
-function create_post_type() {
-    register_post_type( 'student_reviews',
+add_action('init', 'create_post_type');
+function create_post_type()
+{
+    register_post_type('student_reviews',
         array(
             'labels' => array(
-                'name' => __( 'Student Reviews' ),
-                'singular_name' => __( 'Reviews' )
+                'name' => __('Student Reviews'),
+                'singular_name' => __('Reviews'),
             ),
-        'public' => true,
-        'has_archive' => false,
+            'public' => true,
+            'has_archive' => false,
         )
     );
 }
+
+function getAllStudentResults()
+{
+
+    global $wpdb;
+    $tbl_name = $wpdb->prefix . 'ar_ielts_student_results';
+    $posts_per_page = 10;
+    $start = 0;
+    $paged = isset($_GET['paged']) && $_GET['paged'] ? $_GET['paged'] : 1; // Current page number
+    $start = ($paged - 1) * $posts_per_page;
+
+    $result = $wpdb->get_results('SELECT * FROM ' .
+        $tbl_name . ' as t
+    LEFT JOIN ' . $wpdb->prefix . 'posts as p
+    ON p.id = t.test_id
+
+     ORDER BY t.id DESC
+     LIMIT ' . $start . ', ' . $posts_per_page . '',
+        ARRAY_A);
+    return $result;
+
+}
+
+function get_test_result($test_id)
+{
+
+    global $wpdb;
+    $tbl_name = $wpdb->prefix . 'ar_ielts_student_results';
+  
+
+    $result = $wpdb->get_row('SELECT * FROM ' .
+        $tbl_name . ' as t
+    LEFT JOIN ' . $wpdb->prefix . 'posts as p
+    ON p.id = t.test_id
+WHERE t.id = '.$test_id.'
+     ORDER BY t.id DESC
+    ',
+        ARRAY_A);
+    return $result;
+
+}
+
+function get_total_tests()
+{
+    global $wpdb;
+    $tbl_name = $wpdb->prefix . 'ar_ielts_student_results';
+
+    $result = $wpdb->get_var('SELECT COUNT(*) FROM ' . $tbl_name . ' ');
+    return $result;
+}
+
+function create_column()
+{
+    global $wpdb;
+    $tbl_name = $wpdb->prefix . 'ar_ielts_student_results';
+
+    $myPosts = $wpdb->get_var("SELECT count(*) FROM INFORMATION_SCHEMA.COLUMNS
+    WHERE TABLE_NAME = '{$tbl_name}' AND COLUMN_NAME = 'score' ");
+
+    if (!$myPosts) {
+        $wpdb->query("ALTER TABLE $tbl_name ADD score FLOAT(10) NULL");
+    }
+
+    $myPosts = $wpdb->get_var("SELECT count(*) FROM INFORMATION_SCHEMA.COLUMNS
+    WHERE TABLE_NAME = '{$tbl_name}' AND COLUMN_NAME = 'comment' ");
+
+    if (!$myPosts) {
+        $wpdb->query("ALTER TABLE $tbl_name ADD comment VARCHAR(255) NULL");
+    }
+
+}
+
+add_action('init', 'create_column');

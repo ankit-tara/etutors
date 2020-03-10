@@ -389,7 +389,7 @@ p.highlight,.pag-index.highlight{
       background: #c3eefa38;
 }
 
-.modal-dialog {
+.modal-content {
     height: 86vh;
     overflow: auto;
 }

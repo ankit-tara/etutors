@@ -2641,3 +2641,11 @@ footer a:hover{
 	padding-left: 20px;
 	margin-top:10px;
 }
+
+.app.dashboard #qlwapp{
+	display:none;
+}
+
+div#result-modal tr td:last-child, div#result-modal tr th:last-child {
+    display: none;
+}

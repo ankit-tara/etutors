@@ -1,8 +1,5 @@
 <?php
 
-/*
-Template Name: Student Dashboard
- */
 if(!is_user_logged_in()){
     wp_redirect('/login');
 }

@@ -264,7 +264,6 @@ console.log(element)
 
       jQuery(".pagination")
         .find(".pag-index[data-id='" + activeIndex + "']")
-
         .trigger("click");
     } else {
       activeIndex++;

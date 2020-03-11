@@ -140,21 +140,11 @@ function redirect_to_specific_page()
     }
 }
 
-function cc_wpse_278096_disable_admin_bar()
-{
-    //  if (current_user_can('administrator') || current_user_can('contributor') ) {
-    //    // user can view admin bar
-    //    show_admin_bar(true); // this line isn't essentially needed by default...
-    //  } else {
-    // hide admin bar
-    show_admin_bar(false);
-    //  }
-}
-add_action('after_setup_theme', 'cc_wpse_278096_disable_admin_bar');
-
 function mytheme_add_woocommerce_support()
 {
     add_theme_support('woocommerce');
+    show_admin_bar(false);
+
 }
 add_action('after_setup_theme', 'mytheme_add_woocommerce_support');
 
@@ -204,47 +194,6 @@ function disable_woo_commerce_sidebar()
 }
 add_action('init', 'disable_woo_commerce_sidebar');
 
-/**
- * Ensure cart contents update when products are added to the cart via AJAX
- */
-
-/*
-function my_header_add_to_cart_fragment( $fragments ) {
-
-ob_start();
-$count = WC()->cart->cart_contents_count;
-$link = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : $woocommerce->cart->get_cart_url();
-
-?><a class="cart-contents" href="<?php echo  $link ?>" title="<?php _e( 'View your shopping cart' ); ?>"><?php
-if ( $count > 0 ) {
-?>
-<span class="cart-contents-count"><?php echo esc_html( $count ); ?></span>
-<?php
-}
-?></a><?php
-
-$fragments['a.cart-contents'] = ob_get_clean();
-
-return $fragments;
-}
-add_filter( 'woocommerce_add_to_cart_fragments', 'my_header_add_to_cart_fragment' );
-
- */
-
-// add_action( 'init', 'wpse26388_rewrites_init' );
-// function wpse26388_rewrites_init(){
-//     add_rewrite_rule(
-//         'student-profile/([0-9]+)/?$',
-//         'index.php?pagename=student-profile&property_id=$matches[1]',
-//         'top' );
-// }
-
-// add_filter( 'query_vars', 'wpse26388_query_vars' );
-// function wpse26388_query_vars( $query_vars ){
-//     $query_vars[] = 'property_id';
-//     return $query_vars;
-// }
-
 add_action('init', function () {
     if (is_user_logged_in() && current_user_can('student')) {
         $current_user = wp_get_current_user();
@@ -255,43 +204,40 @@ add_action('init', function () {
             'student-profile/writing',
         ];
         $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
-// print_r(get_user_meta($current_user->ID));
-        // die;
-        // if (contains('student-profile', $url_path) && $current_user->user_email != 'demo@demo.com') {
-        //     checkCurrentUserOrder($current_user);
-        // }
+        if (contains('student-profile', $url_path)) {
 
-        if (in_array($url_path, $valid_test_list_url)) {
+            if (in_array($url_path, $valid_test_list_url)) {
 
-            // load the file if exists
-            $load = locate_template('student-dashboard/tests.php', true);
-            if ($load) {
-                exit(); // just exit if template was found and loaded
+                // load the file if exists
+                $load = locate_template('student-dashboard/tests.php', true);
+                if ($load) {
+                    exit(); // just exit if template was found and loaded
+                }
             }
-        }
 
-        if ($url_path == 'student-profile/test/listening' && isset($_GET['et']) && $_GET['et']) {
+            if ($url_path == 'student-profile/test/listening' && isset($_GET['et']) && $_GET['et']) {
 
-            // load the file if exists
-            $load = locate_template('student-dashboard/listening-test.php', true);
-            if ($load) {
-                exit(); // just exit if template was found and loaded
+                // load the file if exists
+                $load = locate_template('student-dashboard/listening-test.php', true);
+                if ($load) {
+                    exit(); // just exit if template was found and loaded
+                }
             }
-        }
-        if ($url_path == 'student-profile/test/reading' && isset($_GET['et']) && $_GET['et']) {
+            if ($url_path == 'student-profile/test/reading' && isset($_GET['et']) && $_GET['et']) {
 
-            // load the file if exists
-            $load = locate_template('student-dashboard/reading-test.php', true);
-            if ($load) {
-                exit(); // just exit if template was found and loaded
+                // load the file if exists
+                $load = locate_template('student-dashboard/reading-test.php', true);
+                if ($load) {
+                    exit(); // just exit if template was found and loaded
+                }
             }
-        }
-        if ($url_path == 'student-profile/test/writing' && isset($_GET['et']) && $_GET['et']) {
+            if ($url_path == 'student-profile/test/writing' && isset($_GET['et']) && $_GET['et']) {
 
-            // load the file if exists
-            $load = locate_template('student-dashboard/writing-test.php', true);
-            if ($load) {
-                exit(); // just exit if template was found and loaded
+                // load the file if exists
+                $load = locate_template('student-dashboard/writing-test.php', true);
+                if ($load) {
+                    exit(); // just exit if template was found and loaded
+                }
             }
         }
 
@@ -361,67 +307,6 @@ function wc_assign_custom_role($args)
     $args['role'] = 'student';
 
     return $args;
-}
-
-function checkCurrentUserOrder($current_user)
-{
-
-    $args = array(
-        'customer_id' => $current_user->ID,
-    );
-    $orders = wc_get_orders($args);
-    if (!count($orders)) {
-        student_invalid_order();
-    }
-
-    $customer_orders = get_posts(array(
-        'numberposts' => -1,
-        'meta_key' => '_customer_user',
-        'meta_value' => get_current_user_id(),
-        'post_type' => wc_get_order_types(),
-        'post_status' => ['wc-processing', 'wc-completed'],
-    ));
-
-    if (!count($customer_orders)) {
-
-        student_invalid_order();
-    }
-
-    // $completed_count = get_orders_count_from_status('completed', get_current_user_id());
-    // $processing_count = get_orders_count_from_status('processing', get_current_user_id());
-    // if(!$completed_count && !$processing_count){
-    //  student_invalid_order();
-    // }
-
-    // $completed_tests = 0;
-    // foreach(wc_get_is_paid_statuses() as $status){
-
-    // }
-
-    // print_r(wc_get_is_paid_statuses());
-
-    // $orders = wc_get_orders([
-    //     'type' => 'shop_order',
-    //     'limit' => -1,
-    //     'customer_id' => $current_user->ID,
-    //     // 'status' => $paid_status,
-    // ]);
-
-    // print_r($orders);
-
-    // die;
-
-}
-
-function student_invalid_order()
-{
-
-    wp_redirect('student-locked-profile');
-    // die;
-    // load the file if exists
-    // $load = locate_template('student-dashboard/student_invalid_order.php', true);
-    // exit(); // just exit if template was found and loaded
-
 }
 
 function get_orders_count_from_status($status, $customer_id)
@@ -517,58 +402,6 @@ function bbloomer_checkout_save_user_meta($order_id)
 
 }
 
-function checkIfUserCanTest($meta_name)
-{
-    $user_id = get_current_user_id();
-    $user_meta = get_user_meta($user_id, $meta_name, true);
-
-    if ($user_meta && json_decode($user_meta)) {
-        $date_now = date("Y-m-d");
-        $meta = json_decode($user_meta);
-
-        if ($date_now < $meta->end_date) {
-            return true;
-        }
-
-    }
-    return false;
-}
-
-function getNoDays($is_general, $is_academic)
-{$user_id = get_current_user_id();
-
-    $days = null;
-    if ($is_general) {
-        $user_meta = get_user_meta($user_id, 'is_general', true);
-        $user_meta = json_decode($user_meta);
-        $days = $user_meta && $user_meta->days ? $user_meta->days : '';
-    }
-    if ($is_academic) {
-        $user_meta = get_user_meta($user_id, 'is_acedemic', true);
-        $user_meta = json_decode($user_meta);
-        $days = $user_meta && $user_meta->days && $user_meta->days > $days ? $user_meta->days : $days;
-    }
-    return $days;
-}
-
-function getExpiryDate($is_general, $is_academic)
-{$user_id = get_current_user_id();
-
-    $date = null;
-    if ($is_general) {
-        $user_meta = get_user_meta($user_id, 'is_general', true);
-        $user_meta = json_decode($user_meta);
-        $date = $user_meta && $user_meta->end_date ? $user_meta->end_date : '';
-    }
-    if ($is_academic) {
-        $user_meta = get_user_meta($user_id, 'is_acedemic', true);
-        $user_meta = json_decode($user_meta);
-        $date = $user_meta && $user_meta->end_date && $user_meta->end_date > $date ? $user_meta->end_date : $date;
-    }
-
-    return $date;
-}
-
 function getStudentResults()
 {
     $user_id = get_current_user_id();
@@ -592,50 +425,44 @@ function getStudentResults()
 
 }
 
-getStudentResults();
-
 function custom_user_profile_fields($user)
 {
     $test_data = get_test_user_meta($user);
     ?>
-    <h3>User Test Information (Only valid for student Role)</h3>
-    <table class="form-table">
-        <tr>
-            <th><label for="company">General</label></th>
-            <td>
-                <input type="checkbox" class="regular-text"
-                <?php echo $test_data['is_general'] ? 'checked' : '' ?>
+<h3>User Test Information (Only valid for student Role)</h3>
+<table class="form-table">
+    <tr>
+        <th><label for="company">General</label></th>
+        <td>
+            <input type="checkbox" class="regular-text" <?php echo $test_data['is_general'] ? 'checked' : '' ?>
                 name="is_general" id="is_general" /><br />
-            </td>
-        </tr>
-        <tr>
-            <th><label for="company">Academic</label></th>
-            <td>
-                <input type="checkbox" class="regular-text"
-                    <?php echo $test_data['is_academic'] ? 'checked' : '' ?>
-                 name="is_acedemic" id="is_acedemic" /><br />
-            </td>
-        </tr>
-        <tr>
-            <th><label for="company">Days</label></th>
-            <td>
-                <input type="text" class="regular-text" name="days" id="days"
-                value="<?php echo $test_data['days'] ?>"
-                /><br />
-                <span class="description"> Eg. 15 , 30 , 40 etc </span>
-            </td>
-        </tr>
-        <tr>
-            <th><label for="company">Expiry Date</label></th>
-            <td>
-                <input type="date" class="regular-text"
-                 value="<?php echo $test_data['end_date'] ?>"
-                name="expiry_date" id="expiry_date" /><br />
-                <span class="description">Last date when user is allowed to give tests</span>
-            </td>
-        </tr>
-    </table>
-  <?php
+        </td>
+    </tr>
+    <tr>
+        <th><label for="company">Academic</label></th>
+        <td>
+            <input type="checkbox" class="regular-text" <?php echo $test_data['is_academic'] ? 'checked' : '' ?>
+                name="is_acedemic" id="is_acedemic" /><br />
+        </td>
+    </tr>
+    <tr>
+        <th><label for="company">Days</label></th>
+        <td>
+            <input type="text" class="regular-text" name="days" id="days"
+                value="<?php echo $test_data['days'] ?>" /><br />
+            <span class="description"> Eg. 15 , 30 , 40 etc </span>
+        </td>
+    </tr>
+    <tr>
+        <th><label for="company">Expiry Date</label></th>
+        <td>
+            <input type="date" class="regular-text" value="<?php echo $test_data['end_date'] ?>" name="expiry_date"
+                id="expiry_date" /><br />
+            <span class="description">Last date when user is allowed to give tests</span>
+        </td>
+    </tr>
+</table>
+<?php
 }
 add_action('show_user_profile', 'custom_user_profile_fields');
 add_action('edit_user_profile', 'custom_user_profile_fields');
@@ -735,13 +562,12 @@ function get_test_result($test_id)
 
     global $wpdb;
     $tbl_name = $wpdb->prefix . 'ar_ielts_student_results';
-  
 
     $result = $wpdb->get_row('SELECT * FROM ' .
         $tbl_name . ' as t
     LEFT JOIN ' . $wpdb->prefix . 'posts as p
     ON p.id = t.test_id
-WHERE t.id = '.$test_id.'
+WHERE t.id = ' . $test_id . '
      ORDER BY t.id DESC
     ',
         ARRAY_A);

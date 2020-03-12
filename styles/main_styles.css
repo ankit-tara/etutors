@@ -2235,8 +2235,8 @@ section
   color: #4E598C;
 }
 
-.container.login-wrapper form#loginform .login-username label,
-.container.login-wrapper form#loginform .login-password label{
+.container.login-wrapper #loginform .login-username label,
+.container.login-wrapper #loginform .login-password label{
 	display: none;
 }
 
@@ -2267,14 +2267,13 @@ section
 .testimonial_slider .owl-item .bubble-3{
 	display: inline-block;
     margin: 2em 2em 2em 3em;
-    min-height: 4em;
     padding: 1.5em 1.8em;
     position: relative;
     border-radius: 3em;
     line-height: 26px;
     color: black;
 	background-color: white;
-	word-break: break-word;
+	word-break: break-all;
 	min-height: 240px;
 }
 .testimonial_slider .owl-item.center .bubble-3{

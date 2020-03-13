@@ -28,9 +28,9 @@ function ar_scripts()
     wp_enqueue_style('courses', $url . '/styles/courses.css');
     wp_enqueue_style('course', $url . '/styles/course.css');
     wp_enqueue_style('responsive', $url . '/styles/responsive.css');
+    wp_enqueue_script('slim', 'https://code.jquery.com/jquery-3.4.1.js', array('jquery'), true);
     wp_enqueue_script('tweenmax', $url . '/plugins/greensock/TweenMax.min.js', array('jquery'), '3.3.6', true);
     wp_enqueue_script('colorbox-js', $url . '/plugins/colorbox/jquery.colorbox-min.js', array('jquery'), '3.3.6', true);
-    wp_enqueue_script('slim', 'https: //code.jquery.com/jquery-3.2.1.slim.min.js', array('jquery'), true);
     wp_enqueue_script('popper', $url . '/styles/bootstrap4/popper.js', array('jquery'), true);
     wp_enqueue_script('bootstrap', $url . '/styles/bootstrap4/bootstrap.min.js', array('jquery'), true);
     wp_enqueue_script('timelineMax', $url . '/plugins/greensock/TimelineMax.min.js', array('jquery'), '3.3.6', true);
@@ -47,6 +47,10 @@ function ar_scripts()
     }
     if (is_page('about')) {
         wp_enqueue_script('aboutjs', $url . '/js/about.js', array('jquery'), '3.3.6', true);
+    }
+    if (is_page('student-profile')) {
+        wp_enqueue_script('themify-styles', $url . '/plugins/themify-icons.css');
+        wp_enqueue_script('dashboard-styles', $url . '/dashboardstyle.css');
     }
 }
 
@@ -121,7 +125,7 @@ function my_logged_in_redirect()
     }
 
 }
-add_action('template_redirect', 'my_logged_in_redirect');
+// add_action('template_redirect', 'my_logged_in_redirect');
 
 add_action('template_redirect', 'redirect_to_specific_page');
 
@@ -278,30 +282,30 @@ add_action('init', function () {
         }
     }
 
-    global $wpdb;
-    $charset_collate = $wpdb->get_charset_collate();
+//     global $wpdb;
+//     $charset_collate = $wpdb->get_charset_collate();
 
-    $table_name = $wpdb->prefix . 'ar_ielts_student_results';
-    if ($wpdb->get_var("show tables like '$table_name'") != $table_name) {
+//     $table_name = $wpdb->prefix . 'ar_ielts_student_results';
+//     if ($wpdb->get_var("show tables like '$table_name'") != $table_name) {
 
-        $sql = "CREATE TABLE $table_name (
-            id mediumint(9) NOT NULL AUTO_INCREMENT,
-            test_id mediumint(9) NOT NULL ,
-            user_id mediumint(9) NOT NULL ,
-            student_response longtext  NULL ,
-            test_response longtext  NULL ,
-            wrting_1 longtext  NULL ,
-            wrting_2 longtext  NULL ,
-            instrutor_resp_1 longtext  NULL ,
-            instrutor_resp_2 longtext  NULL ,
-            score mediumint(9) NULL,
-            created_at datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
-            PRIMARY KEY  (id)
-        ) $charset_collate;";
+//         $sql = "CREATE TABLE $table_name (
+//             id mediumint(9) NOT NULL AUTO_INCREMENT,
+//             test_id mediumint(9) NOT NULL ,
+//             user_id mediumint(9) NOT NULL ,
+//             student_response longtext  NULL ,
+//             test_response longtext  NULL ,
+//             wrting_1 longtext  NULL ,
+//             wrting_2 longtext  NULL ,
+//             instrutor_resp_1 longtext  NULL ,
+//             instrutor_resp_2 longtext  NULL ,
+//             score mediumint(9) NULL,
+//             created_at datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+//             PRIMARY KEY  (id)
+//         ) $charset_collate;";
 
-        require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-        dbDelta($sql);
-    }
+//         require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+//         dbDelta($sql);
+//     }
 
 });
 
@@ -318,30 +322,6 @@ function wc_assign_custom_role($args)
     return $args;
 }
 
-function get_orders_count_from_status($status, $customer_id)
-{
-    global $wpdb;
-
-    // We add 'wc-' prefix when is missing from order staus
-    $status = 'wc-' . str_replace('wc-', '', $status);
-
-    // return $wpdb->get_var("
-    //     SELECT count(ID)  FROM {$wpdb->prefix}posts WHERE post_status LIKE '$status' AND `post_type` LIKE 'shop_order'
-    // ");
-
-    global $wpdb;
-
-    return $wpdb->get_var("
-    SELECT count(p.ID) FROM {$wpdb->prefix}posts p
-    INNER JOIN {$wpdb->prefix}postmeta pm ON p.ID = pm.post_id
-    WHERE p.post_type = 'shop_order'
-    AND p.post_status ='$status'
-    AND pm.meta_key = '_customer_user'
-    AND pm.meta_value = '$customer_id'
-    ORDER BY p.ID DESC LIMIT 1
-");
-
-}
 
 add_action('woocommerce_thankyou', 'bbloomer_checkout_save_user_meta');
 
@@ -618,25 +598,25 @@ function get_total_tests()
     return $result;
 }
 
-function create_column()
-{
-    global $wpdb;
-    $tbl_name = $wpdb->prefix . 'ar_ielts_student_results';
+// function create_column()
+// {
+//     global $wpdb;
+//     $tbl_name = $wpdb->prefix . 'ar_ielts_student_results';
 
-    $myPosts = $wpdb->get_var("SELECT count(*) FROM INFORMATION_SCHEMA.COLUMNS
-    WHERE TABLE_NAME = '{$tbl_name}' AND COLUMN_NAME = 'score' ");
+//     $myPosts = $wpdb->get_var("SELECT count(*) FROM INFORMATION_SCHEMA.COLUMNS
+//     WHERE TABLE_NAME = '{$tbl_name}' AND COLUMN_NAME = 'score' ");
 
-    if (!$myPosts) {
-        $wpdb->query("ALTER TABLE $tbl_name ADD score FLOAT(10) NULL");
-    }
+//     if (!$myPosts) {
+//         $wpdb->query("ALTER TABLE $tbl_name ADD score FLOAT(10) NULL");
+//     }
 
-    $myPosts = $wpdb->get_var("SELECT count(*) FROM INFORMATION_SCHEMA.COLUMNS
-    WHERE TABLE_NAME = '{$tbl_name}' AND COLUMN_NAME = 'comment' ");
+//     $myPosts = $wpdb->get_var("SELECT count(*) FROM INFORMATION_SCHEMA.COLUMNS
+//     WHERE TABLE_NAME = '{$tbl_name}' AND COLUMN_NAME = 'comment' ");
 
-    if (!$myPosts) {
-        $wpdb->query("ALTER TABLE $tbl_name ADD comment VARCHAR(255) NULL");
-    }
+//     if (!$myPosts) {
+//         $wpdb->query("ALTER TABLE $tbl_name ADD comment VARCHAR(255) NULL");
+//     }
 
-}
+// }
 
-add_action('init', 'create_column');
+// add_action('init', 'create_column');

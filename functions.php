@@ -196,15 +196,24 @@ add_action('init', 'disable_woo_commerce_sidebar');
 
 add_action('init', function () {
     if (is_user_logged_in() && current_user_can('student')) {
-        $current_user = wp_get_current_user();
 
-        $valid_test_list_url = [
-            'student-profile/listening',
-            'student-profile/reading',
-            'student-profile/writing',
-        ];
         $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
         if (contains('student-profile', $url_path)) {
+            $current_user = wp_get_current_user();
+
+            $valid_test_list_url = [
+                'student-profile/listening',
+                'student-profile/reading',
+                'student-profile/writing',
+            ];
+
+            if (contains('student-profile/results', $url_path)) {
+                $load = locate_template('student-dashboard/result-view.php', true);
+                if ($load) {
+                    exit(); // just exit if template was found and loaded
+                }
+
+            }
 
             if (in_array($url_path, $valid_test_list_url)) {
 
@@ -402,7 +411,7 @@ function bbloomer_checkout_save_user_meta($order_id)
 
 }
 
-function getStudentResults()
+function getStudentResults($test_part)
 {
     $user_id = get_current_user_id();
 
@@ -417,7 +426,10 @@ function getStudentResults()
         $tbl_name . ' as t
     LEFT JOIN ' . $wpdb->prefix . 'posts as p
     ON p.id = t.test_id
+     LEFT JOIN wp_postmeta pm ON ( pm.post_id = p.ID)
      WHERE (t.user_id="' . $user_id . '")
+     AND (pm.meta_key="test_part")
+     AND (pm.meta_value="' . $test_part . '")
      ORDER BY t.id DESC
      LIMIT ' . $start . ', ' . $posts_per_page . '',
         ARRAY_A);
@@ -425,6 +437,28 @@ function getStudentResults()
 
 }
 
+function get_count($type)
+{
+
+    $user_id = get_current_user_id();
+
+    global $wpdb;
+    $tbl_name = $wpdb->prefix . 'ar_ielts_student_results';
+
+    $result = $wpdb->get_row('SELECT count(*) as count FROM ' .
+        $tbl_name . ' as t
+    LEFT JOIN ' . $wpdb->prefix . 'posts as p
+    ON p.id = t.test_id
+     LEFT JOIN wp_postmeta pm ON ( pm.post_id = p.ID)
+     WHERE (t.user_id="' . $user_id . '")
+     AND (pm.meta_key="test_part")
+     AND (pm.meta_value="' . $type . '")
+    ',
+        ARRAY_A);
+
+    return $result;
+
+}
 function custom_user_profile_fields($user)
 {
     $test_data = get_test_user_meta($user);

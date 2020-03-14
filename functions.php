@@ -125,7 +125,7 @@ function my_logged_in_redirect()
     }
 
 }
-// add_action('template_redirect', 'my_logged_in_redirect');
+add_action('template_redirect', 'my_logged_in_redirect');
 
 add_action('template_redirect', 'redirect_to_specific_page');
 
@@ -547,6 +547,18 @@ function create_post_type()
             'has_archive' => false,
         )
     );
+
+    register_post_type('test_materials',
+    array(
+        'labels' => array(
+            'name' => __('Test Materials'),
+            'singular_name' => __('Material'),
+        ),
+        'public' => true,
+        'has_archive' => false,
+    )
+);
+
 }
 
 function getAllStudentResults()

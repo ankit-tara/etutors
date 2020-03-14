@@ -146,8 +146,14 @@
                     
                      <!-- <li class="nav-item  <?php //echo $url_path == $profile_url ? 'active':''  ?>">
                         <a class="sidebar-link" href="<?php  //echo $profile_url .'/results'?>">
-                            <span class="icon-holder"><i class="c-brown-500 ti-clipboard"></i> </span>
-                            <span class="title">Results</span>
+                            <span class="icon-holder"><i class="c-brown-500 ti-zip"></i> </span>
+                            <span class="title">Handouts</span>
+                        </a>
+                    </li>
+                     <li class="nav-item  <?php //echo $url_path == $profile_url ? 'active':''  ?>">
+                        <a class="sidebar-link" href="<?php  //echo $profile_url .'/results'?>">
+                            <span class="icon-holder"><i class="c-blue-500 ti-clipboard"></i> </span>
+                            <span class="title">Homework</span>
                         </a>
                     </li> -->
                 </ul>

@@ -277,7 +277,7 @@ console.log(element)
 
 
   jQuery(".writing textarea").keyup(function() {
-    var characterCount = jQuery(this).val().length,
+    var characterCount = countWords(jQuery(this).val()),
       current = jQuery(this)
         .siblings("#the-count")
         .find("#current");
@@ -286,20 +286,94 @@ console.log(element)
   });
 });
 
-
-function disableselect(e) {
-  return false
+function countWords(str) {
+  var matches = str.match(/[\w\d\’\'-]+/gi);
+  return matches ? matches.length : 0;
 }
+// function disableselect(e) {
+//   return false
+// }
 
-function reEnable() {
-  return true
-}
+// function reEnable() {
+//   return true
+// }
 
-document.onselectstart = new Function ("return false")
+// document.onselectstart = new Function ("return false")
 
-if (window.sidebar) {
-  document.onmousedown = disableselect
-  document.onclick = reEnable
-}
+// if (window.sidebar) {
+//   document.onmousedown = disableselect
+//   document.onclick = reEnable
+// }
 
-document.addEventListener('contextmenu', event => event.preventDefault());
+// document.addEventListener('contextmenu', event => event.preventDefault());
+
+jQuery("body").on("paste", function(event) {
+  console.log(event.originalEvent.clipboardData.getData("Text").length);
+  let text = event.originalEvent.clipboardData.getData("Text");
+  if (countWords(text) > 5) {
+    alert('You cannot copy more than 5 words')
+    event.preventDefault();
+  }
+});
+
+jQuery("body").on("keypress", function(event) {
+  if (event.which <= 48 || event.which >= 57) {
+    return false;
+  }
+});
+
+// var words = $(".content")
+//   .first()
+//   .text()
+//   .split(/\s+/);
+// var text = words.join("</span> <span>");
+// $(".content")
+//   .first()
+//   .html("<span>" + text + "</span>");
+// $("span").on("click", function() {
+//   $(this).css("background-color", "red");
+// });
+
+// document.getElementsByClassName("highlight").onclick = function() {
+//   // Get Selection
+  // sel = window.getSelection();
+  // if (sel.rangeCount && sel.getRangeAt) {
+  //   range = sel.getRangeAt(0);
+  // }
+  // // Set design mode to on
+  // document.designMode = "on";
+  // if (range) {
+  //   sel.removeAllRanges();
+  //   sel.addRange(range);
+  // }
+  // // Colorize text
+  // let color = this.datacolor
+  // console.log(color)
+  // document.execCommand(color, false, "red");
+  // document.execCommand("ForeColor", false, "white");
+  // // Set design mode to off
+  // document.designMode = "off";
+// }
+
+jQuery('.highlight-opt').on('click',function(e){
+  e.preventDefault()
+  let color = $(this).data('color');
+  console.log(color);
+
+ sel = window.getSelection();
+  if (sel.rangeCount && sel.getRangeAt) {
+    range = sel.getRangeAt(0);
+  }
+  // Set design mode to on
+  document.designMode = "on";
+  if (range) {
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+  // Colorize text
+ 
+  document.execCommand("BackColor", false, color);
+  document.execCommand("ForeColor", false, "white");
+  // Set design mode to off
+  document.designMode = "off";
+})

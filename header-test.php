@@ -52,6 +52,14 @@ $seconds = $parsed['hour'] * 3600 + $parsed['minute'] * 60 + $parsed['second'];
         </nav>
     </header>
 
+    <div class="highlight-options ">
+
+    <button class="icon-holder highlight-opt" data-color="green"> <i class="c-purple-500 ti-paint-bucket"></i> </button>
+    <button class="icon-holder highlight-opt" data-color="purple"> <i class="c-purple-500 ti-paint-bucket"></i> </button>
+    <button class="icon-holder highlight-opt" data-color="pink"> <i class="c-purple-500 ti-paint-bucket"></i> </button>
+    <button class="icon-holder highlight-opt" data-color="blue"> <i class="c-purple-500 ti-paint-bucket"></i> </button>
+    </div>
+
     <div class="container-fluid">
         <div class="row heading">
             <div class="col-lg-4">

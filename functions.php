@@ -228,29 +228,47 @@ add_action('init', function () {
                 }
             }
 
-            if ($url_path == 'student-profile/test/listening' && isset($_GET['et']) && $_GET['et']) {
+            if (contains('student-profile/test', $url_path)) {
 
-                // load the file if exists
-                $load = locate_template('student-dashboard/listening-test.php', true);
-                if ($load) {
-                    exit(); // just exit if template was found and loaded
+                if ($url_path == 'student-profile/test/listening' && isset($_GET['et']) && $_GET['et']) {
+
+                    // load the file if exists
+                    $load = locate_template('student-dashboard/listening-test.php', true);
+                    if ($load) {
+                        exit(); // just exit if template was found and loaded
+                    }
+                }
+                if ($url_path == 'student-profile/test/reading' && isset($_GET['et']) && $_GET['et']) {
+
+                    // load the file if exists
+                    $load = locate_template('student-dashboard/reading-test.php', true);
+                    if ($load) {
+                        exit(); // just exit if template was found and loaded
+                    }
+                }
+                if ($url_path == 'student-profile/test/writing' && isset($_GET['et']) && $_GET['et']) {
+
+                    // load the file if exists
+                    $load = locate_template('student-dashboard/writing-test.php', true);
+                    if ($load) {
+                        exit(); // just exit if template was found and loaded
+                    }
                 }
             }
-            if ($url_path == 'student-profile/test/reading' && isset($_GET['et']) && $_GET['et']) {
 
-                // load the file if exists
-                $load = locate_template('student-dashboard/reading-test.php', true);
+            if (contains('student-profile/material', $url_path)) {
+                $load = locate_template('student-dashboard/materials.php', true);
                 if ($load) {
                     exit(); // just exit if template was found and loaded
                 }
+
             }
-            if ($url_path == 'student-profile/test/writing' && isset($_GET['et']) && $_GET['et']) {
-
-                // load the file if exists
-                $load = locate_template('student-dashboard/writing-test.php', true);
+            if (contains('student-profile/view/material', $url_path)) {
+                $load = locate_template('student-dashboard/material.php', true);
                 if ($load) {
                     exit(); // just exit if template was found and loaded
                 }
+
             }
         }
 
@@ -283,29 +301,29 @@ add_action('init', function () {
     }
 
 //     global $wpdb;
-//     $charset_collate = $wpdb->get_charset_collate();
+    //     $charset_collate = $wpdb->get_charset_collate();
 
 //     $table_name = $wpdb->prefix . 'ar_ielts_student_results';
-//     if ($wpdb->get_var("show tables like '$table_name'") != $table_name) {
+    //     if ($wpdb->get_var("show tables like '$table_name'") != $table_name) {
 
 //         $sql = "CREATE TABLE $table_name (
-//             id mediumint(9) NOT NULL AUTO_INCREMENT,
-//             test_id mediumint(9) NOT NULL ,
-//             user_id mediumint(9) NOT NULL ,
-//             student_response longtext  NULL ,
-//             test_response longtext  NULL ,
-//             wrting_1 longtext  NULL ,
-//             wrting_2 longtext  NULL ,
-//             instrutor_resp_1 longtext  NULL ,
-//             instrutor_resp_2 longtext  NULL ,
-//             score mediumint(9) NULL,
-//             created_at datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
-//             PRIMARY KEY  (id)
-//         ) $charset_collate;";
+    //             id mediumint(9) NOT NULL AUTO_INCREMENT,
+    //             test_id mediumint(9) NOT NULL ,
+    //             user_id mediumint(9) NOT NULL ,
+    //             student_response longtext  NULL ,
+    //             test_response longtext  NULL ,
+    //             wrting_1 longtext  NULL ,
+    //             wrting_2 longtext  NULL ,
+    //             instrutor_resp_1 longtext  NULL ,
+    //             instrutor_resp_2 longtext  NULL ,
+    //             score mediumint(9) NULL,
+    //             created_at datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+    //             PRIMARY KEY  (id)
+    //         ) $charset_collate;";
 
 //         require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-//         dbDelta($sql);
-//     }
+    //         dbDelta($sql);
+    //     }
 
 });
 
@@ -321,7 +339,6 @@ function wc_assign_custom_role($args)
 
     return $args;
 }
-
 
 add_action('woocommerce_thankyou', 'bbloomer_checkout_save_user_meta');
 
@@ -549,15 +566,18 @@ function create_post_type()
     );
 
     register_post_type('test_materials',
-    array(
-        'labels' => array(
-            'name' => __('Test Materials'),
-            'singular_name' => __('Material'),
-        ),
-        'public' => true,
-        'has_archive' => false,
-    )
-);
+        array(
+            'labels' => array(
+                'name' => __('Test Materials'),
+                'singular_name' => __('Material'),
+            ),
+            'public' => true,
+            'has_archive' => false,
+        )
+    );
+    register_taxonomy("mat_categories", array("test_materials"),
+        array(
+            "hierarchical" => true, "label" => "Categories", "singular_label" => "Category", "rewrite" => array('slug' => 'work', 'with_front' => false)));
 
 }
 

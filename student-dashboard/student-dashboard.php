@@ -9,6 +9,11 @@ global $current_user;
 wp_get_current_user();
 
 $test_data = get_test_user_meta($current_user);
+$date1 = new DateTime(); //current date -or any date
+$date2 = new DateTime($test_data['end_date']); //Future date
+
+$diff = $date2->diff($date1); //find difference
+$days = $diff->days;
 
 $test_type = '';
 
@@ -29,6 +34,14 @@ $profile_result_url = $profile_url .'/results/'
 ?>
 <main class="main-content bgc-grey-100">
     <div id="mainContent">
+        <?php if($days  < 4 && $days > 0){ ?>
+                <div class="alert alert-danger">
+
+                NOTICE: Your account is going to expire soon . You can give tests till <?php echo date_format(new DateTime($test_data['end_date']), "j F , Y") ?>.Purchase new order or contact us for any query.
+                </div>
+
+
+             <?php } ?>
         <div class="card">
             <div class="card-body">
                 <p class="card-text">

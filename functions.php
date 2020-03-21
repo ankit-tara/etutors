@@ -632,7 +632,6 @@ function delete_test_result($test_id)
     }
 }
 
-
 function get_total_tests()
 {
     global $wpdb;
@@ -664,3 +663,78 @@ function get_total_tests()
 // }
 
 // add_action('init', 'create_column');
+
+function wpm_create_user_form_registration($cfdata)
+{
+    if (!isset($cfdata->posted_data) && class_exists('WPCF7_Submission')) {
+        // Contact Form 7 version 3.9 removed $cfdata->posted_data and now
+        // we have to retrieve it from an API
+        $submission = WPCF7_Submission::get_instance();
+        if ($submission) {
+            $formdata = $submission->get_posted_data();
+        }
+    } elseif (isset($cfdata->posted_data)) {
+        // For pre-3.9 versions of Contact Form 7
+        $formdata = $cfdata->posted_data;
+    } else {
+        // We can't retrieve the form data
+        return $cfdata;
+    }
+    // Check this is the user registration form
+
+    if ($cfdata->title() == 'Demo') {
+        $username = $formdata['NAME'];
+        $email = $formdata['EMAIL'];
+        $phone = $formdata['PHONE'];
+        
+        $password = wp_generate_password(12);
+        
+        // $fname = $formdata['FNAME'];
+        // $lname = $formdata['LNAME'];
+
+        if (!email_exists($email)) {
+            // Find an unused username
+            $username_tocheck = $username;
+            $i = 1;
+            while (username_exists($username_tocheck)) {
+                $username_tocheck = $username . $i++;
+            }
+            $username = $username_tocheck;
+            // Create the user
+            $userdata = array(
+                'user_login' => $username,
+                'user_pass' => $password,
+                'user_email' => $email,
+                // 'nickname' => $fname . ' ' . $lname,
+                // 'display_name' => $fname . ' ' . $lname,
+                // 'first_name' => $fname,
+                // 'last_name' => $lname,
+                'role' => 'student',
+            );
+
+            $user_id = wp_insert_user($userdata);
+
+            $data = [
+                'days' => 2,
+                'end_date' => date("Y-m-d", strtotime("$dt +2 day")),
+                'order_id' => '',
+            ];
+            $user_data = update_user_meta($user_id, 'is_acedemic', json_encode($data));
+            $user_data = update_user_meta($user_id, 'is_general', json_encode($data));
+
+            $user_data = update_user_meta($user_id, 'billing_phone',  $phone );
+            $user_data = update_user_meta($user_id, 'demo_p_data',  $password );
+
+            if (!is_wp_error($user_id)) {
+                wp_set_current_user($user_id);
+                wp_set_auth_cookie($user_id);
+
+                do_action('woocommerce_created_customer', $user_id);
+            }
+        }
+    }
+
+    return $cfdata;
+}
+add_action('wpcf7_before_send_mail', 'wpm_create_user_form_registration', 1);
+

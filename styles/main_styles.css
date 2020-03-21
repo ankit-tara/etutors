@@ -2703,6 +2703,19 @@ div#result-modal tr td:last-child, div#result-modal tr th:last-child {
     font-size: 20px;
 }
 
-div.pdfemb-viewer{
-	margin: 0 auto;
+
+.materialModal img{
+	width:100%;
+}
+
+.materialModal .modal-header{
+	background: #dedede
+}
+.materialModal .modal-header .close{
+	opacity: 1;
+    font-size: 25px;
+}
+
+.materialModal .mejs-container.wp-audio-shortcode.mejs-audio{
+	width:100% !important;
 }

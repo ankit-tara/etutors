@@ -33,20 +33,19 @@ $seconds = $parsed['hour'] * 3600 + $parsed['minute'] * 60 + $parsed['second'];
             <div class="timer">
                 <span style="display: none;" class="time-block">
                     <i class="fa fa-clock-o" aria-hidden="true"></i>
-                    <span id="time" data-time="<?php echo $seconds ?>
-"> <?php the_field('test_time', $test->ID)?> </span>
+                    <span id="time" data-time="<?php echo $seconds ?>"> <?php the_field('test_time', $test->ID)?> </span>
                 </span>
             </div>
 
             <div class="actions">
-    <a href="#" style="display:none" class="btn btn-primary form-btn" data-section="1" data-test-part="<?php echo $test_part ?>
-">Submit</a>
-
-                <!-- <a href="#" class="help">Help <i class="fa fa-info-circle" aria-hidden="true"></i>
-                </a> -->
+                <a href="#" class="help">Take Notes <i class="fa fa-info-circle" aria-hidden="true"></i></a>
+                <div class="notebook">
+                    <div id="mydivheader">Click here to move</div>
+                    <textarea id="page" cols="30" rows="10" placeholder="well...start note taking"></textarea>
+                </div>
+                <a href="#" style="display:none" class="btn btn-primary form-btn" data-section="1" data-test-part="<?php echo $test_part ?>">Submit</a>
                 <a href="<?php echo home_url() .'/student-profile' ?>" class="">
-                Go to Dashboard
-                <!-- <i class="fa fa-user-circle-o" aria-hidden="true"></i> -->
+                    Go to Dashboard
                 </a>
             </div>
         </nav>
@@ -54,10 +53,14 @@ $seconds = $parsed['hour'] * 3600 + $parsed['minute'] * 60 + $parsed['second'];
 
     <div class="highlight-options ">
 
-    <button class="icon-holder highlight-opt" data-color="green"> <i class="c-purple-500 ti-paint-bucket"></i> </button>
-    <button class="icon-holder highlight-opt" data-color="purple"> <i class="c-purple-500 ti-paint-bucket"></i> </button>
-    <button class="icon-holder highlight-opt" data-color="pink"> <i class="c-purple-500 ti-paint-bucket"></i> </button>
-    <button class="icon-holder highlight-opt" data-color="blue"> <i class="c-purple-500 ti-paint-bucket"></i> </button>
+        <button class="icon-holder highlight-opt" data-color="green"> <i class="c-purple-500 ti-paint-bucket"></i>
+        </button>
+        <button class="icon-holder highlight-opt" data-color="purple"> <i class="c-purple-500 ti-paint-bucket"></i>
+        </button>
+        <button class="icon-holder highlight-opt" data-color="pink"> <i class="c-purple-500 ti-paint-bucket"></i>
+        </button>
+        <button class="icon-holder highlight-opt" data-color="blue"> <i class="c-purple-500 ti-paint-bucket"></i>
+        </button>
     </div>
 
     <div class="container-fluid">

@@ -2648,3 +2648,25 @@ footer a:hover{
 div#result-modal tr td:last-child, div#result-modal tr th:last-child {
     display: none;
 }
+
+
+.notebook {
+    width: 50%;
+    height: 40%;
+}
+
+.notebook textarea {
+    width: 100%;
+    height: 100%;
+    padding: 2em 1em;
+    font: 400 1em/2em 'Cuprum', sans-serif;
+    color: #3b0101;
+    text-shadow: 0 1px rgba(59, 1, 1, 0.2);
+    resize: none;
+    background: linear-gradient(to bottom, #d9d9d9 0%, #fffdef 5%, #fffdef 95%, #d9d9d9 100%);
+    background-size: 100% 2em;
+    background-repeat: repeat-y;
+    border-radius: 3px;
+    box-shadow: inset 0 0 30px rgba(59, 1, 1, 0.2), 0 2px 2px rgba(59, 1, 1, 0.6);
+    overflow: hidden;
+}

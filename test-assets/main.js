@@ -356,24 +356,64 @@ jQuery("body").on("keypress", function(event) {
 // }
 
 jQuery('.highlight-opt').on('click',function(e){
-  e.preventDefault()
-  let color = $(this).data('color');
-  console.log(color);
-
- sel = window.getSelection();
-  if (sel.rangeCount && sel.getRangeAt) {
-    range = sel.getRangeAt(0);
-  }
-  // Set design mode to on
-  document.designMode = "on";
-  if (range) {
-    sel.removeAllRanges();
-    sel.addRange(range);
-  }
-  // Colorize text
- 
-  document.execCommand("BackColor", false, color);
-  document.execCommand("ForeColor", false, "white");
-  // Set design mode to off
-  document.designMode = "off";
+   let color = $(this).data("color");
+   console.log(color);
+ highlightSelection(color,'white');
 })
+
+function highlightSelection(forcolor,backcolor){
+   sel = window.getSelection();
+   if (sel.rangeCount && sel.getRangeAt) {
+     range = sel.getRangeAt(0);
+   }
+   // Set design mode to on
+   document.designMode = "on";
+   if (range) {
+     sel.removeAllRanges();
+     sel.addRange(range);
+   }
+   // Colorize text
+
+   document.execCommand("BackColor", false, backcolor);
+   document.execCommand("ForeColor", false, forcolor);
+   // Set design mode to off
+   document.designMode = "off";
+}
+// context menu
+
+// $(document)
+//   .bind("contextmenu", function(event) {
+//     event.preventDefault();
+//     $("<div class='custom-context-menu'>Custom menu</div>")
+//       .appendTo("body")
+//       .css({ top: event.pageY + "px", left: event.pageX + "px" });
+//   })
+//   .bind("click", function(event) {
+//     $("div.custom-context-menu").hide();
+//   });
+
+        
+        $(function() {
+        $.contextMenu({
+            selector: '.content', 
+            callback: function(key, options) {
+              if(key == 'highlight'){
+                highlightSelection("black", "yellow");
+              }
+              if (key == "clear") {
+                highlightSelection("#76777a", "white");
+              }
+            },
+            items: {
+                "highlight": {name: "Highlight", icon: "edit"},
+                "clear": {name: "clear", icon: "delete"},
+                "quit": {name: "Quit", icon: function(){
+                    return 'context-menu-icon context-menu-icon-quit';
+                }}
+            }
+        });
+
+        // $('.context-menu-one').on('click', function(e){
+        //     console.log('clicked', this);
+        // })    
+    });

@@ -9,8 +9,9 @@
 
     <link rel="stylesheet" href="<?=get_stylesheet_directory_uri()?>/test-assets/style.css" />
     <link rel="stylesheet" href="<?=get_stylesheet_directory_uri()?>/test-assets/player.css">
+ <link href="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
 
-    <?php wp_head();?>
+   <?php wp_head();?>
 </head>
 
 <body>

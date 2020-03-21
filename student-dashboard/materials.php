@@ -9,13 +9,14 @@ if ($is_allowed && !$is_demo_user) {
 
 }
 
-$name = basename(parse_url(add_query_arg(array()), PHP_URL_PATH));
+echo $name = basename(parse_url(add_query_arg(array()), PHP_URL_PATH));
 $args = array(
     'post_type' => 'test_materials',
-    'posts_per_page' => 10,
-    'taxonomy_name' => $name);
+    'posts_per_page' => 20,
+    'mat_categories' => $name);
 $posts = new WP_Query($args);
-
+// print_R($posts);
+// die();
 get_header('dashboard');
 $profile_url = home_url() . '/student-profile';
 ?>

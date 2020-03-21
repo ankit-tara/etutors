@@ -20,6 +20,10 @@
     </div>
 </div>
   <?php wp_footer();?>
+   <script src="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.js" type="text/javascript"></script>
+
+    <script src="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.ui.position.min.js" type="text/javascript"></script>
+    
   <script src="<?=get_stylesheet_directory_uri()?>/test-assets/soundmanager2.js"></script>
   <script src="<?=get_stylesheet_directory_uri()?>/test-assets/player.js"></script>
   <script src="<?=get_stylesheet_directory_uri()?>/test-assets/main.js"></script>

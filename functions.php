@@ -28,11 +28,11 @@ function ar_scripts()
     wp_enqueue_style('courses', $url . '/styles/courses.css');
     wp_enqueue_style('course', $url . '/styles/course.css');
     wp_enqueue_style('responsive', $url . '/styles/responsive.css');
+    wp_enqueue_script('slim', 'https://code.jquery.com/jquery-3.4.1.js', array('jquery'), true);
     wp_enqueue_script('tweenmax', $url . '/plugins/greensock/TweenMax.min.js', array('jquery'), '3.3.6', true);
     wp_enqueue_script('colorbox-js', $url . '/plugins/colorbox/jquery.colorbox-min.js', array('jquery'), '3.3.6', true);
-    wp_enqueue_script('slim', 'https: //code.jquery.com/jquery-3.2.1.slim.min.js', array('jquery'), true);
-    wp_enqueue_script('popper', $url . '/styles/bootstrap4/popper.js', array('jquery'), true);
     wp_enqueue_script('bootstrap', $url . '/styles/bootstrap4/bootstrap.min.js', array('jquery'), true);
+    wp_enqueue_script('popper', $url . '/styles/bootstrap4/popper.js', array('jquery'), true);
     wp_enqueue_script('timelineMax', $url . '/plugins/greensock/TimelineMax.min.js', array('jquery'), '3.3.6', true);
     wp_enqueue_script('scrollMagic', $url . '/plugins/scrollmagic/ScrollMagic.min.js', array('jquery'), '3.3.6', true);
     wp_enqueue_script('animationGsap', $url . '/plugins/greensock/animation.gsap.min.js', array('jquery'), '3.3.6', true);
@@ -47,6 +47,9 @@ function ar_scripts()
     }
     if (is_page('about')) {
         wp_enqueue_script('aboutjs', $url . '/js/about.js', array('jquery'), '3.3.6', true);
+    }
+    if (is_page('student-profile')) {
+        wp_enqueue_script('dashboard-styles', $url . '/dashboardstyle.css');
     }
 }
 
@@ -196,15 +199,24 @@ add_action('init', 'disable_woo_commerce_sidebar');
 
 add_action('init', function () {
     if (is_user_logged_in() && current_user_can('student')) {
-        $current_user = wp_get_current_user();
 
-        $valid_test_list_url = [
-            'student-profile/listening',
-            'student-profile/reading',
-            'student-profile/writing',
-        ];
         $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
         if (contains('student-profile', $url_path)) {
+            $current_user = wp_get_current_user();
+
+            $valid_test_list_url = [
+                'student-profile/listening',
+                'student-profile/reading',
+                'student-profile/writing',
+            ];
+
+            if (contains('student-profile/results', $url_path)) {
+                $load = locate_template('student-dashboard/result-view.php', true);
+                if ($load) {
+                    exit(); // just exit if template was found and loaded
+                }
+
+            }
 
             if (in_array($url_path, $valid_test_list_url)) {
 
@@ -215,29 +227,47 @@ add_action('init', function () {
                 }
             }
 
-            if ($url_path == 'student-profile/test/listening' && isset($_GET['et']) && $_GET['et']) {
+            if (contains('student-profile/test', $url_path)) {
 
-                // load the file if exists
-                $load = locate_template('student-dashboard/listening-test.php', true);
-                if ($load) {
-                    exit(); // just exit if template was found and loaded
+                if ($url_path == 'student-profile/test/listening' && isset($_GET['et']) && $_GET['et']) {
+
+                    // load the file if exists
+                    $load = locate_template('student-dashboard/listening-test.php', true);
+                    if ($load) {
+                        exit(); // just exit if template was found and loaded
+                    }
+                }
+                if ($url_path == 'student-profile/test/reading' && isset($_GET['et']) && $_GET['et']) {
+
+                    // load the file if exists
+                    $load = locate_template('student-dashboard/reading-test.php', true);
+                    if ($load) {
+                        exit(); // just exit if template was found and loaded
+                    }
+                }
+                if ($url_path == 'student-profile/test/writing' && isset($_GET['et']) && $_GET['et']) {
+
+                    // load the file if exists
+                    $load = locate_template('student-dashboard/writing-test.php', true);
+                    if ($load) {
+                        exit(); // just exit if template was found and loaded
+                    }
                 }
             }
-            if ($url_path == 'student-profile/test/reading' && isset($_GET['et']) && $_GET['et']) {
 
-                // load the file if exists
-                $load = locate_template('student-dashboard/reading-test.php', true);
+            if (contains('student-profile/material', $url_path)) {
+                $load = locate_template('student-dashboard/materials.php', true);
                 if ($load) {
                     exit(); // just exit if template was found and loaded
                 }
+
             }
-            if ($url_path == 'student-profile/test/writing' && isset($_GET['et']) && $_GET['et']) {
-
-                // load the file if exists
-                $load = locate_template('student-dashboard/writing-test.php', true);
+            if (contains('student-profile/view/material', $url_path)) {
+                $load = locate_template('student-dashboard/material.php', true);
                 if ($load) {
                     exit(); // just exit if template was found and loaded
                 }
+
             }
         }
 
@@ -270,29 +300,29 @@ add_action('init', function () {
     }
 
 //     global $wpdb;
-//     $charset_collate = $wpdb->get_charset_collate();
+    //     $charset_collate = $wpdb->get_charset_collate();
 
 //     $table_name = $wpdb->prefix . 'ar_ielts_student_results';
-//     if ($wpdb->get_var("show tables like '$table_name'") != $table_name) {
+    //     if ($wpdb->get_var("show tables like '$table_name'") != $table_name) {
 
 //         $sql = "CREATE TABLE $table_name (
-//             id mediumint(9) NOT NULL AUTO_INCREMENT,
-//             test_id mediumint(9) NOT NULL ,
-//             user_id mediumint(9) NOT NULL ,
-//             student_response longtext  NULL ,
-//             test_response longtext  NULL ,
-//             wrting_1 longtext  NULL ,
-//             wrting_2 longtext  NULL ,
-//             instrutor_resp_1 longtext  NULL ,
-//             instrutor_resp_2 longtext  NULL ,
-//             score mediumint(9) NULL,
-//             created_at datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
-//             PRIMARY KEY  (id)
-//         ) $charset_collate;";
+    //             id mediumint(9) NOT NULL AUTO_INCREMENT,
+    //             test_id mediumint(9) NOT NULL ,
+    //             user_id mediumint(9) NOT NULL ,
+    //             student_response longtext  NULL ,
+    //             test_response longtext  NULL ,
+    //             wrting_1 longtext  NULL ,
+    //             wrting_2 longtext  NULL ,
+    //             instrutor_resp_1 longtext  NULL ,
+    //             instrutor_resp_2 longtext  NULL ,
+    //             score mediumint(9) NULL,
+    //             created_at datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+    //             PRIMARY KEY  (id)
+    //         ) $charset_collate;";
 
 //         require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-//         dbDelta($sql);
-//     }
+    //         dbDelta($sql);
+    //     }
 
 });
 
@@ -308,7 +338,6 @@ function wc_assign_custom_role($args)
 
     return $args;
 }
-
 
 add_action('woocommerce_thankyou', 'bbloomer_checkout_save_user_meta');
 
@@ -378,7 +407,7 @@ function bbloomer_checkout_save_user_meta($order_id)
 
 }
 
-function getStudentResults()
+function getStudentResults($test_part)
 {
     $user_id = get_current_user_id();
 
@@ -393,7 +422,10 @@ function getStudentResults()
         $tbl_name . ' as t
     LEFT JOIN ' . $wpdb->prefix . 'posts as p
     ON p.id = t.test_id
+     LEFT JOIN wp_postmeta pm ON ( pm.post_id = p.ID)
      WHERE (t.user_id="' . $user_id . '")
+     AND (pm.meta_key="test_part")
+     AND (pm.meta_value="' . $test_part . '")
      ORDER BY t.id DESC
      LIMIT ' . $start . ', ' . $posts_per_page . '',
         ARRAY_A);
@@ -401,6 +433,28 @@ function getStudentResults()
 
 }
 
+function get_count($type)
+{
+
+    $user_id = get_current_user_id();
+
+    global $wpdb;
+    $tbl_name = $wpdb->prefix . 'ar_ielts_student_results';
+
+    $result = $wpdb->get_row('SELECT count(*) as count FROM ' .
+        $tbl_name . ' as t
+    LEFT JOIN ' . $wpdb->prefix . 'posts as p
+    ON p.id = t.test_id
+     LEFT JOIN wp_postmeta pm ON ( pm.post_id = p.ID)
+     WHERE (t.user_id="' . $user_id . '")
+     AND (pm.meta_key="test_part")
+     AND (pm.meta_value="' . $type . '")
+    ',
+        ARRAY_A);
+
+    return $result;
+
+}
 function custom_user_profile_fields($user)
 {
     $test_data = get_test_user_meta($user);
@@ -506,9 +560,26 @@ function create_post_type()
                 'singular_name' => __('Reviews'),
             ),
             'public' => true,
-            'has_archive' => false,
+            'has_archive' => true,
+            'hierarchical' => true,
         )
     );
+
+    register_post_type('test_materials',
+        array(
+            'labels' => array(
+                'name' => __('Test Materials'),
+                'singular_name' => __('Material'),
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'hierarchical' => true,
+        )
+    );
+    register_taxonomy("mat_categories", array("test_materials"),
+        array(
+            "hierarchical" => true, "label" => "Categories", "singular_label" => "Category", "rewrite" => array('slug' => 'work', 'with_front' => false)));
+
 }
 
 function getAllStudentResults()
@@ -551,6 +622,16 @@ WHERE t.id = ' . $test_id . '
 
 }
 
+function delete_test_result($test_id)
+{
+    if ($test_id) {
+        global $wpdb;
+        $tbl_name = $wpdb->prefix . 'ar_ielts_student_results';
+        $wpdb->delete($tbl_name, array('id' => $test_id));
+
+    }
+}
+
 function get_total_tests()
 {
     global $wpdb;
@@ -582,3 +663,78 @@ function get_total_tests()
 // }
 
 // add_action('init', 'create_column');
+
+function wpm_create_user_form_registration($cfdata)
+{
+    if (!isset($cfdata->posted_data) && class_exists('WPCF7_Submission')) {
+        // Contact Form 7 version 3.9 removed $cfdata->posted_data and now
+        // we have to retrieve it from an API
+        $submission = WPCF7_Submission::get_instance();
+        if ($submission) {
+            $formdata = $submission->get_posted_data();
+        }
+    } elseif (isset($cfdata->posted_data)) {
+        // For pre-3.9 versions of Contact Form 7
+        $formdata = $cfdata->posted_data;
+    } else {
+        // We can't retrieve the form data
+        return $cfdata;
+    }
+    // Check this is the user registration form
+
+    if ($cfdata->title() == 'Demo') {
+        $username = $formdata['NAME'];
+        $email = $formdata['EMAIL'];
+        $phone = $formdata['PHONE'];
+        
+        $password = wp_generate_password(12);
+        
+        // $fname = $formdata['FNAME'];
+        // $lname = $formdata['LNAME'];
+
+        if (!email_exists($email)) {
+            // Find an unused username
+            $username_tocheck = $username;
+            $i = 1;
+            while (username_exists($username_tocheck)) {
+                $username_tocheck = $username . $i++;
+            }
+            $username = $username_tocheck;
+            // Create the user
+            $userdata = array(
+                'user_login' => $username,
+                'user_pass' => $password,
+                'user_email' => $email,
+                // 'nickname' => $fname . ' ' . $lname,
+                // 'display_name' => $fname . ' ' . $lname,
+                // 'first_name' => $fname,
+                // 'last_name' => $lname,
+                'role' => 'student',
+            );
+
+            $user_id = wp_insert_user($userdata);
+
+            $data = [
+                'days' => 2,
+                'end_date' => date("Y-m-d", strtotime("$dt +2 day")),
+                'order_id' => '',
+            ];
+            $user_data = update_user_meta($user_id, 'is_acedemic', json_encode($data));
+            $user_data = update_user_meta($user_id, 'is_general', json_encode($data));
+
+            $user_data = update_user_meta($user_id, 'billing_phone',  $phone );
+            $user_data = update_user_meta($user_id, 'demo_p_data',  $password );
+
+            if (!is_wp_error($user_id)) {
+                wp_set_current_user($user_id);
+                wp_set_auth_cookie($user_id);
+
+                do_action('woocommerce_created_customer', $user_id);
+            }
+        }
+    }
+
+    return $cfdata;
+}
+add_action('wpcf7_before_send_mail', 'wpm_create_user_form_registration', 1);
+

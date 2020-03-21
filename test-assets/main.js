@@ -277,7 +277,7 @@ console.log(element)
 
 
   jQuery(".writing textarea").keyup(function() {
-    var characterCount = jQuery(this).val().length,
+    var characterCount = countWords(jQuery(this).val()),
       current = jQuery(this)
         .siblings("#the-count")
         .find("#current");
@@ -286,20 +286,189 @@ console.log(element)
   });
 });
 
+function countWords(str) {
+  var matches = str.match(/[\w\d\’\'-]+/gi);
+  return matches ? matches.length : 0;
+}
+// function disableselect(e) {
+//   return false
+// }
 
-function disableselect(e) {
-  return false
+// function reEnable() {
+//   return true
+// }
+
+// document.onselectstart = new Function ("return false")
+
+// if (window.sidebar) {
+//   document.onmousedown = disableselect
+//   document.onclick = reEnable
+// }
+
+// document.addEventListener('contextmenu', event => event.preventDefault());
+
+jQuery("body").on("paste", function(event) {
+  console.log(event.originalEvent.clipboardData.getData("Text").length);
+  let text = event.originalEvent.clipboardData.getData("Text");
+  if (countWords(text) > 5) {
+    alert('You cannot copy more than 5 words')
+    event.preventDefault();
+  }
+});
+
+// jQuery("body").on("keypress", function(event) {
+//   if (event.which <= 48 || event.which >= 57) {
+//     return false;
+//   }
+// });
+
+// var words = jQuery(".content")
+//   .first()
+//   .text()
+//   .split(/\s+/);
+// var text = words.join("</span> <span>");
+// jQuery(".content")
+//   .first()
+//   .html("<span>" + text + "</span>");
+// jQuery("span").on("click", function() {
+//   jQuery(this).css("background-color", "red");
+// });
+
+// document.getElementsByClassName("highlight").onclick = function() {
+//   // Get Selection
+  // sel = window.getSelection();
+  // if (sel.rangeCount && sel.getRangeAt) {
+  //   range = sel.getRangeAt(0);
+  // }
+  // // Set design mode to on
+  // document.designMode = "on";
+  // if (range) {
+  //   sel.removeAllRanges();
+  //   sel.addRange(range);
+  // }
+  // // Colorize text
+  // let color = this.datacolor
+  // console.log(color)
+  // document.execCommand(color, false, "red");
+  // document.execCommand("ForeColor", false, "white");
+  // // Set design mode to off
+  // document.designMode = "off";
+// }
+
+jQuery('.highlight-opt').on('click',function(e){
+   let color = jQuery(this).data("color");
+   console.log(color);
+ highlightSelection(color,'white');
+})
+
+function highlightSelection(forcolor,backcolor){
+   sel = window.getSelection();
+   if (sel.rangeCount && sel.getRangeAt) {
+     range = sel.getRangeAt(0);
+   }
+   // Set design mode to on
+   document.designMode = "on";
+   if (range) {
+     sel.removeAllRanges();
+     sel.addRange(range);
+   }
+   // Colorize text
+
+   document.execCommand("BackColor", false, backcolor);
+   document.execCommand("ForeColor", false, forcolor);
+   // Set design mode to off
+   document.designMode = "off";
+}
+// context menu
+
+// jQuery(document)
+//   .bind("contextmenu", function(event) {
+//     event.preventDefault();
+//     jQuery("<div class='custom-context-menu'>Custom menu</div>")
+//       .appendTo("body")
+//       .css({ top: event.pageY + "px", left: event.pageX + "px" });
+//   })
+//   .bind("click", function(event) {
+//     jQuery("div.custom-context-menu").hide();
+//   });
+
+        
+        jQuery(function() {
+        jQuery.contextMenu({
+            selector: '.content', 
+            callback: function(key, options) {
+              if(key == 'highlight'){
+                highlightSelection("black", "yellow");
+              }
+              if (key == "clear") {
+                highlightSelection("#76777a", "white");
+              }
+            },
+            items: {
+                "highlight": {name: "Highlight", icon: "edit"},
+                "clear": {name: "clear", icon: "delete"},
+                "quit": {name: "Quit", icon: function(){
+                    return 'context-menu-icon context-menu-icon-quit';
+                }}
+            }
+        });
+
+        // jQuery('.context-menu-one').on('click', function(e){
+        //     console.log('clicked', this);
+        // })    
+    });
+
+
+dragElement(document.getElementById("notebook"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
 }
 
-function reEnable() {
-  return true
-}
 
-document.onselectstart = new Function ("return false")
+jQuery(".notes-btn").click(function(e){
+  e.preventDefault();
+  jQuery("#notebook").toggle();
+});
 
-if (window.sidebar) {
-  document.onmousedown = disableselect
-  document.onclick = reEnable
-}
-
-document.addEventListener('contextmenu', event => event.preventDefault());
+jQuery(".close-notebook").click(function(e){
+  e.preventDefault();
+  jQuery("#notebook").hide();
+});

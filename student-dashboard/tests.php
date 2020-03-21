@@ -60,27 +60,6 @@ if ($is_allowed && !$is_demo_user ) {
 
 get_header('dashboard');
 
-// $is_academic = checkIfUserCanTest('is_acedemic');
-// $is_general = checkIfUserCanTest('is_general');
-
-// if ($is_general || $is_academic) {
-//     $no_of_days = getNoDays($is_general, $is_academic);
-//     if (!$is_demo_user) {
-//         $no_of_posts = $no_of_days ?: $no_of_posts;
-//     }
-//     $meta_query[] = [
-//         'key' => 'test_type',
-//         'value' => $is_academic ? '"academic"' : '"general"',
-//         'compare' => 'LIKE',
-//     ];
-// }
-// print_r($meta_query);
-// $args = array(
-//     'post_type' => 'ar-ielts-tests',
-//     'posts_per_page' => $no_of_posts,
-//     'meta_query' => $meta_query,
-// );
-
 ?>
 
 <main class="main-content bgc-grey-100">

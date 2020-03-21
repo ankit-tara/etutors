@@ -81,7 +81,7 @@ Template Name: About us
                     <?php  
 					$args = array(
 						'post_type'      => 'student_reviews',
-						'posts_per_page' => 3,
+						'posts_per_page' => 15,
 					);
 
 					$loop = new WP_Query( $args );

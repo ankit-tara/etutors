@@ -9,6 +9,11 @@ global $current_user;
 wp_get_current_user();
 
 $test_data = get_test_user_meta($current_user);
+$date1 = new DateTime(); //current date -or any date
+$date2 = new DateTime($test_data['end_date']); //Future date
+
+$diff = $date2->diff($date1); //find difference
+$days = $diff->days;
 
 $test_type = '';
 
@@ -19,11 +24,24 @@ if ($test_data['is_general']) {
     $test_type .= $test_type ? " , General" : "General";
 }
 
-$results = getStudentResults();
 
+$listening_count = get_count('listening');
+$reading_count = get_count('reading');
+$writing_count = get_count('writing');
+$results =  $listening_count || $reading_count || $writing_count;
+$profile_url = home_url() . '/student-profile';
+$profile_result_url = $profile_url .'/results/'
 ?>
 <main class="main-content bgc-grey-100">
     <div id="mainContent">
+        <?php if($days  < 4 && $days > 0){ ?>
+                <div class="alert alert-danger">
+
+                NOTICE: Your account is going to expire soon . You can give tests till <?php echo date_format(new DateTime($test_data['end_date']), "j F , Y") ?>.Purchase new order or contact us for any query.
+                </div>
+
+
+             <?php } ?>
         <div class="card">
             <div class="card-body">
                 <p class="card-text">
@@ -37,59 +55,72 @@ $results = getStudentResults();
                 </p>
             </div>
         </div>
+        <?php if($results ): ?>
+        <h2>Your Results</h2>
 
 
-        <div class="table-responsive p-20">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="bdwT-0">#</th>
-                        <th class="bdwT-0">Test Name</th>
-                        <th class="bdwT-0">Test Type</th>
-                        <th class="bdwT-0">Date</th>
-                        <th class="bdwT-0">Score(By Instrutor)</th>
-                        <!-- <th class="bdwT-0">View</th> -->
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($results as $key => $result) {
-    $result['test_id'];
-    $test_type = get_field('test_part', $result['test_id']);
-    $url = home_url() . '/student-profile/view-test/' . $test_type . '?et=' . base64_encode(get_the_ID());
-    $url = wp_nonce_url($url, 'ar-tests-noonce')
-    ?>
+        <div class="row gap-20">
+            <div class="col-md-3">
+            <a href="<?php echo $profile_result_url.'listening'  ?>">
+                <div class="layers bd bgc-white p-20">
+                    <div class="layer w-100 mB-10">
+                        <h6 class="lh-1">Listening Results</h6>
+                    </div>
+                    <div class="layer w-100">
+                        View All
+                            <div class="peer"><span
+                                    class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500"><?php echo $listening_count['count']  ?></span>
+                            </div>
+                        
+                    </div>
+                </div>
+                </a>
+            </div>
 
-                    <tr>
-                        <td class="fw-600"><?php echo $key + 1 ?></td>
-                        <td><?php echo $result['post_title'] ?></td>
-                        <td>
-                            <?php
-if ($test_type == 'listening') {
-        echo '<span class="badge bgc-deep-purple-50 c-deep-purple-700 p-10 lh-0 tt-c badge-pill">Listening</span>';
-    } elseif ($test_type == 'listening') {
-        echo '<span class="badge bgc-green-50 c-green-700 p-10 lh-0 tt-c badge-pill">Reading</span>';
-    } else {
-        echo '
-                            <span class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c badge-pill">Writing</span>
-                                 ';
-    }
-    ?>
-                            </<span>
-                        </td>
-                        <td><?php echo date('j F , Y', strtotime($result['created_at'])); ?></td>
-                        <td><?php echo $result['score'] ?: '' ?></td>
-                        <!-- <td>
-				            <a href="<?php //echo $url ?>" class="btn bgc-deep-purple-50 c-deep-purple-700">View</a>
-                        </td> -->
-                    </tr>
-                    <?php }?>
-
-                    <?php if (!count($results)) {
-    echo '<tr><td colspan=5" class="text-center">You have not given any tests yet!!</td></tr>';
-}?>
-                </tbody>
-            </table>
+            <div class="col-md-3">
+            <a href="<?php echo $profile_result_url . 'reading' ?>
+">
+                <div class="layers bd bgc-white p-20">
+                    <div class="layer w-100 mB-10">
+                        <h6 class="lh-1">Reading Results</h6>
+                    </div>
+                    <div class="layer w-100">
+                        View All
+                            <div class="peer"><span
+                                    class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500"><?php echo $reading_count['count']  ?></span>
+                            </div>
+                        
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-3">
+            <a href="<?php echo $profile_result_url . 'writing' ?>
+">
+                <div class="layers bd bgc-white p-20">
+                    <div class="layer w-100 mB-10">
+                        <h6 class="lh-1">Writing Results</h6>
+                    </div>
+                     <div class="layer w-100">
+                        View All
+                            <div class="peer"><span
+                                    class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500"><?php echo $writing_count['count']  ?></span>
+                            </div>
+                        
+                    </div>
+                </div>
+                </a>
+            </div>
+          
         </div>
+    <?php else: ?>
+
+    <div>
+    <h2 class="text-center">You will see your test results here</h2>
+    </div>
+    <?php endif; ?>
+
+      
     </div>
 
 </main>

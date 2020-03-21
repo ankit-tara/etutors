@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
-    
+
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
         <title>Dashboard</title>
-        <?php wp_head(); ?>
+        <?php wp_head();?>
     <style>
         #loader {
             transition: all .3s ease-in-out;
@@ -17,12 +17,12 @@
             background: #fff;
             z-index: 90000
         }
-        
+
         #loader.fadeOut {
             opacity: 0;
             visibility: hidden
         }
-        
+
         .spinner {
             width: 40px;
             height: 40px;
@@ -49,7 +49,7 @@
         .dashboard .sidebar .sidebar-inner .sidebar-logo .logo{
             width:auto;
         }
-        
+
         @-webkit-keyframes sk-scaleout {
             0% {
                 -webkit-transform: scale(0)
@@ -59,7 +59,7 @@
                 opacity: 0
             }
         }
-        
+
         @keyframes sk-scaleout {
             0% {
                 -webkit-transform: scale(0);
@@ -78,11 +78,12 @@
 </head>
 
 <body class="app dashboard js-focus-visible is-collapsed">
-    <?php 
-        $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
-        $profile_url = home_url() . '/student-profile';
-        $profile_url_name = 'student-profile';
-    ?>
+    <?php
+$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
+$profile_url = home_url() . '/student-profile';
+$profile_url_name = 'student-profile';
+
+?>
     <div id="loader">
         <div class="spinner"></div>
     </div>
@@ -103,7 +104,7 @@
                             <a class="sidebar-link td-n" href="index">
                                 <div class="peers ai-c fxw-nw">
                                     <div class="peer">
-                                        <div class="logo"><img src="<?php echo get_template_directory_uri();?>/images/logo1.png" alt="" width="200"></div>
+                                        <div class="logo"><img src="<?php echo get_template_directory_uri(); ?>/images/logo1.png" alt="" width="200"></div>
                                     </div>
                                     <div class="peer peer-greed">
                                         <h5 class="lh-1 mB-0 logo-text"></h5></div>
@@ -116,40 +117,46 @@
                     </div>
                 </div>
                 <ul class="sidebar-menu scrollable pos-r">
-                    <li class="nav-item mT-30 <?php echo $url_path == $profile_url ? 'active':''  ?>">
-                        <a class="sidebar-link" href="<?php  echo $profile_url?>">
+                    <li class="nav-item mT-30 <?php echo $url_path == $profile_url ? 'active' : '' ?>">
+                        <a class="sidebar-link" href="<?php echo $profile_url ?>">
                             <span class="icon-holder"><i class="c-blue-500 ti-home"></i> </span>
                             <span class="title">Dashboard</span>
                         </a>
                     </li>
-                    
-                    <li class="nav-item dropdown <?php echo $url_path == $profile_url_name.'/listening' ? 'active':''  ?>">
-                        <a class="sidebar-link" href="<?php echo $profile_url .'/listening'?>">
+
+                    <li class="nav-item dropdown <?php echo $url_path == $profile_url_name . '/listening' ? 'active' : '' ?>">
+                        <a class="sidebar-link" href="<?php echo $profile_url . '/listening' ?>">
                             <span class="icon-holder"> <i class="c-purple-500 ti-headphone-alt"></i> </span>
                             <span class="title">Listening</span>
                         </a>
                     </li>
 
-                    <li class="nav-item dropdown <?php echo $url_path == $profile_url_name.'/reading' ? 'active':''  ?>">
-                        <a class="sidebar-link" href="<?php echo $profile_url .'/reading'?>">
+                    <li class="nav-item dropdown <?php echo $url_path == $profile_url_name . '/reading' ? 'active' : '' ?>">
+                        <a class="sidebar-link" href="<?php echo $profile_url . '/reading' ?>">
                             <span class="icon-holder"> <i class="c-green-500 ti-palette"></i> </span>
                             <span class="title">Reading</span>
                         </a>
                     </li>
 
-                    <li class="nav-item dropdown <?php echo $url_path == $profile_url_name.'/writing' ? 'active':''  ?>">
-                        <a class="sidebar-link" href="<?php echo $profile_url .'/writing'?>">
+                    <li class="nav-item dropdown <?php echo $url_path == $profile_url_name . '/writing' ? 'active' : '' ?>">
+                        <a class="sidebar-link" href="<?php echo $profile_url . '/writing' ?>">
                             <span class="icon-holder"> <i class="c-pink-500 ti-pencil-alt"></i> </span>
                             <span class="title">Writing</span>
                         </a>
                     </li>
-                    
-                     <!-- <li class="nav-item  <?php //echo $url_path == $profile_url ? 'active':''  ?>">
-                        <a class="sidebar-link" href="<?php  //echo $profile_url .'/results'?>">
-                            <span class="icon-holder"><i class="c-brown-500 ti-clipboard"></i> </span>
-                            <span class="title">Results</span>
+
+                     <li class="nav-item  <?php echo $url_path == $profile_url . '/material/handouts' ? 'active' : '' ?>">
+                        <a class="sidebar-link" href="<?php echo $profile_url . '/material/handouts' ?>">
+                            <span class="icon-holder"><i class="c-brown-500 ti-zip"></i> </span>
+                            <span class="title">Handouts</span>
                         </a>
-                    </li> -->
+                    </li>
+                     <li class="nav-item  <?php echo $url_path == $profile_url . '/material/homework' ? 'active' : '' ?>">
+                        <a class="sidebar-link" href="<?php echo $profile_url . '/material/homework' ?>">
+                            <span class="icon-holder"><i class="c-blue-500 ti-clipboard"></i> </span>
+                            <span class="title">Homework</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -163,10 +170,10 @@
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle no-after peers fxw-nw ai-c lh-1" data-toggle="dropdown">
                                 <div class="peer mR-10"><img class="w-2r bdrs-50p" src="https://randomuser.me/api/portraits/men/10.jpg" alt=""></div>
-                                <div class="peer"><span class="fsz-sm c-grey-900"><?= wp_get_current_user()->user_login;?></span></div>
+                                <div class="peer"><span class="fsz-sm c-grey-900"><?=wp_get_current_user()->user_login;?></span></div>
                             </a>
                             <ul class="dropdown-menu fsz-sm">
-                                <li><a href="<?php site_url(); ?>/my-account" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-user mR-10"></i> <span>My account</span></a></li>
+                                <li><a href="<?php site_url();?>/my-account" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-user mR-10"></i> <span>My account</span></a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="<?php echo wp_logout_url(home_url()); ?>" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-power-off mR-10"></i> <span>Logout</span></a></li>
                             </ul>
@@ -174,3 +181,5 @@
                     </ul>
                 </div>
             </div>
+
+            

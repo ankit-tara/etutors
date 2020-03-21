@@ -561,6 +561,16 @@
 	.course_tabs_container .tab_panels .tab_panel p{
 		font-size: 13px;
 	}
+
+	.test-header nav{
+		flex-wrap: wrap;
+	}
+	.test-header nav .actions .help{
+		margin: 0 10px;
+	}
+	#notebookheader span{
+		visibility: hidden;
+	}
 }
 
 /************

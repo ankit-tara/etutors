@@ -9,7 +9,7 @@ if ($is_allowed && !$is_demo_user) {
 
 }
 
-echo $name = basename(parse_url(add_query_arg(array()), PHP_URL_PATH));
+// echo $name = basename(parse_url(add_query_arg(array()), PHP_URL_PATH));
 $args = array(
     'post_type' => 'test_materials',
     'posts_per_page' => 20,

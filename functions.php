@@ -31,8 +31,8 @@ function ar_scripts()
     wp_enqueue_script('slim', 'https://code.jquery.com/jquery-3.4.1.js', array('jquery'), true);
     wp_enqueue_script('tweenmax', $url . '/plugins/greensock/TweenMax.min.js', array('jquery'), '3.3.6', true);
     wp_enqueue_script('colorbox-js', $url . '/plugins/colorbox/jquery.colorbox-min.js', array('jquery'), '3.3.6', true);
-    wp_enqueue_script('popper', $url . '/styles/bootstrap4/popper.js', array('jquery'), true);
     wp_enqueue_script('bootstrap', $url . '/styles/bootstrap4/bootstrap.min.js', array('jquery'), true);
+    wp_enqueue_script('popper', $url . '/styles/bootstrap4/popper.js', array('jquery'), true);
     wp_enqueue_script('timelineMax', $url . '/plugins/greensock/TimelineMax.min.js', array('jquery'), '3.3.6', true);
     wp_enqueue_script('scrollMagic', $url . '/plugins/scrollmagic/ScrollMagic.min.js', array('jquery'), '3.3.6', true);
     wp_enqueue_script('animationGsap', $url . '/plugins/greensock/animation.gsap.min.js', array('jquery'), '3.3.6', true);
@@ -49,7 +49,6 @@ function ar_scripts()
         wp_enqueue_script('aboutjs', $url . '/js/about.js', array('jquery'), '3.3.6', true);
     }
     if (is_page('student-profile')) {
-        wp_enqueue_script('themify-styles', $url . '/plugins/themify-icons.css');
         wp_enqueue_script('dashboard-styles', $url . '/dashboardstyle.css');
     }
 }

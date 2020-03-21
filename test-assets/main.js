@@ -316,11 +316,11 @@ jQuery("body").on("paste", function(event) {
   }
 });
 
-jQuery("body").on("keypress", function(event) {
-  if (event.which <= 48 || event.which >= 57) {
-    return false;
-  }
-});
+// jQuery("body").on("keypress", function(event) {
+//   if (event.which <= 48 || event.which >= 57) {
+//     return false;
+//   }
+// });
 
 // var words = $(".content")
 //   .first()

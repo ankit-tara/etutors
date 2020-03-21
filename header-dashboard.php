@@ -150,8 +150,8 @@
                             <span class="title">Handouts</span>
                         </a>
                     </li>
-                     <li class="nav-item  <?php echo $url_path == $profile_url.'/material/results' ? 'active':''  ?>">
-                        <a class="sidebar-link" href="<?php  echo $profile_url .'/material/results'?>">
+                     <li class="nav-item  <?php echo $url_path == $profile_url.'/material/homework' ? 'active':''  ?>">
+                        <a class="sidebar-link" href="<?php  echo $profile_url .'/material/homework'?>">
                             <span class="icon-holder"><i class="c-blue-500 ti-clipboard"></i> </span>
                             <span class="title">Homework</span>
                         </a>

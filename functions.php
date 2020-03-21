@@ -560,7 +560,8 @@ function create_post_type()
                 'singular_name' => __('Reviews'),
             ),
             'public' => true,
-            'has_archive' => false,
+            'has_archive' => true,
+            'hierarchical' => true,
         )
     );
 
@@ -571,7 +572,8 @@ function create_post_type()
                 'singular_name' => __('Material'),
             ),
             'public' => true,
-            'has_archive' => false,
+            'has_archive' => true,
+            'hierarchical' => true,
         )
     );
     register_taxonomy("mat_categories", array("test_materials"),
@@ -619,6 +621,17 @@ WHERE t.id = ' . $test_id . '
     return $result;
 
 }
+
+function delete_test_result($test_id)
+{
+    if ($test_id) {
+        global $wpdb;
+        $tbl_name = $wpdb->prefix . 'ar_ielts_student_results';
+        $wpdb->delete($tbl_name, array('id' => $test_id));
+
+    }
+}
+
 
 function get_total_tests()
 {

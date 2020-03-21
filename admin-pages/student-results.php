@@ -1,4 +1,12 @@
 <?php
+$is_delete = isset($_GET['type']) && $_GET['type'] == 'delete' ? true : false;
+$test_id = isset($_GET['test_id']) ? $_GET['test_id'] : '';
+
+if($is_delete && $test_id){
+    $del = delete_test_result($test_id);
+}
+
+
 
 $tests = getAllStudentResults();
 $total_tests = get_total_tests();
@@ -15,6 +23,7 @@ $total_tests = get_total_tests();
 
                 <th scope="col">Score</th>
                 <th scope="col">View</th>
+                <th scope="col">Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +33,10 @@ $total_tests = get_total_tests();
     $view = add_query_arg(array(
         'test_id' => $test['id'],
         'type' => 'view',
+    ), $home_url);
+    $delete = add_query_arg(array(
+        'test_id' => $test['id'],
+        'type' => 'delete',
     ), $home_url);
 
     ?>
@@ -38,6 +51,9 @@ $total_tests = get_total_tests();
                 <td><?php echo $test['score'] ?></td>
                 <td>
                     <a href="<?php echo $view ?>" class="btn btn-primary">View</a>
+                </td>
+                <td>
+                    <a href="<?php echo $delete ?>" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
             <?php }?>

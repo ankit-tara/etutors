@@ -132,15 +132,18 @@
           let qusno = e.data.qusno ? e.data.qusno : getRandomId();
           let qusnodisplay = e.data.qusno ? e.data.qusno + "." : "";
           let qusHtml =
-            '<p><span class="qus-index" data-index="' +
+            '<span class="qus-index" data-index="' +
             qusno +
-            '"></p>' +
+            '">' +
             qusnodisplay +
             "</span>" +
             e.data.qus;
           let id = getRandomId();
 
+          console.log(qusHtml)
+
           let html =
+          '<p>'+
             qusHtml +
             '<p class="ar-msq-input"><input type="radio" name="yesno-input-' +
             id +
@@ -158,7 +161,7 @@
             id +
             '" value="not given" class="qus-input" data-index="' +
             id +
-            '">Not Given<br/></p>';
+            '">Not Given<br/></p></p>';
           editor.insertContent(html);
         }
       }

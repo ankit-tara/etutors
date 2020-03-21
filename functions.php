@@ -121,7 +121,7 @@ function my_logged_in_redirect()
     }
 
 }
-// add_action('template_redirect', 'my_logged_in_redirect');
+add_action('template_redirect', 'my_logged_in_redirect');
 
 add_action('template_redirect', 'redirect_to_specific_page');
 

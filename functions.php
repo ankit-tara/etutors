@@ -31,8 +31,9 @@ function ar_scripts()
     wp_enqueue_script('slim', 'https://code.jquery.com/jquery-3.4.1.js', array('jquery'), true);
     wp_enqueue_script('tweenmax', $url . '/plugins/greensock/TweenMax.min.js', array('jquery'), '3.3.6', true);
     wp_enqueue_script('colorbox-js', $url . '/plugins/colorbox/jquery.colorbox-min.js', array('jquery'), '3.3.6', true);
-    wp_enqueue_script('bootstrap', $url . '/styles/bootstrap4/bootstrap.min.js', array('jquery'), true);
     wp_enqueue_script('popper', $url . '/styles/bootstrap4/popper.js', array('jquery'), true);
+
+    wp_enqueue_script('bootstrap', $url . '/styles/bootstrap4/bootstrap.min.js', array('jquery'), true);
     wp_enqueue_script('timelineMax', $url . '/plugins/greensock/TimelineMax.min.js', array('jquery'), '3.3.6', true);
     wp_enqueue_script('scrollMagic', $url . '/plugins/scrollmagic/ScrollMagic.min.js', array('jquery'), '3.3.6', true);
     wp_enqueue_script('animationGsap', $url . '/plugins/greensock/animation.gsap.min.js', array('jquery'), '3.3.6', true);
@@ -565,6 +566,9 @@ function create_post_type()
         )
     );
 
+    register_taxonomy("mat_categories", array("test_materials"),
+        array(
+            "hierarchical" => true, "label" => "Categories", "singular_label" => "Category", "rewrite" => array('slug' => 'work', 'with_front' => false)));
     register_post_type('test_materials',
         array(
             'labels' => array(
@@ -573,12 +577,13 @@ function create_post_type()
             ),
             'public' => true,
             'has_archive' => true,
-            'hierarchical' => true,
+            'hierarchical' => false,
+            'taxonomies' => array('mat_categories'),
+    'query_var' => true,
+ 'show_ui' => true,
+    'show_admin_column' => true,
         )
     );
-    register_taxonomy("mat_categories", array("test_materials"),
-        array(
-            "hierarchical" => true, "label" => "Categories", "singular_label" => "Category", "rewrite" => array('slug' => 'work', 'with_front' => false)));
 
 }
 
@@ -686,9 +691,9 @@ function wpm_create_user_form_registration($cfdata)
         $username = $formdata['NAME'];
         $email = $formdata['EMAIL'];
         $phone = $formdata['PHONE'];
-        
+
         $password = wp_generate_password(12);
-        
+
         // $fname = $formdata['FNAME'];
         // $lname = $formdata['LNAME'];
 
@@ -722,8 +727,8 @@ function wpm_create_user_form_registration($cfdata)
             $user_data = update_user_meta($user_id, 'is_acedemic', json_encode($data));
             $user_data = update_user_meta($user_id, 'is_general', json_encode($data));
 
-            $user_data = update_user_meta($user_id, 'billing_phone',  $phone );
-            $user_data = update_user_meta($user_id, 'demo_p_data',  $password );
+            $user_data = update_user_meta($user_id, 'billing_phone', $phone);
+            $user_data = update_user_meta($user_id, 'demo_p_data', $password);
 
             if (!is_wp_error($user_id)) {
                 wp_set_current_user($user_id);
@@ -737,4 +742,3 @@ function wpm_create_user_form_registration($cfdata)
     return $cfdata;
 }
 add_action('wpcf7_before_send_mail', 'wpm_create_user_form_registration', 1);
-

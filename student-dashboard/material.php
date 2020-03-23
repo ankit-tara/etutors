@@ -68,8 +68,15 @@ $test = get_post($id);
                                             echo do_shortcode('[pdf-embedder url="' . $field['url'] . '#toolbar=0"]');
                                         elseif($field['type'] == 'audio') : 
                                             echo do_shortcode('[audio src="' . $field['url'] . '"]');
+                                        elseif($field['type'] == 'video') : 
+                                            ?>
+                                            <video  controls controlsList="nodownload">
+                                                <source src="<?php echo $field['url'] ?>" type="video/<?php echo $field['subtype'] ?>">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            <?php
                                         else: ?>
-                                          <iframe src="<?php echo $field['url'].'#toolbar=0' ?>" width="100%" height="500px">
+                                          <iframe  preload="none" src="<?php echo $field['url'].'?rel=0&cc_load_policy=1' ?>" width="100%" height="500px">
                                          </iframe>
                                         <?php endif; ?>
                                           

@@ -277,7 +277,10 @@ console.log(element)
 
 
   jQuery(".writing textarea").keyup(function() {
-    var characterCount = countWords(jQuery(this).val()),
+    // var characterCount = countWords(jQuery(this).val()),
+    var characterCount = jQuery(this)
+        .val()
+        .replace(/ /g, "").length,
       current = jQuery(this)
         .siblings("#the-count")
         .find("#current");
@@ -472,3 +475,4 @@ jQuery(".close-notebook").click(function(e){
   e.preventDefault();
   jQuery("#notebook").hide();
 });
+

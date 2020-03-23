@@ -342,7 +342,7 @@
 	}
 
 	.test {
-		height: 65vh;
+		height: auto;
 	}
 
 	.login_button{

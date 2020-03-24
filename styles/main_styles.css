@@ -2707,6 +2707,9 @@ div#result-modal tr td:last-child, div#result-modal tr th:last-child {
 .materialModal img{
 	width:100%;
 }
+.materialModal video{
+	width:100%;
+}
 
 .materialModal .modal-header{
 	background: #dedede
@@ -2718,4 +2721,10 @@ div#result-modal tr td:last-child, div#result-modal tr th:last-child {
 
 .materialModal .mejs-container.wp-audio-shortcode.mejs-audio{
 	width:100% !important;
+}
+
+
+#logDrop{
+	transform: scale(1);
+	display: none;
 }

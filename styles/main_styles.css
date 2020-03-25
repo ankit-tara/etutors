@@ -2728,3 +2728,8 @@ div#result-modal tr td:last-child, div#result-modal tr th:last-child {
 	transform: scale(1);
 	display: none;
 }
+
+a.p-r{
+	float: right;
+    clear: both;
+}

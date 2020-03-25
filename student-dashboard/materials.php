@@ -23,8 +23,8 @@ $profile_url = home_url() . '/student-profile';
 
 <main class="main-content bgc-grey-100">
     <div id="mainContent">
-        <h2> <?php echo $name ?></h2>
-<a href="<?php echo $profile_url ?>" class="btn btn-primary">Back</a>
+        <h2> <?php echo $name ?> <a href="<?php echo $profile_url ?>" class="btn btn-primary p-r">Back</a></h2>
+
 
 
         <div class="material-boxes">

@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="test-footer row" style="display:none">
-        <div class="col-md-10 col-9">
+        <div class="col-md-10 col-12">
             <div class="pagination">
             
             </div>

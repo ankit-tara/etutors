@@ -54,20 +54,23 @@ $test = get_post($id);
                             </button>
 
 
-                            <div class="modal fade" id="materialModal_<?php echo $count?>" tabindex="-1" role="dialog"
+                            <div class="modal fade materialModal" id="materialModal_<?php echo $count?>" tabindex="-1" role="dialog"
                                 aria-labelledby="materialModalLabel" aria-hidden="true">
                                 <div class="modal-dialog  modal-lg" role="document">
                                     <div class="modal-content">
-                                        <div class="modal-header">
+                                        <div class="modal-header">Study Material
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
                                         <?php if($field['subtype'] == 'pdf') : 
-                                            echo do_shortcode('[pdf-embedder url="' . $field['url'] . '#toolbar=0"]');
+                                            echo do_shortcode('[wonderplugin_pdf src="' . $field['url'] . '" width="100%" height="600px" style="border:0;"]');
                                         elseif($field['type'] == 'audio') : 
                                             echo do_shortcode('[audio src="' . $field['url'] . '"]');
+                                        elseif($field['type'] == 'image') : 
+                                        ?><img src="<?php echo $field['url'].'#toolbar=0' ?>"/>
+                                        <?php 
                                         elseif($field['type'] == 'video') : 
                                             ?>
                                             <video  controls controlsList="nodownload">

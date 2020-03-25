@@ -486,12 +486,12 @@ p.highlight,.pag-index.highlight{
   }
 
   .test .right {
-    position: absolute !important;
+    /* position: absolute !important; */
     background: white;
-    top: 0;
-    left: 0;
+    /* top: 0;
+    left: 0; */
     margin: 0 10px;
-    display: none;
+    /* display: none; */
   }
 
   .left-help {
@@ -500,6 +500,10 @@ p.highlight,.pag-index.highlight{
 
   .test-sound {
     width: 90%;
+  }
+
+  .test .scroll-section{
+    height:auto;
   }
 }
 
@@ -522,4 +526,9 @@ p.highlight,.pag-index.highlight{
     background-color:#C0C0C0;
     border: 1px solid black;
     padding: 2px;
+}
+
+
+.help-icon{
+  display: none;
 }

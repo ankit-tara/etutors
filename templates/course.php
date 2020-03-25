@@ -51,7 +51,7 @@ Template Name: Course Template
 							<!-- <div class="sidebar_section_title">Teacher</div> -->
 							<div class="sidebar_teacher">
 								<div class="teacher_title_container d-flex flex-row align-items-center justify-content-start">
-									<div class="teacher_image"><img src="<?= get_template_directory_uri();?>/images/instructor.png" alt=""></div>
+									<div class="teacher_image"><img src="<?= get_template_directory_uri();?>/images/paras.png" alt=""></div>
 									<div class="teacher_title">
 										<div class="teacher_name"><a href="#">Paras Jhokke</a></div>
 										<div class="teacher_position">IELTS/TOEFL Instructor</div>

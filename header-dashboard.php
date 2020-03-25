@@ -74,7 +74,14 @@
     </style>
     <link href="<?php echo get_template_directory_uri(); ?>/plugins/themify-icons.css" rel="stylesheet">
     <link href="<?php echo get_template_directory_uri(); ?>/dashboardstyle.css" rel="stylesheet">
-
+    <script>
+        jQuery( document ).ready(function() {
+            jQuery("#toggleLog").click(function (e) {
+            e.preventDefault();
+            jQuery("#logDrop").toggle();
+            });
+        });
+    </script>
 </head>
 
 <body class="app dashboard js-focus-visible is-collapsed">
@@ -168,11 +175,11 @@ $profile_url_name = 'student-profile';
                     </ul>
                     <ul class="nav-right">
                         <li class="dropdown">
-                            <a href="" class="dropdown-toggle no-after peers fxw-nw ai-c lh-1" data-toggle="dropdown">
+                            <a href="" id="toggleLog" class="dropdown-toggle no-after peers fxw-nw ai-c lh-1" data-toggle="dropdown">
                                 <div class="peer mR-10"><img class="w-2r bdrs-50p" src="https://randomuser.me/api/portraits/men/10.jpg" alt=""></div>
                                 <div class="peer"><span class="fsz-sm c-grey-900"><?=wp_get_current_user()->user_login;?></span></div>
                             </a>
-                            <ul class="dropdown-menu fsz-sm">
+                            <ul class="dropdown-menu fsz-sm" id="logDrop">
                                 <li><a href="<?php site_url();?>/my-account" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-user mR-10"></i> <span>My account</span></a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="<?php echo wp_logout_url(home_url()); ?>" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-power-off mR-10"></i> <span>Logout</span></a></li>

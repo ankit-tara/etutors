@@ -26,8 +26,8 @@ $test = get_post($id);
                                     <?php the_field('section_'.$i.'_paragraph',$test->ID) ?>
                                 </div>
                             </div>
-                            <div class="right col-md-6 scroll-section pag-qus-sec">
-                                <div class="content">
+                            <div class="right col-md-6  pag-qus-sec">
+                                <div class="content scroll-section">
                                     <?php  the_field('section_'.$i.'_test',$test->ID) ?>
                                 </div>
                             </div>

@@ -14,7 +14,14 @@ jQuery(function() {
     if (!arr.includes(indexid)) {
       count = count + 1;
       arr.push(indexid);
-      lis += '     <li class="pag-index  " data-id="' + indexid + '">' + count;
+      let is_highlight = count == 1 ? "highlight" : "";
+      lis +=
+        '     <li class="pag-index ' +
+        is_highlight +
+        ' " data-id="' +
+        indexid +
+        '">' +
+        count;
     }
   });
 
@@ -106,17 +113,13 @@ jQuery(function() {
       display.text(minutes + ":" + seconds);
 
       if (--timer < 0) {
-        
-       
         clearInterval(test);
         jQuery(".form-btn").trigger("click");
 
         alert("Oops!! The time is over.");
-
       }
     }, 1000);
   }
-
 
   jQuery(".test-sound-btn").click(function() {
     let value = jQuery(this).val();
@@ -145,7 +148,7 @@ jQuery(function() {
     jQuery(".demo-audio").hide();
     //jQuery("audio").attr("src", "./assets/audio/section1.mp3");
     jQuery(".fa-pause").trigger("click");
-jQuery(".form-btn").show();
+    jQuery(".form-btn").show();
     jQuery("#player").html("");
     jQuery("#player").player("./assets/audio/section1.mp3");
     setTimeout(() => {
@@ -216,10 +219,9 @@ jQuery(".form-btn").show();
   jQuery(".pag-index").click(function() {
     let index = jQuery(this).data("id");
     let element = jQuery(".qus-input[data-index='" + index + "']");
-     jQuery(".test").hide();
-     // console.log(element.parents());
-     element.parents(".test").show();
-console.log(element)
+    jQuery(".test").hide();
+    // console.log(element.parents());
+    element.parents(".test").show();
     if (jQuery(element).hasClass(activeClass)) {
       return;
     } else {
@@ -237,9 +239,8 @@ console.log(element)
         .removeClass(activeClass);
     }, 1000);
     jQuery(this).addClass(activeClass);
-    let parentDiv = element.parents(".pag-qus-sec ");
+    let parentDiv = element.parents(".pag-qus-sec .content");
     // let parentDiv = element.parents(".pag-qus-sec ");
-    console.log(parentDiv)
     jQuery(parentDiv).animate(
       {
         scrollTop: parentDiv.scrollTop() + element.position().top - 200
@@ -252,7 +253,8 @@ console.log(element)
     let direction = jQuery(this).hasClass("up");
     let element = jQuery(".pagination").find("." + activeClass);
     let activeIndex = element.data("id");
-
+    console.log(activeIndex);
+    console.log(element);
     if (direction && activeIndex == 1) {
       return;
     }
@@ -262,19 +264,18 @@ console.log(element)
     if (direction) {
       activeIndex--;
 
-      jQuery(".pagination")
-        .find(".pag-index[data-id='" + activeIndex + "']")
-        .trigger("click");
+       element.prev().trigger("click");
+      // jQuery(".pagination")
+      //   .find(".pag-index[data-id='" + activeIndex + "']")
+      //   .trigger("click");
     } else {
       activeIndex++;
-
-      jQuery(".pagination")
-        .find(".pag-index[data-id='" + activeIndex + "']")
-        .trigger("click");
+      element.next().trigger("click");
+      // jQuery(".pagination")
+      //   .find(".pag-index[data-id='" + activeIndex + "']")
+      //   .trigger("click");
     }
   });
-
-
 
   jQuery(".writing textarea").keyup(function() {
     // var characterCount = countWords(jQuery(this).val()),
@@ -314,7 +315,7 @@ jQuery("body").on("paste", function(event) {
   console.log(event.originalEvent.clipboardData.getData("Text").length);
   let text = event.originalEvent.clipboardData.getData("Text");
   if (countWords(text) > 5) {
-    alert('You cannot copy more than 5 words')
+    alert("You cannot copy more than 5 words");
     event.preventDefault();
   }
 });
@@ -339,48 +340,48 @@ jQuery("body").on("paste", function(event) {
 
 // document.getElementsByClassName("highlight").onclick = function() {
 //   // Get Selection
-  // sel = window.getSelection();
-  // if (sel.rangeCount && sel.getRangeAt) {
-  //   range = sel.getRangeAt(0);
-  // }
-  // // Set design mode to on
-  // document.designMode = "on";
-  // if (range) {
-  //   sel.removeAllRanges();
-  //   sel.addRange(range);
-  // }
-  // // Colorize text
-  // let color = this.datacolor
-  // console.log(color)
-  // document.execCommand(color, false, "red");
-  // document.execCommand("ForeColor", false, "white");
-  // // Set design mode to off
-  // document.designMode = "off";
+// sel = window.getSelection();
+// if (sel.rangeCount && sel.getRangeAt) {
+//   range = sel.getRangeAt(0);
+// }
+// // Set design mode to on
+// document.designMode = "on";
+// if (range) {
+//   sel.removeAllRanges();
+//   sel.addRange(range);
+// }
+// // Colorize text
+// let color = this.datacolor
+// console.log(color)
+// document.execCommand(color, false, "red");
+// document.execCommand("ForeColor", false, "white");
+// // Set design mode to off
+// document.designMode = "off";
 // }
 
-jQuery('.highlight-opt').on('click',function(e){
-   let color = jQuery(this).data("color");
-   console.log(color);
- highlightSelection(color,'white');
-})
+jQuery(".highlight-opt").on("click", function(e) {
+  let color = jQuery(this).data("color");
+  console.log(color);
+  highlightSelection(color, "white");
+});
 
-function highlightSelection(forcolor,backcolor){
-   sel = window.getSelection();
-   if (sel.rangeCount && sel.getRangeAt) {
-     range = sel.getRangeAt(0);
-   }
-   // Set design mode to on
-   document.designMode = "on";
-   if (range) {
-     sel.removeAllRanges();
-     sel.addRange(range);
-   }
-   // Colorize text
+function highlightSelection(forcolor, backcolor) {
+  sel = window.getSelection();
+  if (sel.rangeCount && sel.getRangeAt) {
+    range = sel.getRangeAt(0);
+  }
+  // Set design mode to on
+  document.designMode = "on";
+  if (range) {
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+  // Colorize text
 
-   document.execCommand("BackColor", false, backcolor);
-   document.execCommand("ForeColor", false, forcolor);
-   // Set design mode to off
-   document.designMode = "off";
+  document.execCommand("BackColor", false, backcolor);
+  document.execCommand("ForeColor", false, forcolor);
+  // Set design mode to off
+  document.designMode = "off";
 }
 // context menu
 
@@ -395,37 +396,41 @@ function highlightSelection(forcolor,backcolor){
 //     jQuery("div.custom-context-menu").hide();
 //   });
 
-        
-        jQuery(function() {
-        jQuery.contextMenu({
-            selector: '.content', 
-            callback: function(key, options) {
-              if(key == 'highlight'){
-                highlightSelection("black", "yellow");
-              }
-              if (key == "clear") {
-                highlightSelection("#76777a", "white");
-              }
-            },
-            items: {
-                "highlight": {name: "Highlight", icon: "edit"},
-                "clear": {name: "clear", icon: "delete"},
-                "quit": {name: "Quit", icon: function(){
-                    return 'context-menu-icon context-menu-icon-quit';
-                }}
-            }
-        });
+jQuery(function() {
+  jQuery.contextMenu({
+    selector: ".content",
+    callback: function(key, options) {
+      if (key == "highlight") {
+        highlightSelection("black", "yellow");
+      }
+      if (key == "clear") {
+        highlightSelection("#76777a", "white");
+      }
+    },
+    items: {
+      highlight: { name: "Highlight", icon: "edit" },
+      clear: { name: "clear", icon: "delete" },
+      quit: {
+        name: "Quit",
+        icon: function() {
+          return "context-menu-icon context-menu-icon-quit";
+        }
+      }
+    }
+  });
 
-        // jQuery('.context-menu-one').on('click', function(e){
-        //     console.log('clicked', this);
-        // })    
-    });
-
+  // jQuery('.context-menu-one').on('click', function(e){
+  //     console.log('clicked', this);
+  // })
+});
 
 dragElement(document.getElementById("notebook"));
 
 function dragElement(elmnt) {
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  var pos1 = 0,
+    pos2 = 0,
+    pos3 = 0,
+    pos4 = 0;
   if (document.getElementById(elmnt.id + "header")) {
     // if present, the header is where you move the DIV from:
     document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
@@ -454,8 +459,8 @@ function dragElement(elmnt) {
     pos3 = e.clientX;
     pos4 = e.clientY;
     // set the element's new position:
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    elmnt.style.top = elmnt.offsetTop - pos2 + "px";
+    elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
   }
 
   function closeDragElement() {
@@ -465,14 +470,12 @@ function dragElement(elmnt) {
   }
 }
 
-
-jQuery(".notes-btn").click(function(e){
+jQuery(".notes-btn").click(function(e) {
   e.preventDefault();
   jQuery("#notebook").toggle();
 });
 
-jQuery(".close-notebook").click(function(e){
+jQuery(".close-notebook").click(function(e) {
   e.preventDefault();
   jQuery("#notebook").hide();
 });
-

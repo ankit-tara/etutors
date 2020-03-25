@@ -717,10 +717,11 @@ function wpm_create_user_form_registration($cfdata)
             );
 
             $user_id = wp_insert_user($userdata);
+            $dt = date("Y-m-d");
 
             $data = [
                 'days' => 2,
-                'end_date' => date("Y-m-d", strtotime("$dt +2 day")),
+                'end_date' => date("Y-m-d", strtotime("$dt +1 day")),
                 'order_id' => '',
             ];
             $user_data = update_user_meta($user_id, 'is_acedemic', json_encode($data));

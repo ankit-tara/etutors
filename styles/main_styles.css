@@ -2743,3 +2743,14 @@ a.p-r{
 	max-height: 180px;
     object-fit: cover;
 }
+
+.woocommerce ul.products li.product a img{
+	max-height: 230px;
+    object-fit: cover;
+}
+
+
+.course_tabs_container img{
+	width: 100%;
+	height: auto;
+}

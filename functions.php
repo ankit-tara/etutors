@@ -407,13 +407,16 @@ function bbloomer_checkout_save_user_meta($order_id)
         }
 
         if ($user_data && json_decode($user_data)) {
+
             $data = json_decode($user_data);
             if (isset($data->order_id) && $data->order_id == $order_id) {
                 return;
             }
 
+            $date_now = date("Y-m-d");
+            $date2 = ($data->end_date);
             $days = explode('-', $variationName)[0];
-            $dt = date($data->end_date);
+            $dt = $date_now > $date2 ? $date_now : $date2;
 
             $data = [
                 'days' => (int) $data->days + (int) $days,
@@ -422,6 +425,7 @@ function bbloomer_checkout_save_user_meta($order_id)
             ];
 
         } else {
+
             $days = explode('-', $variationName)[0];
             $dt = date("Y-m-d");
 
@@ -438,7 +442,6 @@ function bbloomer_checkout_save_user_meta($order_id)
         }
 
     }
-
     if ($test_type == 'academic') {
         $user_data = update_user_meta($user_id, 'is_acedemic', json_encode($data));
     } elseif ($test_type == 'ctpd') {
@@ -616,7 +619,6 @@ function get_test_user_meta($user)
 
     return $data;
 }
-
 
 function getAllStudentResults()
 {

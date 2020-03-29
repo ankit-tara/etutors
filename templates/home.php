@@ -51,13 +51,23 @@ Template Name: HomePage
 	<div class="features">
 		<div class="container">
 			<div class="row">
-				<div class="col">
+				<div class="col-md-12">
 					<div class="section_title_container text-center">
 						<h2 class="section_title"><?= get_field('about_title');?></h2>
 						<div class="section_subtitle"><?= get_field('about_subtitle');?></div>
+						<br>
 					</div>
-					<br>
+				</div>
+				<div class="col-md-6">
 					<?= get_field('about_content');?>
+				</div>
+				<div class="col-md-6 feature_col">
+					<div class="feature_video d-flex flex-column align-items-center justify-content-center">
+						<div class="feature_video_background" style="background-image:url(<?= get_template_directory_uri();?>/images/test-screenshot.png)"></div>
+						<a class="vimeo feature_video_button cboxElement" href="<?= get_field('about_video')['url'];?>">
+							<img src="<?= get_template_directory_uri();?>/images/play.png" alt="">
+						</a>
+					</div>
 				</div>
 			</div>
 			<div class="row features_row">

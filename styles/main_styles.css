@@ -2733,3 +2733,13 @@ a.p-r{
 	float: right;
     clear: both;
 }
+
+.team_subtitle,
+.teacher_info p{
+	text-align: justify;
+}
+
+.home .course_image img{
+	max-height: 180px;
+    object-fit: cover;
+}

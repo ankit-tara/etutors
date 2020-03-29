@@ -59,6 +59,47 @@ add_role('student', 'Student', array(
     'read' => true, // True allows that capability
 ));
 
+add_action('init', 'create_post_type');
+function create_post_type()
+{
+    register_post_type('student_reviews',
+        array(
+            'labels' => array(
+                'name' => __('Student Reviews'),
+                'singular_name' => __('Reviews'),
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'hierarchical' => true,
+        )
+    );
+
+    register_post_type('test_materials',
+        array(
+            'labels' => array(
+                'name' => __('Test Materials'),
+                'singular_name' => __('Material'),
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'hierarchical' => false,
+            'taxonomies' => array('mat_categories'),
+            'query_var' => true,
+            'show_ui' => true,
+            'show_admin_column' => true,
+        )
+    );
+    register_taxonomy("mat_categories", array("test_materials"),
+        array(
+            "hierarchical" => false,
+            "label" => "Types",
+            "singular_label" => "Type",
+            'show_ui' => true,
+        )
+    );
+
+}
+
 function create_student_account()
 {
     //You may need some data validation here
@@ -354,12 +395,13 @@ function bbloomer_checkout_save_user_meta($order_id)
         $product_variation_id = $item->get_variation_id();
 
         $test_type = get_field('test_type', $product_id) ?: 'general';
-
         $variation = new WC_Product_Variation($product_variation_id);
         $variationName = implode(" / ", $variation->get_variation_attributes());
 
         if ($test_type == 'academic') {
             $user_data = get_user_meta($user_id, 'is_acedemic', true);
+        } elseif ($test_type == 'ctpd') {
+            $user_data = get_user_meta($user_id, 'is_ctpd', true);
         } else {
             $user_data = get_user_meta($user_id, 'is_general', true);
         }
@@ -399,6 +441,10 @@ function bbloomer_checkout_save_user_meta($order_id)
 
     if ($test_type == 'academic') {
         $user_data = update_user_meta($user_id, 'is_acedemic', json_encode($data));
+    } elseif ($test_type == 'ctpd') {
+        $user_data = update_user_meta($user_id, 'is_acedemic', json_encode($data));
+        $user_data = update_user_meta($user_id, 'is_general', json_encode($data));
+        $user_data = update_user_meta($user_id, 'is_ctpd', json_encode($data));
     } else {
         $user_data = update_user_meta($user_id, 'is_general', json_encode($data));
     }
@@ -474,6 +520,20 @@ function custom_user_profile_fields($user)
         </td>
     </tr>
     <tr>
+        <th><label for="company">Crtical Thinking And Personality Development</label></th>
+        <td>
+            <input type="checkbox" class="regular-text" <?php echo @$test_data['is_ctpd'] ? 'checked' : '' ?>
+                name="is_ctpd" id="is_ctpd" /><br />
+        </td>
+    </tr>
+    <tr>
+        <th><label for="company">Demo User</label></th>
+        <td>
+            <input type="checkbox" class="regular-text" <?php echo @$test_data['is_demo_user'] ? 'checked' : '' ?>
+                name="is_demo_user" id="is_demo_user" /><br />
+        </td>
+    </tr>
+    <tr>
         <th><label for="company">Days</label></th>
         <td>
             <input type="text" class="regular-text" name="days" id="days"
@@ -511,6 +571,8 @@ function save_custom_user_profile_fields($user_id)
     $data = json_encode($data);
     update_user_meta($user_id, 'is_general', $_POST['is_general'] ? $data : '');
     update_user_meta($user_id, 'is_acedemic', $_POST['is_acedemic'] ? $data : '');
+    update_user_meta($user_id, 'is_ctpd', $_POST['is_ctpd'] ? $data : '');
+    update_user_meta($user_id, 'is_demo_user', $_POST['is_demo_user'] ? $data : '');
 
     # save my custom field
     // update_usermeta($user_id, 'company', $_POST['company']);
@@ -523,9 +585,9 @@ function get_test_user_meta($user)
     $user_id = $user->ID;
     $academic = get_user_meta($user_id, 'is_acedemic', true);
     $general = get_user_meta($user_id, 'is_general', true);
+    $ctpd = get_user_meta($user_id, 'is_ctpd', true);
     $days = '';
     $end_date = '';
-
     if ($academic && json_decode($academic)) {
         $a_data = json_decode($academic);
         $days = $a_data->days;
@@ -538,9 +600,16 @@ function get_test_user_meta($user)
         $end_date = $g_data->end_date > $end_date ? $g_data->end_date : $end_date;
 
     }
+    if ($ctpd && json_decode($ctpd)) {
+        $c_data = json_decode($ctpd);
+        $days = $c_data->days > $days ? $c_data->days : $days;
+        $end_date = $c_data->end_date > $end_date ? $c_data->end_date : $end_date;
+    }
     $data = [
         'is_academic' => $academic && json_decode($academic),
         'is_general' => $general && json_decode($general),
+        'is_ctpd' => $ctpd && json_decode($ctpd),
+        'is_demo_user' => get_user_meta($user_id, 'is_demo_user', true),
         'days' => $days,
         'end_date' => $end_date,
     ];
@@ -548,41 +617,6 @@ function get_test_user_meta($user)
     return $data;
 }
 
-add_action('init', 'create_post_type');
-function create_post_type()
-{
-    register_post_type('student_reviews',
-        array(
-            'labels' => array(
-                'name' => __('Student Reviews'),
-                'singular_name' => __('Reviews'),
-            ),
-            'public' => true,
-            'has_archive' => true,
-            'hierarchical' => true,
-        )
-    );
-
-    register_taxonomy("mat_categories", array("test_materials"),
-        array(
-            "hierarchical" => true, "label" => "Categories", "singular_label" => "Category", "rewrite" => array('slug' => 'work', 'with_front' => false)));
-    register_post_type('test_materials',
-        array(
-            'labels' => array(
-                'name' => __('Test Materials'),
-                'singular_name' => __('Material'),
-            ),
-            'public' => true,
-            'has_archive' => true,
-            'hierarchical' => false,
-            'taxonomies' => array('mat_categories'),
-    'query_var' => true,
- 'show_ui' => true,
-    'show_admin_column' => true,
-        )
-    );
-
-}
 
 function getAllStudentResults()
 {
@@ -724,9 +758,11 @@ function wpm_create_user_form_registration($cfdata)
             ];
             $user_data = update_user_meta($user_id, 'is_acedemic', json_encode($data));
             $user_data = update_user_meta($user_id, 'is_general', json_encode($data));
+            $user_data = update_user_meta($user_id, 'is_ctpd', json_encode($data));
 
             $user_data = update_user_meta($user_id, 'billing_phone', $phone);
             $user_data = update_user_meta($user_id, 'demo_p_data', $password);
+            $user_data = update_user_meta($user_id, 'is_demo_user', true);
 
             if (!is_wp_error($user_id)) {
                 wp_set_current_user($user_id);

@@ -9,15 +9,23 @@ if ($is_allowed && !$is_demo_user) {
 
 }
 
+get_header('dashboard');
+wp_reset_postdata();
  $name = basename(parse_url(add_query_arg(array()), PHP_URL_PATH));
 $args = array(
     'post_type' => 'test_materials',
     'posts_per_page' => 20,
-    'mat_categories' => $name);
+    'tax_query' => array(
+    array(
+        'taxonomy' => 'mat_categories',
+        'field' => 'slug',
+        'terms' => $name
+        )
+    )
+    // 'mat_categories' => $name
+);
 $posts = new WP_Query($args);
-// print_R($posts);
-// die();
-get_header('dashboard');
+
 $profile_url = home_url() . '/student-profile';
 ?>
 

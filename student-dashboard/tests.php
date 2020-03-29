@@ -15,8 +15,8 @@ $is_demo_user = $current_user->user_email == 'demo@demo.com';
 $no_of_posts = $is_demo_user ? 1 : 15;
 
 $test_data = get_test_user_meta($current_user);
-$is_allowed = (!$test_data['is_academic'] && !$test_data['is_general']) || date("Y-m-d") > $test_data['end_date'];
-if ($is_allowed && !$is_demo_user ) {
+$is_allowed = (!$test_data['is_academic'] && !$test_data['is_general'] && (isset($test_data['is_ctpd']) && !$test_data['is_ctpd'])) || date("Y-m-d") > $test_data['end_date'];
+if ($is_allowed && !$is_demo_user) {
     $tests = [];
     wp_redirect(site_url() . '/student-locked-profile');
 
@@ -40,14 +40,40 @@ if ($is_allowed && !$is_demo_user ) {
         $no_of_posts = $test_data['days'];
     }
 
-    if (!($test_data['is_academic'] && $test_data['is_general'])) {
-        $meta_query[] = [
-            'key' => 'test_type',
-            'value' => $test_data['is_academic'] ? '"academic"' : '"general"',
-            'compare' => 'LIKE',
-        ];
+    if ($test_data['is_academic'] || $test_data['is_general'] || @$test_data['is_ctpd']) {
+         $meta_query2['relation'] ='OR';
+        if ($test_data['is_general']) {
+            $t_type = '"general"';
+            $meta_query2[] = [
+                'key' => 'test_type',
+                'value' => $t_type,
+                'compare' => 'LIKE',
+            ];
+
+        }
+        if ($test_data['is_academic']) {
+            $t_type = '"academic"';
+            $meta_query2[] = [
+                'key' => 'test_type',
+                'value' => $t_type,
+                'compare' => 'LIKE',
+            ];
+
+        }
+        if (isset($test_data['is_ctpd']) && $test_data['is_ctpd']) {
+            $t_type = '"ctpd"';
+            $meta_query2[] = [
+                'key' => 'test_type',
+                'value' => $t_type,
+                'compare' => 'LIKE',
+            ];
+
+        }
+        $meta_query[] = $meta_query2;
 
     }
+    // print_r($meta_query);
+    // die;
     $args = array(
         'post_type' => 'ar-ielts-tests',
         'posts_per_page' => $no_of_posts,
@@ -82,10 +108,10 @@ get_header('dashboard');
         $url = home_url() . '/student-profile/test/' . get_field('test_part') . '?et=' . base64_encode(get_the_ID());
         $url = wp_nonce_url($url, 'ar-tests-noonce')
         ?>
-																								                            <tr>
-																								                                <td><?php the_title()?></td>
-																								                                <td>
-																								                                  <?php
+		                    <tr>
+		                        <td><?php the_title()?></td>
+		                        <td>
+		                            <?php
         $test_part = get_field('test_part');
         if ($test_part == 'listening') {
             echo '<span class="badge bgc-deep-purple-50 c-deep-purple-700 p-10 lh-0 tt-c badge-pill">Listening</span>';
@@ -95,14 +121,14 @@ get_header('dashboard');
         echo ' <span class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c badge-pill">Writing</span> ';
     }
     ?>
-												                                </td>
-												                                <td><?php the_field('test_type')?></td>
-												                                <td><?php echo get_the_date() ?></td>
-												                                <td>
-												                                    <a href="<?php echo $url ?>" class="btn bgc-deep-purple-50 c-deep-purple-700">Start Test</a>
-												                                </td>
-												                            </tr>
-												                     <?php endwhile;
+	                        </td>
+	                        <td><?php the_field('test_type')?></td>
+	                        <td><?php echo get_the_date() ?></td>
+	                        <td>
+	                            <a href="<?php echo $url ?>" class="btn bgc-deep-purple-50 c-deep-purple-700">Start Test</a>
+	                        </td>
+	                    </tr>
+	                    <?php endwhile;
 endif;?>
                 </tbody>
             </table>

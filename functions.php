@@ -444,6 +444,8 @@ function bbloomer_checkout_save_user_meta($order_id)
     if ($test_type == 'academic') {
         $user_data = update_user_meta($user_id, 'is_acedemic', json_encode($data));
     } elseif ($test_type == 'ctpd') {
+        $user_data = update_user_meta($user_id, 'is_acedemic', json_encode($data));
+        $user_data = update_user_meta($user_id, 'is_general', json_encode($data));
         $user_data = update_user_meta($user_id, 'is_ctpd', json_encode($data));
     } else {
         $user_data = update_user_meta($user_id, 'is_general', json_encode($data));

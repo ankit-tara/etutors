@@ -36,17 +36,21 @@ Template Name: Course Template
                                     }
                                     }
                                     ?>
-
 									<br>
 									<br>
+									<?php
+									if(get_field('video_file')['url']) {?>
 									<div class="feature_col">
 										<div class="feature_video d-flex flex-column align-items-center justify-content-center">
-											<div class="feature_video_background" style="background-image:url(<?= get_template_directory_uri();?>/images/test-screenshot.png)"></div>
+											<div class="feature_video_background" style="background-image:url(<?= get_field('video_screenshot')['url'];?>"></div>
 											<a class="vimeo feature_video_button cboxElement" href="<?= get_field('video_file')['url'];?>">
 												<img src="<?= get_template_directory_uri();?>/images/play.png" alt="">
 											</a>
 										</div>
 									</div>
+									<?php
+									}
+									?>
 								</div>
 							</div>
 						</div>

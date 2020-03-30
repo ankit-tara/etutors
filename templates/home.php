@@ -63,7 +63,7 @@ Template Name: HomePage
 				</div>
 				<div class="col-md-6 feature_col">
 					<div class="feature_video d-flex flex-column align-items-center justify-content-center">
-						<div class="feature_video_background" style="background-image:url(<?= get_template_directory_uri();?>/images/test-screenshot.png)"></div>
+						<div class="feature_video_background" style="background-image:url('http://etutour.in/wp-content/uploads/2020/03/home-video.png')"></div>
 						<a class="vimeo feature_video_button cboxElement" href="<?= get_field('about_video')['url'];?>">
 							<img src="<?= get_template_directory_uri();?>/images/play.png" alt="">
 						</a>

@@ -26,7 +26,8 @@ $test = get_post($id);
                 <thead>
                     <tr>
                         <th class="bdwT-0">#</th>
-                        <th class="bdwT-0">Type</th>
+                        <th class="bdwT-0">Name</th>
+						<th class="bdwT-0">Type</th>
                         <th class="bdwT-0">View/Listen</th>
 
                     </tr>
@@ -43,9 +44,11 @@ $test = get_post($id);
                             $field = get_sub_field('file');
                             $count++;
                             // display a sub field value
+                          
                           ?>
                     <tr>
                         <td><?php echo $count ?></td>
+						<td><?php echo $field['filename'] ?></td>
                         <td><?php echo $field['type'] .'/ '. $field['subtype'] ?></td>
                         <td>
                             <button type="button" class="btn btn-primary" data-toggle="modal"

@@ -100,7 +100,7 @@ $style = $test_part == 'listening' ? 'display:none' : null
     <div class="step-2 instructions" style="<?php echo $style ?>">
         <div class="card">
             <div class="card-header">
-                <h4><strong> IELTS <?php echo $test_part ?> </strong></h4>
+                <h4 style="text-transform:uppercase"><strong> IELTS <?php echo $test_part ?> </strong></h4>
                 <p>
                     Time: Approximately <?php echo the_field('test_time' . $test->time) ?> minutes
                 </p>
@@ -112,24 +112,68 @@ $style = $test_part == 'listening' ? 'display:none' : null
 
                     </strong>
                 </h5>
-                <p class="card-text">
-                    Answer all the questions.
-                </p>
-                <p class="card-text">
+                <?php if($test_part == 'writing') 
+                {
+                ?>
+                    <p class="card-text">
+                        Answer both parts.
+                    </p>
+                    <p class="card-text">
                     You can change your answers at any time during the test.
-                    INFORMATION FOR CANDIDATES
-                    <ul>
-                        <li>There are 40 questions in this test.</li>
-                        <li>Each question carries one mark.</li>
-                        <li>There are four parts to the test.</li>
-                        <li>You will hear each part once.</li>
-                        <li>For each part of the test there will be time for you to look through the questions and time
-                            for
-                            you to check
-                            your answers.</li>
-                    </ul>
-                </p>
-
+                    
+                        <ul>
+                            <li>There are two parts in this test.</li>
+                            <li>Part 2 contributes twice as much as Part 1 to the writing score.</li>
+                            <li>The test clock will show you when there are 10 minutes and 5 minutes remaining.</li>
+                        </ul>
+                    </p>
+                <?php
+                }
+                ?>
+                <?php if($test_part == 'reading') 
+                {
+                ?>
+                    <p class="card-text">
+                        Answer all the questions.
+                    </p>
+                    <p class="card-text">
+                    You can change your answers at any time during the test.
+                        <ul>
+                            <li>There are 40 questions in this test.</li>
+                            <li>Each question carries one mark.</li>
+                            <li>There are four parts to the test.</li>
+                            <li>For each part of the test there will be time for you to look through the questions and time
+                                for
+                                you to check
+                                your answers.</li>
+                        </ul>
+                    </p>
+                <?php
+                }
+                ?>
+                <?php if($test_part == 'listening') 
+                {
+                ?>
+                    <p class="card-text">
+                        Answer all the questions.
+                    </p>
+                    <p class="card-text">
+                    You can change your answers at any time during the test.
+                        <ul>
+                            <li>There are 40 questions in this test.</li>
+                            <li>Each question carries one mark.</li>
+                            <li>There are four parts to the test.</li>
+                            <li>You will hear each part once.</li>
+                            <li>For each part of the test there will be time for you to look through the questions and time
+                                for
+                                you to check
+                                your answers.</li>
+                        </ul>
+                    </p>
+                <?php
+                }
+                ?>
+                
                 <a href="#" class="btn btn-primary start-test">Start Test</a>
             </div>
         </div>

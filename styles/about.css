@@ -57,7 +57,7 @@ About
 }
 .about_item_title a
 {
-	font-family: 'Roboto Slab', serif;
+	font-family: 'Poppins', sans-serif;
 	font-size: 20px;
 	font-weight: 700;
 	color: #384158;
@@ -143,7 +143,7 @@ Feature
 	max-width: 90%;
 	overflow: hidden;
 	white-space: nowrap;
-	font-family: 'Roboto Slab', serif;
+	font-family: 'Poppins', sans-serif;
 	font-size: 20px;
 	font-weight: 700;
 	color: #384158;
@@ -289,7 +289,7 @@ Team
 }
 .team_title a
 {
-	font-family: 'Roboto Slab', serif;
+	font-family: 'Poppins', sans-serif;
 	font-size: 20px;
 	font-weight: 700;
 	color: #384158;
@@ -380,7 +380,7 @@ Counter
 }
 .counter_title
 {
-	font-family: 'Roboto Slab', serif;
+	font-family: 'Poppins', sans-serif;
 	color: #FFFFFF;
 	font-weight: 700;
 }
@@ -453,7 +453,7 @@ Counter
 }
 .counter_form_title
 {
-	font-family: 'Roboto Slab', serif;
+	font-family: 'Poppins', sans-serif;
 	font-size: 24px;
 	font-weight: 700;
 	color: #384158;

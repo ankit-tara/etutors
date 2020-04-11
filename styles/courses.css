@@ -112,7 +112,7 @@ Courses
 
 .course_title a
 {
-	font-family: 'Roboto Slab', serif;
+	font-family: 'Poppins', sans-serif;
 	font-size: 20px;
 	color: #384158;
 	-webkit-transition: all 200ms ease;
@@ -165,14 +165,14 @@ Courses
 }
 .course_price
 {
-	font-family: 'Roboto Slab', serif;
+	font-family: 'Poppins', sans-serif;
 	font-size: 20px;
 	font-weight: 700;
 	color: #14bdee;
 }
 .course_price span
 {
-	font-family: 'Roboto Slab', serif;
+	font-family: 'Poppins', sans-serif;
 	font-size: 14px;
 	font-weight: 400;
 	text-decoration: line-through;
@@ -317,7 +317,7 @@ Courses
 }
 .sidebar_section_title
 {
-	font-family: 'Roboto Slab', serif;
+	font-family: 'Poppins', sans-serif;
 	font-size: 24px;
 	font-weight: 700;
 	color: #384158;
@@ -394,7 +394,7 @@ Courses
 }
 .latest_title a
 {
-	font-family: 'Roboto Slab', serif;
+	font-family: 'Poppins', sans-serif;
 	font-size: 16px;
 	font-weight: 700;
 	color: #383749;
@@ -411,7 +411,7 @@ Courses
 }
 .latest_price
 {
-	font-family: 'Roboto Slab', serif;
+	font-family: 'Poppins', sans-serif;
 	font-size: 14px;
 	font-weight: 700;
 	color: #14bdee;
@@ -532,7 +532,7 @@ Courses
 }
 .banner_title
 {
-	font-family: 'Roboto Slab', serif;
+	font-family: 'Poppins', sans-serif;
 	font-size: 20px;
 	font-weight: 700;
 	color: #FFFFFF;

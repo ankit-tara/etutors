@@ -82,7 +82,7 @@ font-family: 'Poppins', sans-serif;
 
 .heading {
   margin: 10px 12px 0;
-  background: gray;
+  background: #ffb818;
   color: white;
   padding: 6px 10px;
   /* border-radius: 6px; */
@@ -150,6 +150,7 @@ font-family: 'Poppins', sans-serif;
 .test input[type='text'] {
   border:none;
   border-bottom: solid 1px gray;
+  width: 150px;
 }
 
 .test .card {

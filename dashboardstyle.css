@@ -1849,6 +1849,7 @@ a.fc-more:hover {
 
 .material-boxes{
 	display: flex;
+	flex-wrap: wrap;
 }
 .material-box{
 	background: white;

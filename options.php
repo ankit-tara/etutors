@@ -142,6 +142,12 @@ function optionsframework_options() {
 		'id' => 'insta_link',
 		'type' => 'text'
 	);
+	$options[] = array(
+		'name' => __('Youtube Link', 'options_check'),
+		'desc' => __('Youtube Link', 'options_check'),
+		'id' => 'youtube_link',
+		'type' => 'text'
+	);
 	
 	$options[] = array(
 		'name' => __('Footer Logo 1', 'options_check'),

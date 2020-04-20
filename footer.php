@@ -79,9 +79,30 @@
 									</div>
 									<div class="footer_social">
 										<ul>
-											<li><a href="<?php echo of_get_option('fb_link'); ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-											<li><a href="<?php echo of_get_option('skype_link'); ?>"><i class="fa fa-skype" aria-hidden="true"></i></a></li>
-											<li><a href="<?php echo of_get_option('insta_link'); ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+											<?php if (of_get_option('fb_link')){
+											?>
+											<li><a target="_blank" href="<?php echo of_get_option('fb_link'); ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+											<?php
+											}
+											?>
+											<?php if (of_get_option('skype_link')){
+											?>
+											<li><a target="_blank" href="<?php echo of_get_option('skype_link'); ?>"><i class="fa fa-skype" aria-hidden="true"></i></a></li>
+											<?php
+											}
+											?>
+											<?php if (of_get_option('insta_link')){
+											?>
+											<li><a target="_blank" href="<?php echo of_get_option('insta_link'); ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+											<?php
+											}
+											?>
+											<?php if (of_get_option('youtube_link')){
+											?>
+											<li><a target="_blank" href="<?php echo of_get_option('youtube_link'); ?>"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+											<?php
+											}
+											?>
 										</ul>
 									</div>
 								</div>

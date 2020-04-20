@@ -778,3 +778,35 @@ function wpm_create_user_form_registration($cfdata)
     return $cfdata;
 }
 add_action('wpcf7_before_send_mail', 'wpm_create_user_form_registration', 1);
+
+
+
+function my_login_logo_one() {  ?> 
+    <style type="text/css"> 
+        body.login
+        {
+            background-color:#fff;
+        }
+        body.login div#login h1 a {
+            background-image: url(<?php echo get_stylesheet_directory_uri();?>/images/logo.png); 
+            padding-bottom: 0;
+            background-size: 250px;
+            display: block;
+            width: 100%;
+            margin-bottom: 0px;
+        } 
+        .message.register{
+            display:none;
+        }
+        body.login div#login input#wp-submit{
+            background: #14bdee;
+            border: none;
+            box-shadow: none;
+            text-shadow: none;
+            color: #fff;
+            font-weight: 600;
+        }
+    </style>
+    <?php 
+} 
+add_action( 'login_enqueue_scripts', 'my_login_logo_one' );

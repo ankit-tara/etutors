@@ -423,6 +423,7 @@ p.highlight,.pag-index.highlight{
   display: block;
   width: 100%;
   overflow-x: auto;
+  height: 100% !important;
 }
 .test table td{
   padding: 10px;
@@ -445,6 +446,11 @@ p.highlight,.pag-index.highlight{
     width: 100px;
   }
 
+  .test img{
+	width:100%;
+	height: auto;
+  }
+	
   .heading{
     margin: 0;
     padding: 10px 0;

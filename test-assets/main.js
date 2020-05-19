@@ -1,5 +1,5 @@
-jQuery(function() {
-  window.addEventListener("beforeunload", function(event) {
+jQuery(function () {
+  window.addEventListener("beforeunload", function (event) {
     event.returnValue = "Do You want to close reload ?.";
   });
 
@@ -7,7 +7,7 @@ jQuery(function() {
   let lis = "";
   let arr = [];
   let count = 0;
-  jQuery(".qus-input").each(function(index) {
+  jQuery(".qus-input").each(function (index) {
     // console.log(jQuery(this).data('index'))
     let indexid = jQuery(this).data("index");
 
@@ -30,7 +30,7 @@ jQuery(function() {
   html += "</ul>";
   jQuery(".pagination").html(html);
 
-  jQuery(".submit").click(function(e) {
+  jQuery(".submit").click(function (e) {
     e.preventDefault();
     jQuery(".loading-test").show();
     setTimeout(() => {
@@ -63,16 +63,12 @@ jQuery(function() {
       "polar-opposite",
       "grainy picture",
       "adamant",
-      "imagery hovering"
+      "imagery hovering",
     ];
     for (let i = 9; i <= 13; i++) {
       let element = "#ex" + i;
 
-      if (
-        jQuery(element)
-          .val()
-          .toLowerCase() == ex[9 - i]
-      ) {
+      if (jQuery(element).val().toLowerCase() == ex[9 - i]) {
         jQuery("#s" + i).html(
           '<i class="fa fa-check right-ans" aria-hidden="true" ></i>'
         );
@@ -87,13 +83,13 @@ jQuery(function() {
     jQuery(".score").html("Your score is " + score);
   }
 
-  jQuery(".left-help").click(function() {
+  jQuery(".left-help").click(function () {
     jQuery(".left-help").hide();
     jQuery(".right").show();
     jQuery(".right-help").show();
   });
 
-  jQuery(".right-help").click(function() {
+  jQuery(".right-help").click(function () {
     jQuery(".left-help").show();
     jQuery(".right").hide();
     jQuery(".right-help").hide();
@@ -103,7 +99,7 @@ jQuery(function() {
     var timer = duration,
       minutes,
       seconds;
-    let test = setInterval(function() {
+    let test = setInterval(function () {
       minutes = parseInt(timer / 60, 10);
       seconds = parseInt(timer % 60, 10);
 
@@ -121,7 +117,7 @@ jQuery(function() {
     }, 1000);
   }
 
-  jQuery(".test-sound-btn").click(function() {
+  jQuery(".test-sound-btn").click(function () {
     let value = jQuery(this).val();
     let new_value = value == "Play Sound" ? "Stop Sound" : "Play Sound";
     let action = value == "Play Sound" ? "play" : "pause";
@@ -129,19 +125,17 @@ jQuery(function() {
     jQuery(this).val(new_value);
   });
 
-  jQuery("#volume").on("input", function() {
+  jQuery("#volume").on("input", function () {
     let value = jQuery(this).val();
-    jQuery(this)
-      .parent("div")
-      .find("audio")[0].volume = value / 100;
+    jQuery(this).parent("div").find("audio")[0].volume = value / 100;
   });
 
-  jQuery(".continue").click(function() {
+  jQuery(".continue").click(function () {
     console.log("clicked");
     jQuery(".step-1").hide();
     jQuery(".step-2").show();
   });
-  jQuery(".start-test").click(function() {
+  jQuery(".start-test").click(function () {
     jQuery(".test-footer").show();
     jQuery(".step-2").hide();
     jQuery(".step-3").show();
@@ -208,15 +202,15 @@ jQuery(function() {
   // });
 
   soundManager.setup({
-    url: "./assets/simple-audio-player/dist/"
+    url: "./assets/simple-audio-player/dist/",
   }); // path to soundmanager2 files
 
-  jQuery(document).ready(function() {
+  jQuery(document).ready(function () {
     jQuery("#player").player("./assets/audio/sample-audio.ogg"); // relative path to mp3
   });
   let activeClass = "highlight";
 
-  jQuery(".pag-index").click(function() {
+  jQuery(".pag-index").click(function () {
     let index = jQuery(this).data("id");
     let element = jQuery(".qus-input[data-index='" + index + "']");
     jQuery(".test").hide();
@@ -226,30 +220,24 @@ jQuery(function() {
       return;
     } else {
       jQuery(".pag-index").removeClass(activeClass);
-      jQuery(".qus-input")
-        .parent()
-        .removeClass(activeClass);
+      jQuery(".qus-input").parent().removeClass(activeClass);
     }
-    jQuery(element)
-      .parent()
-      .addClass(activeClass);
+    jQuery(element).parent().addClass(activeClass);
     setTimeout(() => {
-      jQuery(element)
-        .parent()
-        .removeClass(activeClass);
+      jQuery(element).parent().removeClass(activeClass);
     }, 1000);
     jQuery(this).addClass(activeClass);
     let parentDiv = element.parents(".pag-qus-sec .content");
     // let parentDiv = element.parents(".pag-qus-sec ");
     jQuery(parentDiv).animate(
       {
-        scrollTop: parentDiv.scrollTop() + element.position().top - 200
+        scrollTop: parentDiv.scrollTop() + element.position().top - 200,
       },
       100
     );
   });
 
-  jQuery(".move").click(function() {
+  jQuery(".move").click(function () {
     let direction = jQuery(this).hasClass("up");
     let element = jQuery(".pagination").find("." + activeClass);
     let activeIndex = element.data("id");
@@ -264,7 +252,7 @@ jQuery(function() {
     if (direction) {
       activeIndex--;
 
-       element.prev().trigger("click");
+      element.prev().trigger("click");
       // jQuery(".pagination")
       //   .find(".pag-index[data-id='" + activeIndex + "']")
       //   .trigger("click");
@@ -277,16 +265,20 @@ jQuery(function() {
     }
   });
 
-  jQuery(".writing textarea").keyup(function() {
-    // var characterCount = countWords(jQuery(this).val()),
-    var characterCount = jQuery(this)
-        .val()
-        .replace(/ /g, "").length,
-      current = jQuery(this)
+  jQuery(".writing textarea").keyup(function () {
+    // var characterCount = countWords(jQuery(this).val()),jQuery(this).val()
+
+    let value = jQuery(this).val();
+    var regex = /\s+/gi;
+    var wordCount = value.trim().replace(regex, " ").split(" ").length;
+    // var characterCount = jQuery(this)
+    //     .val()
+    //     .replace(/ /g, "").length,
+     let current = jQuery(this)
         .siblings("#the-count")
         .find("#current");
 
-    current.text(characterCount);
+    current.text(wordCount);
   });
 });
 
@@ -311,7 +303,7 @@ function countWords(str) {
 
 // document.addEventListener('contextmenu', event => event.preventDefault());
 
-jQuery("body").on("paste", function(event) {
+jQuery("body").on("paste", function (event) {
   console.log(event.originalEvent.clipboardData.getData("Text").length);
   let text = event.originalEvent.clipboardData.getData("Text");
   if (countWords(text) > 5) {
@@ -359,7 +351,7 @@ jQuery("body").on("paste", function(event) {
 // document.designMode = "off";
 // }
 
-jQuery(".highlight-opt").on("click", function(e) {
+jQuery(".highlight-opt").on("click", function (e) {
   let color = jQuery(this).data("color");
   console.log(color);
   highlightSelection(color, "white");
@@ -396,10 +388,10 @@ function highlightSelection(forcolor, backcolor) {
 //     jQuery("div.custom-context-menu").hide();
 //   });
 
-jQuery(function() {
+jQuery(function () {
   jQuery.contextMenu({
     selector: ".content",
-    callback: function(key, options) {
+    callback: function (key, options) {
       if (key == "highlight") {
         highlightSelection("black", "yellow");
       }
@@ -412,11 +404,11 @@ jQuery(function() {
       clear: { name: "clear", icon: "delete" },
       quit: {
         name: "Quit",
-        icon: function() {
+        icon: function () {
           return "context-menu-icon context-menu-icon-quit";
-        }
-      }
-    }
+        },
+      },
+    },
   });
 
   // jQuery('.context-menu-one').on('click', function(e){
@@ -470,12 +462,12 @@ function dragElement(elmnt) {
   }
 }
 
-jQuery(".notes-btn").click(function(e) {
+jQuery(".notes-btn").click(function (e) {
   e.preventDefault();
   jQuery("#notebook").toggle();
 });
 
-jQuery(".close-notebook").click(function(e) {
+jQuery(".close-notebook").click(function (e) {
   e.preventDefault();
   jQuery("#notebook").hide();
 });

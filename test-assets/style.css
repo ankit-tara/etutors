@@ -567,3 +567,13 @@ p.highlight,.pag-index.highlight{
     font-weight: bold;
     color: #fff;
 }
+
+
+.mejs-button.mejs-playpause-button.mejs-pause {
+    width: auto !important;
+}
+
+
+.mejs-button.mejs-playpause-button.mejs-pause .mejs-container {
+    width: auto !important;
+}

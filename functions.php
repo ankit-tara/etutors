@@ -42,7 +42,7 @@ function ar_scripts()
     wp_enqueue_script('parallax', $url . '/plugins/parallax-js-master/parallax.min.js', array('jquery'), '3.3.6', true);
     wp_enqueue_script('App', $url . '/js/app.js', array('jquery'), '3.3.6', true);
     wp_enqueue_script('homejs', $url . '/js/home.js', array('jquery'), '3.3.6', true);
-    
+
     if (is_page('about')) {
         wp_enqueue_script('aboutjs', $url . '/js/about.js', array('jquery'), '3.3.6', true);
     }
@@ -779,22 +779,21 @@ function wpm_create_user_form_registration($cfdata)
 }
 add_action('wpcf7_before_send_mail', 'wpm_create_user_form_registration', 1);
 
-
-
-function my_login_logo_one() {  ?> 
-    <style type="text/css"> 
+function my_login_logo_one()
+{?>
+    <style type="text/css">
         body.login
         {
             background-color:#fff;
         }
         body.login div#login h1 a {
-            background-image: url(<?php echo get_stylesheet_directory_uri();?>/images/logo.png); 
+            background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/logo.png);
             padding-bottom: 0;
             background-size: 250px;
             display: block;
             width: 100%;
             margin-bottom: 0px;
-        } 
+        }
         .message.register{
             display:none;
         }
@@ -807,6 +806,15 @@ function my_login_logo_one() {  ?>
             font-weight: 600;
         }
     </style>
-    <?php 
-} 
-add_action( 'login_enqueue_scripts', 'my_login_logo_one' );
+    <?php
+}
+add_action('login_enqueue_scripts', 'my_login_logo_one');
+
+function getStudentNextPage($count = 1)
+{
+    $home_url = menu_page_url('student-results', false);
+    $next_page = add_query_arg(array(
+        'paged' => $count,
+    ), $home_url);
+    return $next_page;
+}

@@ -1,5 +1,5 @@
 // jQuery(function() {
-jQuery("document").ready(function() {
+jQuery("document").ready(function () {
   let separator = "<&&separator&&>";
   let check =
     '<i class="fa fa-check result-icon check" aria-hidden="true"></i>';
@@ -10,11 +10,11 @@ jQuery("document").ready(function() {
   let user_answers = [];
   let report = [];
 
-  jQuery(".form-btn").click(function(e) {
+  jQuery(".form-btn").click(function (e) {
     e.preventDefault();
     let test_part = jQuery(this).data("test-part");
 
-    jQuery("audio").each(function() {
+    jQuery("audio").each(function () {
       this.pause(); // Stop playing
       this.currentTime = 0; // Reset time
     });
@@ -29,16 +29,56 @@ jQuery("document").ready(function() {
     let writing_ans_2 =
       test_part == "writing" ? jQuery("#writing-ans-2").val() : "";
     report = [];
-    jQuery(".qus-input").each((index, element) => {
-      let qus_num = jQuery(element).data("index");
-      let jQueryinput = jQuery(element);
-      let input_type = jQueryinput.attr("type");
+    // jQuery(".qus-input").each((index, element) => {
+    //   let qus_num = jQuery(element).data("index");
+    //   let jQueryinput = jQuery(element);
+    //   let input_type = jQueryinput.attr("type");
 
-      let value = getInputValue(input_type, jQueryinput);
-      value = value == undefined ? "" : jQuery.trim(value);
-      pre_input_num != qus_num && user_input.push(value);
-      pre_input_num = qus_num;
-    });
+    //   let value = getInputValue(input_type, jQueryinput);
+    //   value = value == undefined ? "" : jQuery.trim(value);
+    //   pre_input_num != qus_num && user_input.push(value);
+    //   pre_input_num = qus_num;
+    // });
+    var inputs = $(".qus-index")
+      .map(function () {
+        return $(this).data("index");
+      })
+      .get();
+
+    let max = Math.max.apply(Math, inputs);
+    let min = Math.min.apply(Math, inputs);
+    console.log(max, min);
+    for (let index = min; index <= max; index++) {
+      console.log(index);
+      // let val = $('.qus-index[data-index="' + index + '"]')
+      //   .next(".qus-input")
+      //   .val(index);
+      let qus_num = $('.qus-index[data-index="' + index + '"]');
+      console.log(qus_num);
+      if (qus_num.length) {
+        let jQueryinput = $('.qus-index[data-index="' + index + '"]').next(
+          ".qus-input"
+        );
+
+        if (!jQueryinput.length) {
+          jQueryinput = $('.qus-index[data-index="31"]')
+            .parent()
+            .next(".ar-msq-input")
+            .find(".qus-input");
+        }
+        let input_type = jQueryinput.attr("type");
+        console.log(input_type);
+
+        let value = getInputValue(input_type, jQueryinput);
+        console.log(value);
+        value = value == undefined ? "" : jQuery.trim(value);
+        pre_input_num != qus_num && user_input.push(value);
+        pre_input_num = qus_num;
+        // console.log(user_input);
+      }
+    }
+
+    // return;
     user_answers = user_input;
 
     jQuery(".loading-test").show();
@@ -53,17 +93,19 @@ jQuery("document").ready(function() {
         user_answers: user_answers,
         test_part: test_part,
         writing_ans_1: writing_ans_1,
-        writing_ans_2: writing_ans_2
+        writing_ans_2: writing_ans_2,
       },
-      success: function(response) {
+      success: function (response) {
         if (test_part == "writing") {
-           jQuery(".loading-test").hide();
-           alert('Your answers have been stored .You can go back to your dashboard for more tests.')
+          jQuery(".loading-test").hide();
+          alert(
+            "Your answers have been stored .You can go back to your dashboard for more tests."
+          );
         } else {
           answers = response;
           checkAnswers();
         }
-      }
+      },
     });
   });
 
@@ -76,7 +118,7 @@ jQuery("document").ready(function() {
         return refactor(jQuery('input[name="' + name + '"]:checked').val());
       case "checkbox":
         let val = [];
-        jQuery.each(jQuery('input[name="' + name + '"]:checked'), function() {
+        jQuery.each(jQuery('input[name="' + name + '"]:checked'), function () {
           val.push(refactor(jQuery(this).val()));
         });
         return val.join(separator);
@@ -86,7 +128,7 @@ jQuery("document").ready(function() {
   }
 
   function checkAnswers() {
-    jQuery(user_answers).each(function(index, value) {
+    jQuery(user_answers).each(function (index, value) {
       let is_correct = false;
       if (value) {
         value = value.split(separator);
@@ -144,10 +186,10 @@ jQuery("document").ready(function() {
     jQuery(".loading-test").hide();
   }
 
-  jQuery(".restart").click(function() {
+  jQuery(".restart").click(function () {
     location.reload();
   });
-  jQuery(".modal .close").click(function() {
+  jQuery(".modal .close").click(function () {
     jQuery("#result-modal").hide();
   });
 });

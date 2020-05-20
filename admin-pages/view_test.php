@@ -71,7 +71,7 @@ foreach ($test_answers as $key => $value) {
         ?>
             <tr>
                 <td><?php echo $key + 1 ?></td>
-                <td><?php echo $user_answers[$key] ?></td>
+                <td><?php echo str_replace('<&&separator&&>',',',$user_answers[$key]) ?></td>
                 <td><?php echo implode(',', $value->ans) ?></td>
             </tr>
             <?php

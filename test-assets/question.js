@@ -29,54 +29,54 @@ jQuery("document").ready(function () {
     let writing_ans_2 =
       test_part == "writing" ? jQuery("#writing-ans-2").val() : "";
     report = [];
-    // jQuery(".qus-input").each((index, element) => {
-    //   let qus_num = jQuery(element).data("index");
-    //   let jQueryinput = jQuery(element);
-    //   let input_type = jQueryinput.attr("type");
+    jQuery(".qus-input").each((index, element) => {
+      let qus_num = jQuery(element).data("index");
+      let jQueryinput = jQuery(element);
+      let input_type = jQueryinput.attr("type");
 
-    //   let value = getInputValue(input_type, jQueryinput);
-    //   value = value == undefined ? "" : jQuery.trim(value);
-    //   pre_input_num != qus_num && user_input.push(value);
-    //   pre_input_num = qus_num;
-    // });
-    var inputs = $(".qus-index")
-      .map(function () {
-        return $(this).data("index");
-      })
-      .get();
+      let value = getInputValue(input_type, jQueryinput);
+      value = value == undefined ? "" : jQuery.trim(value);
+      pre_input_num != qus_num && user_input.push(value);
+      pre_input_num = qus_num;
+    });
+    // var inputs = $(".qus-index")
+    //   .map(function () {
+    //     return $(this).data("index");
+    //   })
+    //   .get();
 
-    let max = Math.max.apply(Math, inputs);
-    let min = Math.min.apply(Math, inputs);
-    console.log(max, min);
-    for (let index = min; index <= max; index++) {
-      console.log(index);
-      // let val = $('.qus-index[data-index="' + index + '"]')
-      //   .next(".qus-input")
-      //   .val(index);
-      let qus_num = $('.qus-index[data-index="' + index + '"]');
-      console.log(qus_num);
-      if (qus_num.length) {
-        let jQueryinput = $('.qus-index[data-index="' + index + '"]').next(
-          ".qus-input"
-        );
+    // let max = Math.max.apply(Math, inputs);
+    // let min = Math.min.apply(Math, inputs);
+    // console.log(max, min);
+    // for (let index = min; index <= max; index++) {
+    //   console.log(index);
+    //   // let val = $('.qus-index[data-index="' + index + '"]')
+    //   //   .next(".qus-input")
+    //   //   .val(index);
+    //   let qus_num = $('.qus-index[data-index="' + index + '"]');
+    //   console.log(qus_num);
+    //   if (qus_num.length) {
+    //     let jQueryinput = $('.qus-index[data-index="' + index + '"]').next(
+    //       ".qus-input"
+    //     );
 
-        if (!jQueryinput.length) {
-          jQueryinput = $('.qus-index[data-index="31"]')
-            .parent()
-            .next(".ar-msq-input")
-            .find(".qus-input");
-        }
-        let input_type = jQueryinput.attr("type");
-        console.log(input_type);
+    //     if (!jQueryinput.length) {
+    //       jQueryinput = $('.qus-index[data-index="31"]')
+    //         .parent()
+    //         .next(".ar-msq-input")
+    //         .find(".qus-input");
+    //     }
+    //     let input_type = jQueryinput.attr("type");
+    //     console.log(input_type);
 
-        let value = getInputValue(input_type, jQueryinput);
-        console.log(value);
-        value = value == undefined ? "" : jQuery.trim(value);
-        pre_input_num != qus_num && user_input.push(value);
-        pre_input_num = qus_num;
-        // console.log(user_input);
-      }
-    }
+    //     let value = getInputValue(input_type, jQueryinput);
+    //     console.log(value);
+    //     value = value == undefined ? "" : jQuery.trim(value);
+    //     pre_input_num != qus_num && user_input.push(value);
+    //     pre_input_num = qus_num;
+    //     // console.log(user_input);
+    //   }
+    // }
 
     // return;
     user_answers = user_input;

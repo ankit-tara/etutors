@@ -120,12 +120,13 @@
 						<div class="cr_text">
 							Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
 						</div>
-						<!-- <div class="ml-lg-auto cr_links">
+						<div class="ml-lg-auto cr_links">
 							<ul class="cr_list">
-								<li><a href="#">Terms of Use</a></li>
-								<li><a href="#">Privacy Policy</a></li>
+								<li><a href="/refund-and-cancellation">Refund and Cancellation</a></li>
+								<li><a href="/terms-and-conditions">Terms and Condtions</a></li>
+								<li><a href="/privacy-policy">Privacy Policy</a></li>
 							</ul>
-						</div> -->
+						</div>
 					</div>
 				</div>
 			</div>

@@ -200,11 +200,28 @@ Template Name: HomePage
 							<div class="left">
 								<div class=""><img src="<?= get_field('tutour_img');?>" alt=""></div>
 								<div class="team_title"><a href="javascript:void(0)"><?= get_field('tutor_name');?></a></div>
-								<div class="team_subtitle"><?= get_field('tutour_profile');?></div>
+								<div class="team_subtitle"><strong><?= get_field('tutour_profile');?></strong></div>
+								<a class="wlink" target="_blank" href="https://wa.link/21954t"><i class="fa fa-whatsapp"></i>Whatsapp</a>
 							</div>
 							<div class="right">
 								<div class="team_title"><?= get_field('tutor_name');?></div>
 								<div class="team_subtitle"><?= get_field('tutour_description');?></div>
+							</div>
+						</div>
+					</div>
+					<div class="team_item personlity" style="margin-top:2rem">
+						<div class="team_body detail">
+							<div class="right">
+								<div class="team_title">Ms. Priya Gupta</div>
+								<div class="team_subtitle">
+								Ms. Priya Gupta is a Graduate from Kumaun University Nanital, and she has over 2 years of experience tutoring English Language and Personality Development courses. She has acquired knowledge of Personality Plus Program and  English Professional Program. Her teaching style and techniques instill confidence, fluency, and sophistication needed to succeed in English in a variety of social and work-related environments. So, Whether your goal is to crack interviews/competitive Exams or you just want to refine your pronunciation, or produce more professionally written business documents or enhance your public speaking skills, you will benefit from her innovative methods that improve your English and help you to gain that much-needed competitive edge.
+								</div>
+							</div>
+							<div class="left">
+								<div class=""><img width="200" src="http://www.etutour.in/wp-content/uploads/2020/06/HmCoN3.png" alt=""></div>
+								<div class="team_title"><a href="javascript:void(0)">Ms. Priya Gupta</a></div>
+								<div class="team_subtitle"><strong>English Speaking &amp; <br> Personality Development</strong></div>
+								<a class="wlink" target="_blank" href="https://wa.link/crndut"><i class="fa fa-whatsapp"></i>Whatsapp</a>
 							</div>
 						</div>
 					</div>

@@ -2780,3 +2780,40 @@ a.p-r{
     background: #14bdee;
     color: #fff !important;
 }
+
+.team_item.personlity .team_body.detail{
+	grid-template-columns:3fr 1fr;
+	text-align: right;
+}
+
+.team_item.personlity .team_body.detail img{
+	width:200px;
+	height: 180px;
+	object-fit: cover;
+}
+
+.team_item.personlity .team_body.detail .left .team_subtitle{
+	text-align: right;
+}
+
+.team_item .team_body.detail .left .wlink{
+	color: #2f9446;
+}
+
+.team_item .team_body.detail .left i{
+	margin-right: 4px;
+}
+
+
+
+@media(max-width:767px){
+	.team_item.personlity .team_body.detail{
+		display: flex;
+		flex-direction: column-reverse;
+		text-align: left;
+	}
+
+	.team_item.personlity .team_body.detail .left .team_subtitle{
+		text-align: left;
+	}
+}

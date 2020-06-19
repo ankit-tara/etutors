@@ -268,12 +268,16 @@ jQuery(function () {
   jQuery(".writing textarea").keyup(function () {
     // var characterCount = countWords(jQuery(this).val()),jQuery(this).val()
 
-    let value = jQuery(this).val();
-    var regex = /\s+/gi;
-    var wordCount = value.trim().replace(regex, " ").split(" ").length;
-    // var characterCount = jQuery(this)
-    //     .val()
-    //     .replace(/ /g, "").length,
+//     let value = jQuery(this).val();
+//     var regex = /\s+/gi;
+//     var wordCount = value.trim().replace(regex, "").length;
+	  let wordCount = this.value.match(/\S+/g).length
+//     var wordCount = jQuery(this)
+//         .val()
+//         .replace(/ /g, "").length
+//             var wordCount = jQuery(this)
+//         .val()
+//         .replace(regex, "").length
      let current = jQuery(this)
         .siblings("#the-count")
         .find("#current");

@@ -571,6 +571,11 @@
 	#notebookheader span{
 		visibility: hidden;
 	}
+	
+	.page-template-pd .banner .course_title{
+	    font-size: 20px;
+	    text-align: center;
+	}
 }
 
 /************

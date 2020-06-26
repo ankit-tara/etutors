@@ -400,10 +400,14 @@ function bbloomer_checkout_save_user_meta($order_id)
 
         if ($test_type == 'academic') {
             $user_data = get_user_meta($user_id, 'is_acedemic', true);
+            $user_data = get_user_meta($user_id, 'ielts', true);
+
         } elseif ($test_type == 'ctpd') {
             $user_data = get_user_meta($user_id, 'is_ctpd', true);
         } else {
             $user_data = get_user_meta($user_id, 'is_general', true);
+            $user_data = get_user_meta($user_id, 'ielts', true);
+
         }
 
         if ($user_data && json_decode($user_data)) {
@@ -530,6 +534,13 @@ function custom_user_profile_fields($user)
         </td>
     </tr>
     <tr>
+        <th><label for="company">IELTS</label></th>
+        <td>
+            <input type="checkbox" class="regular-text" <?php echo @$test_data['is_ielts'] ? 'checked' : '' ?>
+                name="is_ielts" id="is_ielts" /><br />
+        </td>
+    </tr>
+    <tr>
         <th><label for="company">Demo User</label></th>
         <td>
             <input type="checkbox" class="regular-text" <?php echo @$test_data['is_demo_user'] ? 'checked' : '' ?>
@@ -575,6 +586,7 @@ function save_custom_user_profile_fields($user_id)
     update_user_meta($user_id, 'is_general', $_POST['is_general'] ? $data : '');
     update_user_meta($user_id, 'is_acedemic', $_POST['is_acedemic'] ? $data : '');
     update_user_meta($user_id, 'is_ctpd', $_POST['is_ctpd'] ? $data : '');
+    update_user_meta($user_id, 'is_ielts', $_POST['is_ielts'] ? $data : '');
     update_user_meta($user_id, 'is_demo_user', $_POST['is_demo_user'] ? $data : '');
 
     # save my custom field
@@ -589,6 +601,7 @@ function get_test_user_meta($user)
     $academic = get_user_meta($user_id, 'is_acedemic', true);
     $general = get_user_meta($user_id, 'is_general', true);
     $ctpd = get_user_meta($user_id, 'is_ctpd', true);
+    $ielts = get_user_meta($user_id, 'is_ielts', true);
     $days = '';
     $end_date = '';
     if ($academic && json_decode($academic)) {
@@ -612,6 +625,7 @@ function get_test_user_meta($user)
         'is_academic' => $academic && json_decode($academic),
         'is_general' => $general && json_decode($general),
         'is_ctpd' => $ctpd && json_decode($ctpd),
+        'is_ielts' => $ielts && json_decode($ielts),
         'is_demo_user' => get_user_meta($user_id, 'is_demo_user', true),
         'days' => $days,
         'end_date' => $end_date,
@@ -721,9 +735,11 @@ function wpm_create_user_form_registration($cfdata)
     // Check this is the user registration form
 
     if ($cfdata->title() == 'Demo') {
+        
         $username = $formdata['NAME'];
         $email = $formdata['EMAIL'];
         $phone = $formdata['PHONE'];
+        $course_type = $formdata['COURSE_TYPE'][0];
 
         $password = wp_generate_password(12);
 
@@ -760,7 +776,11 @@ function wpm_create_user_form_registration($cfdata)
             ];
             $user_data = update_user_meta($user_id, 'is_acedemic', json_encode($data));
             $user_data = update_user_meta($user_id, 'is_general', json_encode($data));
-            $user_data = update_user_meta($user_id, 'is_ctpd', json_encode($data));
+            if ($course_type != 'IELTS') {
+                $user_data = update_user_meta($user_id, 'is_ctpd', json_encode($data));
+            } else {
+                $user_data = update_user_meta($user_id, 'is_ielts', json_encode($data));
+            }
 
             $user_data = update_user_meta($user_id, 'billing_phone', $phone);
             $user_data = update_user_meta($user_id, 'demo_p_data', $password);
@@ -781,32 +801,35 @@ add_action('wpcf7_before_send_mail', 'wpm_create_user_form_registration', 1);
 
 function my_login_logo_one()
 {?>
-    <style type="text/css">
-        body.login
-        {
-            background-color:#fff;
-        }
-        body.login div#login h1 a {
-            background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/logo.png);
-            padding-bottom: 0;
-            background-size: 250px;
-            display: block;
-            width: 100%;
-            margin-bottom: 0px;
-        }
-        .message.register{
-            display:none;
-        }
-        body.login div#login input#wp-submit{
-            background: #14bdee;
-            border: none;
-            box-shadow: none;
-            text-shadow: none;
-            color: #fff;
-            font-weight: 600;
-        }
-    </style>
-    <?php
+<style type="text/css">
+body.login {
+    background-color: #fff;
+}
+
+body.login div#login h1 a {
+    background-image: url(<?php echo get_stylesheet_directory_uri();
+    ?>/images/logo.png);
+    padding-bottom: 0;
+    background-size: 250px;
+    display: block;
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+.message.register {
+    display: none;
+}
+
+body.login div#login input#wp-submit {
+    background: #14bdee;
+    border: none;
+    box-shadow: none;
+    text-shadow: none;
+    color: #fff;
+    font-weight: 600;
+}
+</style>
+<?php
 }
 add_action('login_enqueue_scripts', 'my_login_logo_one');
 

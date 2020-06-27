@@ -2,6 +2,7 @@
 $current_user = wp_get_current_user();
 
 $test_data = get_test_user_meta($current_user);
+
 $is_allowed = (!$test_data['is_academic'] && !$test_data['is_general']) || date("Y-m-d") > $test_data['end_date'];
 if ($is_allowed && !$is_demo_user) {
     $tests = [];
@@ -11,17 +12,18 @@ if ($is_allowed && !$is_demo_user) {
 
 get_header('dashboard');
 wp_reset_postdata();
- $name = basename(parse_url(add_query_arg(array()), PHP_URL_PATH));
+$name = basename(parse_url(add_query_arg(array()), PHP_URL_PATH));
 $args = array(
     'post_type' => 'test_materials',
     'posts_per_page' => 20,
     'tax_query' => array(
-    array(
-        'taxonomy' => 'mat_categories',
-        'field' => 'slug',
-        'terms' => $name
-        )
-    )
+        array(
+            'taxonomy' => 'mat_categories',
+            'field' => 'slug',
+            'terms' => $name,
+        ),
+    ),
+
     // 'mat_categories' => $name
 );
 $posts = new WP_Query($args);
@@ -44,8 +46,15 @@ if ($posts->have_posts()) {
         $posts->the_post();
         $id = get_the_ID();
         $url = $profile_url . '/view/material?et=' . base64_encode($id);
-        $url = wp_nonce_url($url, 'ar-tests-noonce')
+        $url = wp_nonce_url($url, 'ar-tests-noonce');
+        if ($test_data['is_ctpd'] && get_field('course_type') != 'pd') {
+            continue;
 
+        }
+        if (!$test_data['is_ctpd'] && get_field('course_type') == 'pd') {
+            continue;
+
+        }
         ?>
 
             <div class="material-box">

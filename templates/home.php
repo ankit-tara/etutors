@@ -226,7 +226,9 @@ Template Name: HomePage
 						</div>
 					</div>
 				</div>
-
+				<div class="col-md-12">
+				©️ Etutour-Institute for Growth & Development All rights reserved. Registered Company Number HR01D0009344. The information on this site is for information purposes only. IELTS is a registered trademark of University of Cambridge, the British Council, and IDP Education Australia. This site and its owners are not affiliated, approved or endorsed by the University of Cambridge ESOL, the British Council, and IDP Education Australia. For full information please refer to our terms and conditions and disclaimer
+				</div>
 			</div>
 		</div>
 	</div>

@@ -516,8 +516,10 @@ function getStudentResultsCtpd($user_id)
         $tbl_name . ' as t
     LEFT JOIN ' . $wpdb->prefix . 'posts as p
     ON p.id = t.test_id
+     LEFT JOIN wp_postmeta pm ON ( pm.post_id = p.ID)
      WHERE (t.user_id="' . $user_id . '")
-
+ AND (pm.meta_key="test_type")
+     AND (pm.meta_value LIKE "%ctpd%")
      ORDER BY t.id DESC
      LIMIT ' . $start . ', ' . $posts_per_page . '',
         ARRAY_A);
@@ -540,14 +542,47 @@ function get_count_ctpd($user_id)
     // ');
 
     $result = $wpdb->get_var('SELECT count(*) FROM ' .
-    $tbl_name . ' as t
+        $tbl_name . ' as t
     LEFT JOIN ' . $wpdb->prefix . 'posts as p
     ON p.id = t.test_id
+     LEFT JOIN wp_postmeta pm ON ( pm.post_id = p.ID)
      WHERE (t.user_id="' . $user_id . '")
-
+AND (pm.meta_key="test_type")
+     AND (pm.meta_value LIKE "%ctpd%")
       '
     );
 
+    return $result;
+
+}
+function get_tests_given()
+{
+
+    // $user_id = get_current_user_id();
+
+    global $wpdb;
+    $tbl_name = $wpdb->prefix . 'ar_ielts_student_results';
+
+    $result = $wpdb->get_var('SELECT count(*) FROM ' .
+        $tbl_name . ' as t
+    LEFT JOIN ' . $wpdb->prefix . 'posts as p
+    ON p.id = t.test_id
+         LEFT JOIN wp_postmeta pm ON ( pm.post_id = p.ID)
+
+   WHERE (pm.meta_key="test_type")
+     AND (pm.meta_value LIKE "%ctpd%")
+      '
+    );
+//     $result = $wpdb->get_var('SELECT count(*) FROM ' .
+//         $tbl_name . ' as t
+//     LEFT JOIN ' . $wpdb->prefix . 'posts as p
+//     ON p.id = t.test_id
+//          LEFT JOIN wp_postmeta pm ON ( pm.post_id = p.ID)
+
+//   WHERE (pm.meta_key="test_type")
+//      AND (pm.meta_value="ctpd")
+//       '
+//     );
 
     return $result;
 
@@ -919,4 +954,26 @@ function getStudentTestsNextPage($user_id, $count = 1)
         'et' => $user_id,
     ), $home_url);
     return $next_page;
+}
+
+function get_ctpd_students()
+{
+    $users = get_users(
+        [
+            'role__in' => ['student'],
+
+        ]);
+
+    $count = 0;
+    foreach ($users as $key => $user) {
+        $is_ctpd = get_user_meta($user->ID, 'is_ctpd');
+
+        if (!$is_ctpd || !count($is_ctpd) || !$is_ctpd[0]) {
+            continue;
+        }
+        $count++;
+    }
+
+    return $count;
+
 }

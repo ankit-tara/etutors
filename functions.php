@@ -336,6 +336,23 @@ add_action('init', function () {
                 exit(); // just exit if template was found and loaded
             }
         }
+
+        if ($url_path == 'instructor-profile/student-tests') {
+
+            // load the file if exists
+            $load = locate_template('instructor-dashboard/students-tests.php', true);
+            if ($load) {
+                exit(); // just exit if template was found and loaded
+            }
+        }
+        if ($url_path == 'instructor-profile/student-test') {
+
+            // load the file if exists
+            $load = locate_template('instructor-dashboard/student-test.php', true);
+            if ($load) {
+                exit(); // just exit if template was found and loaded
+            }
+        }
     }
 
 //     global $wpdb;
@@ -480,6 +497,58 @@ function getStudentResults($test_part)
      ORDER BY t.id DESC
      LIMIT ' . $start . ', ' . $posts_per_page . '',
         ARRAY_A);
+    return $result;
+
+}
+
+function getStudentResultsCtpd($user_id)
+{
+    // $user_id = get_current_user_id();
+
+    global $wpdb;
+    $tbl_name = $wpdb->prefix . 'ar_ielts_student_results';
+    $posts_per_page = 20;
+    $start = 0;
+    $paged = isset($_GET['paged']) && $_GET['paged'] ? $_GET['paged'] : 1; // Current page number
+    $start = ($paged - 1) * $posts_per_page;
+
+    $result = $wpdb->get_results('SELECT * FROM ' .
+        $tbl_name . ' as t
+    LEFT JOIN ' . $wpdb->prefix . 'posts as p
+    ON p.id = t.test_id
+     WHERE (t.user_id="' . $user_id . '")
+
+     ORDER BY t.id DESC
+     LIMIT ' . $start . ', ' . $posts_per_page . '',
+        ARRAY_A);
+    return $result;
+
+}
+
+function get_count_ctpd($user_id)
+{
+
+    // $user_id = get_current_user_id();
+
+    global $wpdb;
+    $tbl_name = $wpdb->prefix . 'ar_ielts_student_results';
+
+    // $result = $wpdb->get_var('SELECT COUNT(*)  FROM ' .
+    //     $tbl_name . '
+    //  WHERE (user_id="' . $user_id . '")
+
+    // ');
+
+    $result = $wpdb->get_var('SELECT count(*) FROM ' .
+    $tbl_name . ' as t
+    LEFT JOIN ' . $wpdb->prefix . 'posts as p
+    ON p.id = t.test_id
+     WHERE (t.user_id="' . $user_id . '")
+
+      '
+    );
+
+
     return $result;
 
 }
@@ -735,7 +804,7 @@ function wpm_create_user_form_registration($cfdata)
     // Check this is the user registration form
 
     if ($cfdata->title() == 'Demo') {
-        
+
         $username = $formdata['NAME'];
         $email = $formdata['EMAIL'];
         $phone = $formdata['PHONE'];
@@ -838,6 +907,16 @@ function getStudentNextPage($count = 1)
     $home_url = menu_page_url('student-results', false);
     $next_page = add_query_arg(array(
         'paged' => $count,
+    ), $home_url);
+    return $next_page;
+}
+
+function getStudentTestsNextPage($user_id, $count = 1)
+{
+    $home_url = home_url() . '/instructor-profile/student-tests';
+    $next_page = add_query_arg(array(
+        'paged' => $count,
+        'et' => $user_id,
     ), $home_url);
     return $next_page;
 }

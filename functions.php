@@ -170,12 +170,13 @@ add_action('template_redirect', 'redirect_to_specific_page');
 function redirect_to_specific_page()
 {
 
-    if (is_page('student-profile') && !is_user_logged_in()) {
+    if (is_page('student-profile') && (!is_user_logged_in() || !current_user_can('student'))
+    ) {
 
         wp_redirect(site_url() . '/login', 301);
         exit;
     }
-    if (is_page('instructor') && !is_user_logged_in()) {
+    if (is_page('instructor-profile') && (!is_user_logged_in() || !current_user_can('instructor'))) {
 
         wp_redirect(site_url() . '/login', 301);
         exit;
@@ -574,15 +575,15 @@ function get_tests_given()
       '
     );
 //     $result = $wpdb->get_var('SELECT count(*) FROM ' .
-//         $tbl_name . ' as t
-//     LEFT JOIN ' . $wpdb->prefix . 'posts as p
-//     ON p.id = t.test_id
-//          LEFT JOIN wp_postmeta pm ON ( pm.post_id = p.ID)
+    //         $tbl_name . ' as t
+    //     LEFT JOIN ' . $wpdb->prefix . 'posts as p
+    //     ON p.id = t.test_id
+    //          LEFT JOIN wp_postmeta pm ON ( pm.post_id = p.ID)
 
 //   WHERE (pm.meta_key="test_type")
-//      AND (pm.meta_value="ctpd")
-//       '
-//     );
+    //      AND (pm.meta_value="ctpd")
+    //       '
+    //     );
 
     return $result;
 

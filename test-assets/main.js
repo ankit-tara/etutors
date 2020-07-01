@@ -219,6 +219,12 @@ jQuery(function () {
   let activeClass = "highlight";
 
   jQuery(".pag-index").click(function () {
+    if (jQuery(this).hasClass("review")) {
+      jQuery("#review-pagination").prop("checked", true);
+    } else {
+      jQuery("#review-pagination").prop("checked", false);
+    }
+
     let index = jQuery(this).data("id");
     let element = jQuery(".qus-input[data-index='" + index + "']");
     jQuery(".test").hide();
@@ -236,18 +242,19 @@ jQuery(function () {
     }, 1000);
     jQuery(this).addClass(activeClass);
 
-    if (jQuery(".listening-test").length) {
-      let parentDiv = jQuery(".section-qus");
-      // let parentDiv = element.parents(".section-qus .pag-qus-sec .content");
-       jQuery(parentDiv).animate(
-         {
-           scrollTop: parentDiv.scrollTop() + element.position().top - 200,
-         },
-         100
-       );
-      return;
-    }
+    // if (jQuery(".listening-test").length) {
+    //   let parentDiv = jQuery(".section-qus");
+    //   // let parentDiv = element.parents(".section-qus .pag-qus-sec .content");
+    //    jQuery(parentDiv).animate(
+    //      {
+    //        scrollTop: parentDiv.scrollTop() + element.position().top - 200,
+    //      },
+    //      100
+    //    );
+    //   return;
+    // }
     let parentDiv = element.parents(".pag-qus-sec .content");
+    console.log(parentDiv, element);
     // let parentDiv = element.parents(".pag-qus-sec ");
     jQuery(parentDiv).animate(
       {
@@ -492,4 +499,7 @@ jQuery(".notes-btn").click(function (e) {
 jQuery(".close-notebook").click(function (e) {
   e.preventDefault();
   jQuery("#notebook").hide();
+});
+jQuery("#review-pagination").on("click", function () {
+  jQuery(".pag-index.highlight").toggleClass("review");
 });

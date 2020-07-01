@@ -16,26 +16,26 @@ $test = get_post($id);
 $test_type = $test->test_type;
 
 ?>
-    <?php for ($i = 1; $i <= 4; $i++) {
+<?php for ($i = 1; $i <= 4; $i++) {
 $style = $i == 1 && in_array('ctpd', $test_type) ? '' : 'display:none';
         $class = $i != 1 ? 'wrapper test':'step-3 wrapper test'
         ?>
-            <div class="<?php echo  $class ?>" style="<?php echo $style ?>
-" >
-                        <div class="content-wrapper row reading<?php echo $i ?>">
-                            <div class="left col-md-6 scroll-section">
-                                <div class="content">
-                                    <?php the_field('section_'.$i.'_paragraph',$test->ID) ?>
-                                </div>
-                            </div>
-                            <div class="right col-md-6  pag-qus-sec">
-                                <div class="content scroll-section">
-                                    <?php  the_field('section_'.$i.'_test',$test->ID) ?>
-                                </div>
-                            </div>
-                        </div>
+<div class="<?php echo  $class ?>" style="<?php echo $style ?>
+">
+    <div class="content-wrapper row reading<?php echo $i ?>">
+        <div class="left col-md-6 scroll-section">
+            <div class="content">
+                <?php the_field('section_'.$i.'_paragraph',$test->ID) ?>
             </div>
-    <?php }?>
+        </div>
+        <div class="right col-md-6  pag-qus-sec">
+            <div class="content scroll-section">
+                <?php  the_field('section_'.$i.'_test',$test->ID) ?>
+            </div>
+        </div>
+    </div>
+</div>
+<?php }?>
 
 
 

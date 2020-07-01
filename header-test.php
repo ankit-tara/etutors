@@ -9,9 +9,10 @@
 
     <link rel="stylesheet" href="<?=get_stylesheet_directory_uri()?>/test-assets/style.css" />
     <link rel="stylesheet" href="<?=get_stylesheet_directory_uri()?>/test-assets/player.css">
- <link href="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
+    <link href="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.css" rel="stylesheet"
+        type="text/css" />
 
-   <?php wp_head();?>
+    <?php wp_head();?>
 </head>
 
 <body>
@@ -34,18 +35,21 @@ $seconds = $parsed['hour'] * 3600 + $parsed['minute'] * 60 + $parsed['second'];
             <div class="timer">
                 <span style="display: none;" class="time-block">
                     <i class="fa fa-clock-o" aria-hidden="true"></i>
-                    <span id="time" data-time="<?php echo $seconds ?>"> <?php the_field('test_time', $test->ID)?> </span>
+                    <span id="time" data-time="<?php echo $seconds ?>"> <?php the_field('test_time', $test->ID)?>
+                    </span>
                 </span>
             </div>
 
             <div class="actions">
                 <a href="#" class="help notes-btn">Take Notes <i class="fa fa-info-circle" aria-hidden="true"></i></a>
                 <div class="notebook" id="notebook">
-                    <div id="notebookheader"><span>Drag from here</span><a href="#" class="close-notebook"><i class="fa fa-times-circle" aria-hidden="true"></i></a></div>
+                    <div id="notebookheader"><span>Drag from here</span><a href="#" class="close-notebook"><i
+                                class="fa fa-times-circle" aria-hidden="true"></i></a></div>
                     <textarea id="page" cols="30" rows="10" placeholder="well...start note taking"></textarea>
                 </div>
-                <a href="#" style="display:none" class="btn btn-primary form-btn" data-section="1" data-test-part="<?php echo $test_part ?>">Submit</a>
-                <a href="<?php echo home_url() .'/student-profile' ?>" class="">
+                <a href="#" style="display:none" class="btn btn-primary form-btn" data-section="1"
+                    data-test-part="<?php echo $test_part ?>">Submit</a>
+                <a href="<?php echo home_url() . '/student-profile' ?>" class="">
                     Go to Dashboard
                 </a>
             </div>
@@ -94,8 +98,9 @@ if ($test_part == 'listening') {
     <?php }?>
 
     <?php
-$style = $test_part == 'listening' ? 'display:none' : null
-?>
+$style = $test_part == 'listening' ? 'display:none' : null;
+$test_type = $test->test_type;
+if (!in_array('ctpd', $test_type)): ?>
 
     <div class="step-2 instructions" style="<?php echo $style ?>">
         <div class="card">
@@ -112,70 +117,68 @@ $style = $test_part == 'listening' ? 'display:none' : null
 
                     </strong>
                 </h5>
-                <?php if($test_part == 'writing') 
-                {
-                ?>
-                    <p class="card-text">
-                        Answer both parts.
-                    </p>
-                    <p class="card-text">
+                <?php if ($test_part == 'writing') {
+    ?>
+                <p class="card-text">
+                    Answer both parts.
+                </p>
+                <p class="card-text">
                     You can change your answers at any time during the test.
-                    
-                        <ul>
-                            <li>There are two parts in this test.</li>
-                            <li>Part 2 contributes twice as much as Part 1 to the writing score.</li>
-                            <li>The test clock will show you when there are 10 minutes and 5 minutes remaining.</li>
-                        </ul>
-                    </p>
+
+                    <ul>
+                        <li>There are two parts in this test.</li>
+                        <li>Part 2 contributes twice as much as Part 1 to the writing score.</li>
+                        <li>The test clock will show you when there are 10 minutes and 5 minutes remaining.</li>
+                    </ul>
+                </p>
                 <?php
-                }
-                ?>
-                <?php if($test_part == 'reading') 
-                {
-                ?>
-                    <p class="card-text">
-                        Answer all the questions.
-                    </p>
-                    <p class="card-text">
+}
+?>
+                <?php if ($test_part == 'reading') {
+    ?>
+                <p class="card-text">
+                    Answer all the questions.
+                </p>
+                <p class="card-text">
                     You can change your answers at any time during the test.
-                        <ul>
-                            <li>There are 40 questions in this test.</li>
-                            <li>Each question carries one mark.</li>
-                            <li>There are four parts to the test.</li>
-                            <li>For each part of the test there will be time for you to look through the questions and time
-                                for
-                                you to check
-                                your answers.</li>
-                        </ul>
-                    </p>
+                    <ul>
+                        <li>There are 40 questions in this test.</li>
+                        <li>Each question carries one mark.</li>
+                        <li>There are four parts to the test.</li>
+                        <li>For each part of the test there will be time for you to look through the questions and time
+                            for
+                            you to check
+                            your answers.</li>
+                    </ul>
+                </p>
                 <?php
-                }
-                ?>
-                <?php if($test_part == 'listening') 
-                {
-                ?>
-                    <p class="card-text">
-                        Answer all the questions.
-                    </p>
-                    <p class="card-text">
+}
+?>
+                <?php if ($test_part == 'listening') {
+    ?>
+                <p class="card-text">
+                    Answer all the questions.
+                </p>
+                <p class="card-text">
                     You can change your answers at any time during the test.
-                        <ul>
-                            <li>There are 40 questions in this test.</li>
-                            <li>Each question carries one mark.</li>
-                            <li>There are four parts to the test.</li>
-                            <li>You will hear each part once.</li>
-                            <li>For each part of the test there will be time for you to look through the questions and time
-                                for
-                                you to check
-                                your answers.</li>
-                        </ul>
-                    </p>
+                    <ul>
+                        <li>There are 40 questions in this test.</li>
+                        <li>Each question carries one mark.</li>
+                        <li>There are four parts to the test.</li>
+                        <li>You will hear each part once.</li>
+                        <li>For each part of the test there will be time for you to look through the questions and time
+                            for
+                            you to check
+                            your answers.</li>
+                    </ul>
+                </p>
                 <?php
-                }
-                ?>
-                
+}
+?>
+
                 <a href="#" class="btn btn-primary start-test">Start Test</a>
             </div>
         </div>
-
+       
     </div>
+     <?php endif;?>

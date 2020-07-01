@@ -15,7 +15,10 @@ $is_demo_user = $current_user->user_email == 'demo@demo.com';
 $no_of_posts = $is_demo_user ? 1 : 15;
 
 $test_data = get_test_user_meta($current_user);
+
 $is_allowed = (!$test_data['is_academic'] && !$test_data['is_general'] && (isset($test_data['is_ctpd']) && !$test_data['is_ctpd'])) || date("Y-m-d") > $test_data['end_date'];
+
+
 if ($is_allowed && !$is_demo_user) {
     $tests = [];
     wp_redirect(site_url() . '/student-locked-profile');
@@ -122,7 +125,7 @@ get_header('dashboard');
     }
     ?>
 	                        </td>
-	                        <td><?php the_field('test_type')?></td>
+	                        <td style="text-transform: uppercase;"><?php the_field('test_type')?></td>
 	                        <td><?php echo get_the_date() ?></td>
 	                        <td>
 	                            <a href="<?php echo $url ?>" class="btn bgc-deep-purple-50 c-deep-purple-700">Start Test</a>

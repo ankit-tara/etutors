@@ -133,9 +133,17 @@ jQuery(function () {
   jQuery(".continue").click(function () {
     console.log("clicked");
     jQuery(".step-1").hide();
-    jQuery(".step-2").show();
+    if (jQuery(".step-2").length) {
+      jQuery(".step-2").show();
+    } else {
+      startTest();
+    }
   });
   jQuery(".start-test").click(function () {
+    startTest();
+  });
+
+  function startTest() {
     jQuery(".test-footer").show();
     jQuery(".step-2").hide();
     jQuery(".step-3").show();
@@ -154,7 +162,7 @@ jQuery(function () {
 
       //jQuery("#player").trigger('play');
     }, 1000);
-  });
+  }
 
   //jQuery(".form-btn").click(function(e) {
   // e.preventDefault();
@@ -227,6 +235,18 @@ jQuery(function () {
       jQuery(element).parent().removeClass(activeClass);
     }, 1000);
     jQuery(this).addClass(activeClass);
+
+    if (jQuery(".listening-test").length) {
+      let parentDiv = jQuery(".section-qus");
+      // let parentDiv = element.parents(".section-qus .pag-qus-sec .content");
+       jQuery(parentDiv).animate(
+         {
+           scrollTop: parentDiv.scrollTop() + element.position().top - 200,
+         },
+         100
+       );
+      return;
+    }
     let parentDiv = element.parents(".pag-qus-sec .content");
     // let parentDiv = element.parents(".pag-qus-sec ");
     jQuery(parentDiv).animate(
@@ -268,19 +288,17 @@ jQuery(function () {
   jQuery(".writing textarea").keyup(function () {
     // var characterCount = countWords(jQuery(this).val()),jQuery(this).val()
 
-//     let value = jQuery(this).val();
-//     var regex = /\s+/gi;
-//     var wordCount = value.trim().replace(regex, "").length;
-	  let wordCount = this.value.match(/\S+/g).length
-//     var wordCount = jQuery(this)
-//         .val()
-//         .replace(/ /g, "").length
-//             var wordCount = jQuery(this)
-//         .val()
-//         .replace(regex, "").length
-     let current = jQuery(this)
-        .siblings("#the-count")
-        .find("#current");
+    //     let value = jQuery(this).val();
+    //     var regex = /\s+/gi;
+    //     var wordCount = value.trim().replace(regex, "").length;
+    let wordCount = this.value.match(/\S+/g).length;
+    //     var wordCount = jQuery(this)
+    //         .val()
+    //         .replace(/ /g, "").length
+    //             var wordCount = jQuery(this)
+    //         .val()
+    //         .replace(regex, "").length
+    let current = jQuery(this).siblings("#the-count").find("#current");
 
     current.text(wordCount);
   });

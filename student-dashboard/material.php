@@ -2,7 +2,7 @@
 $current_user = wp_get_current_user();
 
 $test_data = get_test_user_meta($current_user);
-$is_allowed = (!$test_data['is_academic'] && !$test_data['is_general']) || date("Y-m-d") > $test_data['end_date'];
+$is_allowed = (!$test_data['is_academic'] && !$test_data['is_general'] && (isset($test_data['is_ctpd']) && !$test_data['is_ctpd'])) || date("Y-m-d") > $test_data['end_date'];
 if ($is_allowed) {
     $tests = [];
     wp_redirect(site_url() . '/student-locked-profile');

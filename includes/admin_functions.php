@@ -20,6 +20,22 @@ add_action('admin_menu', 'ielts_tests_pages');
 function ielts_tests_pages()
 {
     add_menu_page('Student Results', 'Student Results', 'manage_options', 'student-results', 'ielts_tests_pages_html', 'dashicons-clipboard', 3);
+ add_submenu_page(
+        'student-results',
+        'Ielts Tests',
+        'Ielts Tests',
+        'manage_options',
+        'student-results&test_type=ielts',
+        'ielts_tests_pages_html'
+    );
+ add_submenu_page(
+        'student-results',
+        'CTPD Tests',
+        'CTPD Tests',
+        'manage_options',
+        'student-results&test_type=ctpd',
+        'ielts_tests_pages_html'
+    );
 }
 
 function ielts_tests_pages_html()

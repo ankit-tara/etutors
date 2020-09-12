@@ -233,4 +233,48 @@ Template Name: HomePage
 		</div>
 	</div>
 
+	<!-- Feature -->
+
+<div class="feature">
+    <div class="feature_background" style="background-image:url(<?= get_template_directory_uri();?>/images/courses_background.jpg)"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="section_title_container text-center">
+                    <h2 class="section_title">Testimonials</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="owl-carousel owl-theme testimonial_slider">
+                    <?php  
+					$args = array(
+						'post_type'      => 'student_reviews',
+						'posts_per_page' => 15,
+					);
+
+					$loop = new WP_Query( $args );
+
+					while ( $loop->have_posts() ) : $loop->the_post();
+						global $student_reviews;
+					?>
+                    <div class="owl-item">
+                        <div class="bubble-center">
+                            <div class="bubble-3">
+                                <h3><?php the_title();?></h3>
+                                <?php the_content();?>
+                            </div>
+                        </div>   
+                    </div>
+                    <?php
+					endwhile;
+						wp_reset_query();
+					?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php get_footer(); ?>

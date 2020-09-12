@@ -42,10 +42,8 @@ function ar_scripts()
     wp_enqueue_script('parallax', $url . '/plugins/parallax-js-master/parallax.min.js', array('jquery'), '3.3.6', true);
     wp_enqueue_script('App', $url . '/js/app.js', array('jquery'), '3.3.6', true);
     wp_enqueue_script('homejs', $url . '/js/home.js', array('jquery'), '3.3.6', true);
-
-    if (is_page('about')) {
-        wp_enqueue_script('aboutjs', $url . '/js/about.js', array('jquery'), '3.3.6', true);
-    }
+    wp_enqueue_script('aboutjs', $url . '/js/about.js', array('jquery'), '3.3.6', true);
+    
     if (is_page('student-profile')) {
         wp_enqueue_script('dashboard-styles', $url . '/dashboardstyle.css');
     }
@@ -97,6 +95,25 @@ function create_post_type()
             'show_ui' => true,
         )
     );
+
+    // if (isset($_GET['testing'])) {
+        register_post_type('video_materials',
+            array(
+                'labels' => array(
+                    'name' => __('Video Materials'),
+                    'singular_name' => __('Video Material'),
+                ),
+                'public' => true,
+                'has_archive' => true,
+                'hierarchical' => false,
+                // 'taxonomies' => array('mat_categories'),
+                'query_var' => true,
+                'show_ui' => true,
+                'show_admin_column' => true,
+            )
+        );
+
+    // }
 
 }
 
@@ -304,6 +321,20 @@ add_action('init', function () {
             }
             if (contains('student-profile/view/material', $url_path)) {
                 $load = locate_template('student-dashboard/material.php', true);
+                if ($load) {
+                    exit(); // just exit if template was found and loaded
+                }
+
+            }
+            if (contains('student-profile/view/video-material', $url_path)) {
+                $load = locate_template('student-dashboard/single-video-material.php', true);
+                if ($load) {
+                    exit(); // just exit if template was found and loaded
+                }
+
+            }
+            if (contains('student-profile/video-material', $url_path)) {
+                $load = locate_template('student-dashboard/video-material.php', true);
                 if ($load) {
                     exit(); // just exit if template was found and loaded
                 }
@@ -749,14 +780,45 @@ function getAllStudentResults()
     $paged = isset($_GET['paged']) && $_GET['paged'] ? $_GET['paged'] : 1; // Current page number
     $start = ($paged - 1) * $posts_per_page;
 
-    $result = $wpdb->get_results('SELECT * FROM ' .
-        $tbl_name . ' as t
+    if (isset($_GET['test_type']) && $_GET['test_type']) {
+        if ($_GET['test_type'] == 'ctpd') {
+            $result = $wpdb->get_results('SELECT * FROM ' .
+                $tbl_name . ' as t
+            LEFT JOIN ' . $wpdb->prefix . 'posts as p
+            ON p.id = t.test_id
+            LEFT JOIN ' . $wpdb->prefix . 'usermeta as u
+            ON u.user_id = t.user_id
+            WHERE u.meta_key = "is_ctpd" AND u.meta_value != ""
+
+            ORDER BY t.id DESC
+            LIMIT ' . $start . ', ' . $posts_per_page . '',
+                ARRAY_A);
+        } else {
+            $result = $wpdb->get_results('SELECT * FROM ' .
+                $tbl_name . ' as t
+            LEFT JOIN ' . $wpdb->prefix . 'posts as p
+            ON p.id = t.test_id
+            LEFT JOIN ' . $wpdb->prefix . 'usermeta as u
+            ON u.user_id = t.user_id
+            WHERE u.meta_key = "is_ctpd" AND u.meta_value = ""
+
+            ORDER BY t.id DESC
+            LIMIT ' . $start . ', ' . $posts_per_page . '',
+                ARRAY_A);
+        }
+        // print_r(  $result );
+        // die;
+
+    } else {
+        $result = $wpdb->get_results('SELECT * FROM ' .
+            $tbl_name . ' as t
     LEFT JOIN ' . $wpdb->prefix . 'posts as p
     ON p.id = t.test_id
 
      ORDER BY t.id DESC
      LIMIT ' . $start . ', ' . $posts_per_page . '',
-        ARRAY_A);
+            ARRAY_A);
+    }
     return $result;
 
 }
@@ -794,8 +856,35 @@ function get_total_tests()
     global $wpdb;
     $tbl_name = $wpdb->prefix . 'ar_ielts_student_results';
 
-    $result = $wpdb->get_var('SELECT COUNT(*) FROM ' . $tbl_name . ' ');
+    // $result = $wpdb->get_var('SELECT COUNT(*) FROM ' . $tbl_name . ' ');
+
+    if (isset($_GET['test_type'])) {
+        if ($_GET['test_type'] == 'ctpd') {
+            $result = $wpdb->get_var('SELECT COUNT(*) FROM ' .
+                $tbl_name . ' as t
+
+            LEFT JOIN ' . $wpdb->prefix . 'usermeta as u
+            ON u.user_id = t.user_id
+            WHERE u.meta_key = "is_ctpd" AND u.meta_value != ""
+            ');
+        } else {
+            $result = $wpdb->get_var('SELECT COUNT(*) FROM ' .
+                $tbl_name . ' as t
+
+            LEFT JOIN ' . $wpdb->prefix . 'usermeta as u
+            ON u.user_id = t.user_id
+            WHERE u.meta_key = "is_ctpd" AND u.meta_value = ""
+
+            ');
+        }
+        // print_r(  $result );
+        // die;
+
+    } else {
+        $result = $wpdb->get_var('SELECT COUNT(*) FROM ' . $tbl_name . ' ');
+    }
     return $result;
+
 }
 
 // function create_column()
@@ -941,9 +1030,17 @@ add_action('login_enqueue_scripts', 'my_login_logo_one');
 function getStudentNextPage($count = 1)
 {
     $home_url = menu_page_url('student-results', false);
-    $next_page = add_query_arg(array(
-        'paged' => $count,
-    ), $home_url);
+    if (isset($_GET['test_type']) && $_GET['test_type']) {
+        $next_page = add_query_arg(array(
+            'paged' => $count,
+            'test_type' => $_GET['test_type'],
+        ), $home_url);
+    } else {
+        $next_page = add_query_arg(array(
+            'paged' => $count,
+        ), $home_url);
+    }
+
     return $next_page;
 }
 

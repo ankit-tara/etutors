@@ -74,7 +74,14 @@
     </style>
     <link href="<?php echo get_template_directory_uri(); ?>/plugins/themify-icons.css" rel="stylesheet">
     <link href="<?php echo get_template_directory_uri(); ?>/dashboardstyle.css" rel="stylesheet">
-
+    <script>
+    jQuery(document).ready(function() {
+        jQuery("#toggleLog").click(function(e) {
+            e.preventDefault();
+            jQuery("#logDrop").toggle();
+        });
+    });
+    </script>
 </head>
 
 <body class="app dashboard js-focus-visible is-collapsed">
@@ -123,12 +130,12 @@
                         </a>
                     </li>
                     
-                    <li class="nav-item dropdown <?php echo $url_path == $profile_url_name.'/tests' ? 'active':''  ?>">
-                        <a class="sidebar-link" href="<?php echo $profile_url .'/tests'?>">
+                    <!-- <li class="nav-item dropdown <?php //echo $url_path == $profile_url_name.'/tests' ? 'active':''  ?>">
+                        <a class="sidebar-link" href="<?php //echo $profile_url .'/tests'?>">
                             <span class="icon-holder"> <i class="c-purple-500 ti-headphone-alt"></i> </span>
                             <span class="title">Tests</span>
                         </a>
-                    </li>
+                    </li> -->
 
                     <li class="nav-item dropdown <?php echo $url_path == $profile_url_name.'/students' ? 'active':''  ?>">
                         <a class="sidebar-link" href="<?php echo $profile_url .'/students'?>">

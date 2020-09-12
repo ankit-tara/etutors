@@ -30,7 +30,9 @@ get_header('instructor');
                 <tbody>
                     <?php foreach ($users as $user) {
                         $is_ctpd = get_user_meta($user->ID, 'is_ctpd');
-                        if(!$is_ctpd || !count($is_ctpd) || !$is_ctpd[0]){
+                      $test_meta =   get_test_user_meta($user);
+                   
+                        if(!$is_ctpd || !count($is_ctpd) || !$is_ctpd[0] ||  date("Y-m-d") > $test_meta['end_date']){
                             continue;
                         }
                         $url = home_url() . '/instructor-profile/student-tests/?et=' . base64_encode($user->ID);

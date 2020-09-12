@@ -161,6 +161,18 @@ function optionsframework_options() {
 		'id' => 'footer_copyright',
 		'type' => 'textarea');
 
+	$options[] = array(
+		'name' => __('Dashboard video', 'options_check'),
+		'desc' => __('This video will show in dashboard', 'options_check'),
+		'id' => 'dash-video',
+		'type' => 'upload');
+
+	$options[] = array(
+		'name' => __('Dashboard video CPT', 'options_check'),
+		'desc' => __('This video will show in dashboard CPT', 'options_check'),
+		'id' => 'dash-video-cpt',
+		'type' => 'upload');
+
 
 	return $options;
 }

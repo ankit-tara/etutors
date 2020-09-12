@@ -1,3 +1,19 @@
+<?php
+
+
+global $current_user;
+wp_get_current_user();
+
+$test_data = get_test_user_meta($current_user);
+
+if ($test_data['is_ctpd']){
+    $video = of_get_option('dash-video-cpt');
+}
+else{
+    $video = of_get_option('dash-video');
+}
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -33,6 +49,20 @@
         border-radius: 100%;
         -webkit-animation: sk-scaleout 1s infinite ease-in-out;
         animation: sk-scaleout 1s infinite ease-in-out
+    }
+
+    #headerVideo{
+        min-height: 25px;
+        height: 35px;
+        font-size:12px;
+        line-height: 35px;
+        padding: 0 10px;
+        margin-top: 15px;
+        color: #fff;
+        font-weight: bold;
+        text-transform: capitalize;
+        background: #43bdee;
+        border-color: #43bdee;
     }
 
     .dashboard .header {
@@ -105,6 +135,12 @@ $is_demo = get_user_meta(get_current_user_id(), 'is_demo_user', true)
         setTimeout(function() {
             loader.classList.add('fadeOut');
         }, 300);
+        if (document.cookie.indexOf('visited=true') == -1){
+            document.getElementById('headerVideo').click();
+             var year = 1000*60*60*24*365;
+            var expires = new Date((new Date()).valueOf() + year);
+            document.cookie = "visited=true;expires=" + expires.toUTCString();
+        }
     });
     </script>
     <div>
@@ -113,7 +149,7 @@ $is_demo = get_user_meta(get_current_user_id(), 'is_demo_user', true)
                 <div class="sidebar-logo">
                     <div class="peers ai-c fxw-nw">
                         <div class="peer peer-greed">
-                            <a class="sidebar-link td-n" href="index">
+                            <a class="sidebar-link td-n" href="/">
                                 <div class="peers ai-c fxw-nw">
                                     <div class="peer">
                                         <div class="logo"><img
@@ -178,6 +214,13 @@ $is_demo = get_user_meta(get_current_user_id(), 'is_demo_user', true)
                             <span class="title">Homework</span>
                         </a>
                     </li>
+                    <li
+                        class="nav-item  <?php echo $url_path == $profile_url . '/video-material' ? 'active' : '' ?>">
+                        <a class="sidebar-link" href="<?php echo $profile_url . '/video-material' ?>">
+                            <span class="icon-holder"><i class="c-blue-500 ti-video-camera"></i> </span>
+                            <span class="title">Videos</span>
+                        </a>
+                    </li>
                     <?php endif;?>
                 </ul>
             </div>
@@ -190,6 +233,11 @@ $is_demo = get_user_meta(get_current_user_id(), 'is_demo_user', true)
                                     class="ti-menu"></i></a></li>
                     </ul>
                     <ul class="nav-right">
+                        <li>
+                            <a id="headerVideo" class="vimeo cboxElement btn btn-primary" href="<?php echo $video ?>">
+                                Message from the instructor
+                            </a>
+                        </li>
                         <li class="dropdown">
                             <a href="" id="toggleLog" class="dropdown-toggle no-after peers fxw-nw ai-c lh-1"
                                 data-toggle="dropdown">

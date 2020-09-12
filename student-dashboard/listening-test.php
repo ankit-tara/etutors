@@ -19,14 +19,18 @@ $test = get_post($id);
     $class = $i != 1 ? 'wrapper test' : 'step-3 wrapper test'
     ?>
 <div class="<?php echo $class ?>" style="display:none">
-    <div class="content-wrapper row reading<?php echo $i ?>">
+<div class="section-block card">
+   <h3 class="section card-header">Section <?php echo $i ?></h3>
+    <div class="card-body content<?php echo $i ?>">
         
         <div class="listening-test   pag-qus-sec">
-            <div class="content scroll-section">
+            <div class="content scroll-section ls">
                 <?php the_field('section_' . $i . '_test', $test->ID)?>
             </div>
         </div>
     </div>
+</div>
+	
 </div>
 <?php }?>
 

@@ -338,6 +338,7 @@ jQuery("body").on("paste", function (event) {
   if (countWords(text) > 5) {
     alert("You cannot copy more than 5 words");
     event.preventDefault();
+    window.clipboardData.setData("text", "")
   }
 });
 
@@ -503,3 +504,55 @@ jQuery(".close-notebook").click(function (e) {
 jQuery("#review-pagination").on("click", function () {
   jQuery(".pag-index.highlight").toggleClass("review");
 });
+
+jQuery(document).ready(function () {
+  jQuery(".listening-test").parents('body').bind("cut copy paste", function (e) {
+    e.preventDefault();
+  });
+  jQuery(".readding-test").parents('body').bind("cut copy paste", function (e) {
+    e.preventDefault();
+  });
+});
+
+
+// document.onselectionchange = zzz;
+
+// function zzz() {
+//   var selectedRange = returnSelection();
+
+//   if (selectedRange.length > 50) {
+//     //alert('opaaaa');
+//     deselectSelection();
+//   }
+// }
+
+// function returnSelection() {
+//   if (window.getSelection) {
+//     if (window.getSelection().toString().length > 0) {
+//       return window.getSelection().toString();
+//     }
+//   } else if (document.getSelection) {
+//     if (document.getSelection().toString().length > 0) {
+//       return document.getSelection().toString();
+//     }
+//   } else if (document.selection) {
+//     if (document.selection.createRange().text.toString().length > 0) {
+//       return document.selection.createRange().text.toString();
+//     }
+//   }
+//   return false;
+// }
+// function deselectSelection() {
+//   if (window.getSelection) {
+//     if (window.getSelection().empty) {
+//       // Chrome
+//       window.getSelection().empty();
+//     } else if (window.getSelection().removeAllRanges) {
+//       // Firefox
+//       window.getSelection().removeAllRanges();
+//     }
+//   } else if (document.selection) {
+//     // IE?
+//     document.selection.empty();
+//   }
+// }

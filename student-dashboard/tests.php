@@ -80,9 +80,11 @@ if ($is_allowed && !$is_demo_user) {
     $args = array(
         'post_type' => 'ar-ielts-tests',
         'posts_per_page' => $no_of_posts,
+		'orderby'=>'date',
+		'order'   => 'DESC',
         'meta_query' => $meta_query,
     );
-
+remove_all_filters('posts_orderby');
     $tests = new WP_Query($args);
 
 }

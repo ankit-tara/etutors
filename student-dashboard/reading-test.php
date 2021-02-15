@@ -18,7 +18,7 @@ $test_type = $test->test_type;
 ?>
 <?php for ($i = 1; $i <= 4; $i++) {
 $style = $i == 1 && in_array('ctpd', $test_type) ? '' : 'display:none';
-        $class = $i != 1 ? 'wrapper test':'step-3 wrapper test'
+        $class = $i != 1 ? 'wrapper test':'step-3 wrapper test readding-test'
         ?>
 <div class="<?php echo  $class ?>" style="<?php echo $style ?>
 ">
